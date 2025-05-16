@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+    <body>
+        <center><h3 class="card-title">FINIQUITOS PENDIENTES DE PAGO</h3></center>
+    <br>
+        <center>
+            <img title='Consulta/Cargar/Actualizar Pagina' src='img/ActualizarEjecutar.jpg' class='cursorImg' id='btnguardar' onclick="ConsultaHistoricoMovimientosFiniquitoPago();" width="50px">
+            <br>
+        </center>
+        <section>
+            <table id="tablaReporteFinanzasFiniquitsFaltantes" style="display:none;"  class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="text-align: center;background-color: #B0E76E">Número De Empleado</th>
+                        <th style="text-align: center;background-color: #B0E76E">Nombre Del Empleado</th>
+                        <th style="text-align: center;background-color: #B0E76E">Entidad</th>
+                        <th style="text-align: center;background-color: #B0E76E">Monto</th>
+                    </tr>
+                </thead>
+            </table>
+        </section>
+
+        <script src="ReporteFiniquitosFaltantesFinanzas/ReporteFiniquitosFaltantesFinanzas.js"></script>
+    </body>
+</html>

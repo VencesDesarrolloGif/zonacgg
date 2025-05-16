@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link  href="css-Bootstrap-V4.1.3/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="css-Bootstrap-V4.1.3/popper.min.js" >
+    </head>
+    <body>
+        <center><h3 class="card-title">HISTORICO EDICIÓN DE REPORTE</h3>
+        <br>
+        <span>DE: </span><input type="date" id="SelectInicioFecha" max='<?php echo date("Y-m-d");?>'>
+        <span>A: </span><input type="date" id="SelectFinFecha" max='<?php echo date("Y-m-d");?>'>
+        <br>
+        <br>
+        <button id='btnconsultarHistoricoRICC' width="50px" class="btn btn-primary ">CONSULTAR</button>
+        <br>
+        <br>
+        <section>
+            <table id="tablaEditReporteIncidenciasCentroDeControl"  class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" style="display: none;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="text-align: center;background-color: #B0E76E">Id Incidencia</th>       
+                        <th style="text-align: center;background-color: #B0E76E">Tipo De Incidencia</th>       
+                        <th style="text-align: center;background-color: #B0E76E">Número De Supervisor Asignado</th>
+                        <th style="text-align: center;background-color: #B0E76E">Nombre De Supervisor Asignado</th>
+                        <th style="text-align: center;background-color: #B0E76E">Número De Empleado</th>
+                        <th style="text-align: center;background-color: #B0E76E">Nombre De Empleado</th>      
+                        <th style="text-align: center;background-color: #B0E76E">Entidad Federativa</th>       
+                        <th style="text-align: center;background-color: #B0E76E">Punto De Servicio</th>
+                        <th style="text-align: center;background-color: #B0E76E">Empleado que editó</th>
+                        <th style="text-align: center;background-color: #B0E76E">Fecha Edición</th>
+                        <th style="text-align: center;background-color: #B0E76E">Estatus Reporte</th> 
+                    </tr>
+                </thead>
+            </table>
+        </section>
+        <script src="HistoricoReporteIncidenciasCentroDeControl/HistoricoEdicionesRICC.js"></script>
+        <link rel="stylesheet" href="css-Bootstrap-V4.1.3/js/bootstrap.min.js">
+    </body>
+</html>

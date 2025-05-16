@@ -1,0 +1,19 @@
+1) obtener y mostrar el punto de servicio en donde fue registrada la incidencia del elemento OK
+
+2) registro de comentario en incidencia OK
+
+3) el supervisor no puede modificar incidencia "ING" ni "B" 
+
+4) poner estilo a celda al registrar incidencia OK
+
+5) resaltar en modal la incidencia registrada OK 
+
+6) baja provisional: el supervisor registra baja y no podra pasar mas asistencia
+
+7) suma de turnos al dia vs turnos presupuestados por ventas itzel
+
+8) Consultar bajas en proceso RH Y Operaciones. ok
+
+9) llenar de ING desde el inicio de periodo hasta fecha de ingreso del empleado.
+
+10) segistrar asistencia baja cuando rh la registra desde consulta

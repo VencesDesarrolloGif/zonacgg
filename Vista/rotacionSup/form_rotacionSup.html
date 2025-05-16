@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+<div id="divMensajeRotacionSup"></div>   
+<center><h1>ROTACIÓN SUPERVISOR</h1></center>
+</head>
+  <br><br>
+    <center>
+
+       <div id="DivLineaNegocioPermanencia">
+         <select id="seleccionarLineNegocioRotacionSup" name="seleccionarLineNegocioRotacionSup"></select><br>
+       </div>
+
+       <input id="usuarioHidden" name="usuarioHidden" type="hidden"> 
+
+        <select id="selectTipoBusqueda" style="display:none;">
+            <option value="0">TIPO DE BUSQUEDA</option>
+            <option value="1">15 MEJORES</option>
+            <option value="2">15 PEORES</option>
+        </select>
+        <br>
+        <select id="selectRegion" style="display:none;">
+            <option value="0">REGION></option>
+        </select>
+        <br>
+        <select id="selectEntidad" style="display:none;">
+            <option value="0">ENTIDAD</option>
+        </select>
+
+
+      <br>
+      <br>
+
+       <div id="DivFechaRotacionSup" style="display: none;">
+            DE:<input id="inputFechaInicioRotacionSup" placeholder="Seleccione Fecha" name="inputFechaInicioRotacionSup" type="text" class="input-medium"> 
+            A: <input id="inputFechaFinRotacionSup"    placeholder="Seleccione Fecha" name="inputFechaFinRotacionSup"    type="text" class="input-medium">
+       </div>
+      <br>
+        <img id="BTNBuscarRotacion" title="Buscar" src="img/botonbuscar.jpg" width="125px" style="display: none;">
+    </center>
+      <br>
+
+  <div id="divTablaRotacionSup" style="display: none;">
+    <table id="tablaRotacionSupEmpleados"  class="records_list table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th style="text-align: center;background-color: #B0E76E">Número empleado</th>
+                <th style="text-align: center;background-color: #B0E76E">Supervisor</th>
+                <th style="text-align: center;background-color: #B0E76E">Entidad</th>
+                <th style="text-align: center;background-color: #B0E76E">Altas</th>
+                <th style="text-align: center;background-color: #B0E76E">Bajas</th> 
+                <th style="text-align: center;background-color: #B0E76E">Reingresos</th> 
+            </tr>
+        </thead>
+    </table>
+  </div>
+  <br>
+
+  <div class="col-lg" style="display: none;" id="DivGraficaRSupervisorDia" name="DivGraficaRSupervisorDia">         
+         <div id="DivGrafRSupDias1" name="DivGrafRSupDias1"></div> 
+         <!-- <div id="DivGrafRSupPie" name="DivGrafRSupPie"></div>  -->
+  </div>
+  
+  <div class="col-lg" style="display: none;" id="DivGraficaRSupervisor" name="DivGraficaRSupervisor">         
+         <div id="DivGrafRSup" name="DivGrafRSup"></div> 
+         <div id="DivGrafRSupPie" name="DivGrafRSupPie"></div> 
+  </div>
+
+   <div class="col-lg" style="display: none;" id="DivGraficaRSupervisorGeneral" name="DivGraficaRSupervisorGeneral">         
+         <div id="DivGrafRSupGeneral" name="DivGrafRSupGeneral" ></div> 
+         <div id="DivGrafRSupPieGeneral" name="DivGrafRSupPieGeneral"></div> 
+  </div>
+
+  <div style="display: none;" id="DivGraficaRSupervisorGeneralDG1" name="DivGraficaRSupervisorGeneralDG1">         
+         <div id="DivGrafRSupGeneralDG1" name="DivGrafRSupGeneralDG1"  style="width: 100%;height: 100px;"></div> 
+         <div id="DivGrafRSupPieGeneralDG1" name="DivGrafRSupPieGeneralDG1"></div> 
+  </div>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script> -->
+    <script src="css-Bootstrap-V4.1.3/js/chart2.js" type="txt/javascript"></script>
+    
+    <script src="Chart.min.js"></script>
+    <script src="rotacionSup/rotacionSup.js"></script>
+  </html>

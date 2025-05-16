@@ -1,0 +1,3928 @@
+<div class="container" align="center">
+
+<form class="form-horizontal"  method="post" name='form_EditaEmpleado' id="form_EditaEmpleado" enctype="multipart/form-data">
+  <input type="text" name="txtSearch" id="txtSearch"class="search-query" placeholder="Buscar  (00-0000-00)" aria-describedby="basic-addon2" onkeyup="verificaConsultaEmpleado();" onblur=""><img src="img/search.png">
+  <input type="text" name="txtSearchName" id="txtSearchName"class="input-xlarge" placeholder="APELLIDOS NOMBRE(S)" aria-describedby="basic-addon2" ><img src="img/search.png">
+  
+
+  <div id="listaDePersonalActivo" >
+  
+  </div>
+
+</br>
+
+
+<fieldset >
+
+<div class="tabbable">
+<ul class="nav nav-tabs" >
+
+  <li id="Dgenerales"><a id="containerDatosGeneralesEdited1" href="#containerDatosGeneralesEdited" data-toggle="tab">Datos Generales<span id="spanDatosGenerales" class="glyphicon glyphicon-pencil"></span></a></li>
+  <li id="Dpersonales"><a id="containerDatosPersonalesEdited1" href="#containerDatosPersonalesEited" data-toggle="tab">Datos Personales <span id="spanDatosPersonales" class="glyphicon glyphicon-pencil"></span></a></li>
+  <li id="Directorio"><a id="containerDirectorioEdited1" href="#containerDirectorioEdited" data-toggle="tab">Directorio <span id="spanDatosDireccion" class="glyphicon glyphicon-pencil"></span></a></li>
+  <li id="Familiares"><a id="containerDatosFamiliaresEdited1" href="#containerDatosFamiliaresEdited" data-toggle="tab">Datos Familiares <span id="spanDatosFamiliares" class="glyphicon glyphicon-pencil"></span></a></li>
+  <?php
+          if ($usuario["rol"] =="Administrador" || $usuario["rol"] =="Contrataciones" || $usuario["rol"] =="Lider Unidad" )
+                {
+          ?>
+
+
+  <li id="Familiares"><a id="containerDocumentosDigitalizadosTab1" href="#containerDocumentosDigitalizadosEdited" data-toggle="tab">Documentos Digitalizados </a></li>
+
+  <?php
+  }
+  ?>
+  <li id="formatos"><a id="containerFormatosTab1" href="#containerFormatosEdited" data-toggle="tab">Generacion de Formatos </a></li>
+  
+</ul>
+</div>
+ 
+<div class="tab-content">
+
+  <!--Div datos generales -->
+  <div align="center" class="tab-pane active" id="containerDatosGeneralesEdited" >
+    <legend><h3>Datos Generales</h3></legend>
+       
+
+      <table class="table1"  >
+        <tr >
+          <td><label class="control-label label " for="numeroEmpleado">N. Empleado</label> </td>
+          <td> <input id="numeroEmpleadoEntidadEdited" name="numeroEmpleadoEntidadEdited" type="text" placeholder="00" class="input-mini-mini" maxlength="2" readonly>-
+              <input id="numeroEmpleadoConsecutivoEdited" name="numeroEmpleadoConsecutivoEdited" type="text" placeholder="0000" class="input-small-mini" maxlength="4" readonly> -
+              <input id="numeroEmpleadoTipoEdited" name="numeroEmpleadoTipoEdited" type="text" placeholder="00" class="input-mini-mini" maxlength="2" readonly>
+          </td>
+
+			 <td ROWSPAN="8" valign="top" width="50%" style="padding:25px;">
+				<div>Foto:</div>
+				<div id="fotoEmpleadoEdited" style="width:150px;height:133px;border:1px solid;text-align:center;"></div>
+				<input type="hidden" name="idFotoEmpleadoEdited" id="idFotoEmpleadoEdited" />
+				<input type="file" id="fileFotoEmpleadoEdited" name="fileFotoEmpleadoEdited" >
+				<output id="list"></output>
+      </br><div id="divFirma" name="divFirma"></div><br>
+      <div id="fotoFirma"></div>
+			 </td>
+         </tr>
+        <tr>
+          <td><label class="control-label label " for="apellidoPaternoEmpleado">Apellido Paterno</label></label> </td>
+          <td><input id="apellidoPaternoEmpleadoEdited" name="apellidoPaternoEmpleadoEdited" type="text" placeholder="Solo Letras" class="input-large"></td>
+        </tr>
+        <tr >
+          <td ><label class="control-label label" for="apellidoMaternoEmpleado">Apellido Materno</label></td>
+          <td><input id="apellidoMaternoEmpleadoEdited" name="apellidoMaternoEmpleadoEdited" type="text" placeholder="Solo letras" class="input-large"></td>
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="nombreEmpleado">Nombre</label></td>
+          <td><input id="nombreEmpleadoEdited" name="nombreEmpleadoEdited" type="text" placeholder="Solo letras" class="input-large" ></td>
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="numeroSeguroSocial">Numero SS</label></td>
+          <td><input id="numeroSeguroSocialEdited" name="numeroSeguroSocialEdited" type="text" placeholder="Solo letras" class="input-large" maxlength="11" ></td>
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="numeroCta">Numero Cta</label></td>
+          <td><input id="txtNumeroCtaEdited" name="txtNumeroCtaEdited" type="text" placeholder="Solo letras" class="input-large" maxlength="14" ></td>
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="numeroCta">Numero Cta Clabe</label></td>
+          <td><input id="txtCtaClabeEdited" name="txtCtaClabeEdited" type="text" placeholder="Solo letras" class="input-large" maxlength="18" ></td>
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="fechaIngreso">Fecha Ingreso</label></td>
+          <td><input id="fechaIngresoEdited" name="fechaIngresoEdited" type="date" class="input-medium"></br><div id="divFechaBaja" name="divFechaBaja"></div></td>
+        </tr>
+        <tr id="trFechaBaja" name="trFechaBaja">
+
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="lineaNegocio" >Linea de Negocio</label></td>
+          <td><select id="selectLineaNegocioEdited" name="selectLineaNegocioEdited" class="input-large " onChange="" >
+             <option>LiNEA NEGOCIO</option>
+              <?php
+                for ($i=0; $i<count($catalogoLineaNegocio); $i++)
+                {
+                echo "<option value='". $catalogoLineaNegocio[$i]["idLineaNegocio"]."'>". $catalogoLineaNegocio[$i]["descripcionLineaNegocio"] ." </option>";
+                }
+              ?>
+          </td>
+
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="entidadFederativa" >Entidad Federativa Labor</label></td>
+          <td><select id="idEndidadFederativaEdited" name="idEndidadFederativaEdited" class="input-large " onChange="obtenerListaPuntosServiciosPorEntidad1();" >
+             <option>ENTIDAD FEDERATIVA</option>
+              <?php
+                for ($i=0; $i<count($catalogoEntidadesFederativas); $i++)
+                {
+                echo "<option value='". $catalogoEntidadesFederativas[$i]["idEntidadFederativa"]."'>". $catalogoEntidadesFederativas[$i]["nombreEntidadFederativa"] ." </option>";
+                }
+              ?>
+              </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="tipoPuesto">Tipo Puesto</label></td>
+          <td>
+            <select id="tipoPuestoEdited" name="tipoPuestoEdited" class="input-large " onChange="seleccionarPuestoPorTipo(); obtenerSupervisoresOperativos1();">
+            <option>TIPO PUESTO</option>
+              <?php
+              for ($i = 0; $i < count($catalogoTipoPuestos); $i++)
+              {
+                echo "<option value='" . $catalogoTipoPuestos [$i]["idCategoria"] . "' >" . $catalogoTipoPuestos [$i]["descripcionCategoria"] . " </option>";
+              }
+              ?>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="puesto">Puesto</label></td>
+          <td> 
+            <select id="puestoEdited" name="puestoEdited" class="input-large" >
+          </td>
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="Dirigente">Jefe/Supervisor</label></td>
+          <td><select id="dirigenteEdited" name="dirigenteEdited" class="input-large"></select></td>
+          <td><div id="divdirigentes" ></div></td>
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="PuntodeServicio">Punto de Servicio</label></td>
+          <td><select id='selectPuntoServicioEdited' class='input-large' onchange="obtenerClienteByPuntoServicioIdEdited();"><option>PUNTO DE SERVICIO</option></select>
+            <input id="txtClienteIdEdited" name="txtClienteIdEdited"  type="hidden" class="input-large" maxlength="14"></td>
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="Turno">Turno</label></td>
+          <td>
+            <select id="tipoTurnoEdited" name="tipoTurnoEdited" class="input-large ">
+              <option>TURNO</option>
+                <?php
+                  for ($i = 0; $i < count($catalogoTurnos); $i++)
+                  {
+                    echo "<option value='" . $catalogoTurnos [$i]["idTipoTurno"] . "' >" . $catalogoTurnos [$i]["descripcionTurno"] . " </option>";
+                  }
+                ?>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label class="control-label label" for="Sexo">Sexo</label></td>
+          <td>
+            <?php
+            for ( $i=0; $i<count($catalogoGeneros); $i++)
+            {
+              echo "<div class='radio'><input type='radio' name='generoEdited' id='".$catalogoGeneros[$i]["idGenero"] ."generoEdited' value='".$catalogoGeneros[$i]["idGenero"] ."' onclick='seleccionaEstatusCartilla1(".$catalogoGeneros[$i]["idGenero"].")'; >".$catalogoGeneros[$i]["nomenclaturaGenero"]."</div>";
+            }
+            ?>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label class="control-label2 label" for="lblPeriodoEdited">Periodo</label></td>
+          <td>
+            <?php
+            for ( $i=0; $i<count($catalogoPeriodos); $i++)
+            {
+              echo "<input type='radio' name='periodoEdited' id='".$catalogoPeriodos[$i]["tipoPeriodoId"]."periodoEdited' value='".$catalogoPeriodos[$i]["tipoPeriodoId"] ."' >".$catalogoPeriodos[$i]["descripcionTipoPeriodo"]."<br>";
+            }
+            ?>
+          </td>
+        </tr>
+        <tr>
+          <td><div id="divLblReclutadorEdited" name="divLblReclutadorEdited"></div></td>
+          <td><div id="divReclutadorEdited" name="divReclutadorEdited"></div></td>
+        </tr>
+        <tr>
+          <td><div id="divLblMedioEdited" name"divLblMedioEdited"></div></td>
+          <td><div id="divMedioInformacionEdited" name="divMedioInformacionEdited"></div></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>
+            <!--<button id="guardar" name="guardar" class="btn btn-info" type="button" > <span class="glyphicon glyphicon-floppy-save"></span>Guardar</button>-->
+            <div id='divButtonGuardarDatosGenerales' name='divButtonGuardarDatosGenerales'></div>
+
+            <?php
+            if ($usuario["rol"] =="Administrador" || $usuario["rol"] =="Contrataciones" || $usuario["rol"] =="Lider Unidad" )
+                {
+            ?>
+            <div id='divEditarDatosGenerales' name='divEditarDatosGenerales'><button id="desbloqueoDatosGenerales" name="desbloqueoDatosGenerales" class="btn btn-success" type="button" onclick="desbloquearDatosGenerales();"> <span class="glyphicon glyphicon-refresh"></span>Editar</button></div>
+            
+          <!--<button id="cancelar" name="guardar" class="btn btn-danger" type="button" onclick="clearForm();" > <span class="glyphicon glyphicon-remove"></span>Cancelar</button>-->
+
+            <?php
+              }
+            ?>
+          </td>
+        </tr>
+
+        <tr><td></td>
+          <!-- <td><button class='btn btn-primary' onclick='checarPlantilla ();' type='button'>CHECAR2</button></td></tr> -->
+      </table>
+  </div>
+  <!--Fin Div datos generales -->
+
+  <!--Comienza Div datos personales -->
+
+  <div align="center" class="tab-pane" id="containerDatosPersonalesEited" >
+    
+    <legend><h3>Datos Personales</h3></legend>
+    
+      <table class="table1">
+        <tr>
+          <td><label class="control-label label " for="fechaNacimiento">Fecha Nacimiento</label></label> </td>
+          <td><input id="txtFechaNacimientoEdited" name="txtFechaNacimientoEdited" type="date"  class="input-medium"></td>
+      </tr>
+
+      <tr>
+        <td><label class="control-label label " for="pais">Pais Nacimiento</label></label> </td>
+        <td><select id="selectPaisNacimientoEdited" name="selectPaisNacimiento" class="input-large ">
+       
+
+            <?php
+              for ($i = 0; $i < count($catalogosPaises); $i++)
+              {
+                echo "<option value='" . $catalogosPaises [$i]["idPais"] . "' >" . $catalogosPaises [$i]["nombrePais"] . " </option>";
+              }
+            ?>
+            
+            </select>
+        </td>
+      </tr>
+
+      <tr >
+        <td ><label class="control-label label" for="entidadN">Entidad Nacimiento</label></td>
+        <td><select id="selectEntidadNacimientoEdited" name="selectEntidadNacimientoEdited" class="input-large" onChange="consultarMunicipiosPorEntidadE();" >
+             <option>ENTIDAD FEDERATIVA</option>
+              <?php
+                for ($i=0; $i<count($catalogoEntidadesFederativas); $i++)
+                {
+                echo "<option value='". $catalogoEntidadesFederativas[$i]["idEntidadFederativa"]."'>". $catalogoEntidadesFederativas[$i]["nombreEntidadFederativa"] ." </option>";
+                }
+              ?>
+          </td>
+      </tr>
+      <tr>
+        <td ><label class="control-label label" for="municipioN">Municipio Nacimiento</label></td>
+        <td><select id="selectMunicipioNacEdited" name="selectMunicipioNacEdited" class="input-large" ></td>
+      </tr>
+      <tr>
+        <td ><label class="control-label label" for="curp">CURP</label></td>
+        <td><input id="txtCurpEdited" name="txtCurpEdited" type="text" placeholder="" class="input-large" maxlength="18"></td>
+      </tr>
+      <tr>
+        <td ><label class="control-label label" for="rfc">RFC</label></td>
+        <td><input id="txtRfcEdited" name="txtRfcEdited" type="text"  class="input-large" maxlength="13"></td>
+      </tr>
+      <tr>
+        <td ><label class="control-label label" for="edoCivil">Estado Civil</label></td>
+        <td><select id="selectEstadoCivilEdited" name="selectEstadoCivilEdited" class="input-large ">
+            <option>ESTADO CIVIL</option>
+
+            <?php
+              for ($i = 0; $i < count($catalogoEstadoCivil); $i++)
+              {
+                echo "<option value='" . $catalogoEstadoCivil [$i]["idEstadoCivil"] . "' >" . $catalogoEstadoCivil [$i]["descripcionEstadoCivil"] . " </option>";
+              }
+            ?>
+            
+            </select>
+        </td>
+      </tr>
+      <tr>
+        <td ><label class="control-label label" for="gradoEstudios">Grado Estudios</label></td>
+        <td><select id="selectGradoEstudiosEdited" name="selectGradoEstudiosEdited" class="input-large ">
+            <option>GRADO ESTUDIOS</option>
+
+            <?php
+              for ($i = 0; $i < count($catalogoGradoEstudios); $i++)
+              {
+                echo "<option value='" . $catalogoGradoEstudios [$i]["idGradoEstudios"] . "' >" . $catalogoGradoEstudios [$i]["descripcionGradoEstudios"] . " </option>";
+              }
+            ?>
+            
+            </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label class="control-label label" for="Sangre">Tipo Sangre</label></td>
+        <td>
+          <select id="selectTipoSangreEdited" name="selectTipoSangreEdited" class="input-large ">
+            <option>TIPO SANGRE</option>
+            <?php
+              for ($i = 0; $i < count($catalogoTipoSangre); $i++)
+              {
+                echo "<option value='" . $catalogoTipoSangre [$i]["idTipoSangre"] . "' >" . $catalogoTipoSangre [$i]["tipoSangre"] . " </option>";
+              }
+            ?>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label class="control-label label" for="Oficio">Oficio</label></td>
+        <td>
+          <select id="selectOficioEdited" name="selectOficioEdited" class="input-large ">
+            <option>OFICIO</option>
+            <?php
+              for ($i = 0; $i < count($catalogoOficios); $i++)
+              {
+                echo "<option value='" . $catalogoOficios [$i]["idOficio"] . "' >" . $catalogoOficios [$i]["descripcionOficio"] . " </option>";
+              }
+            ?>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label class="control-label label" for="cartilla">Cartilla</label></td>
+        <td>
+          <?php
+
+          for ( $i=0; $i<count($catalogoEstatusCartilla); $i++)
+          {
+            echo "<div class='radio'><input type='radio' name='estatusCartillaEdited' id='".$catalogoEstatusCartilla[$i]["idEstatusCartilla"] ."estatusCartillaEdited' value='".$catalogoEstatusCartilla[$i]["idEstatusCartilla"] ."' >".$catalogoEstatusCartilla[$i]["descripcionEstatusCartilla"]."</div>";
+          }
+          ?>
+        </td>
+      </tr>
+      <tr>
+        <td ><label class="control-label label" for="numeroCartilla1">Numero Cartilla</label></td>
+        <td><input id="txtNumeroCartillaEdited" name="txtNumeroCartillaEdited" type="text"  class="input-medium"></td>
+       </tr>
+     
+      <tr>
+        <td></td>
+        <td>
+          <div id='divButtonGuardarDatosPersonales' name='divButtonGuardarDatosPersonales'></div>
+
+          <?php
+          if ($usuario["rol"] =="Administrador" || $usuario["rol"] =="Contrataciones" || $usuario["rol"] =="Lider Unidad")
+                {
+          ?>
+          <div id='divEditarDatosPersonales' name='divEditarDatosPersonales'><button id="desbloqueoDatosPersonales" name="desbloqueoDatosPersonales" class="btn btn-success" type="button" onclick="desbloquearDatosPersonales();"> <span class="glyphicon glyphicon-refresh"></span>Editar</button>
+          </div>
+
+          <?php
+        }
+        ?>
+
+        <!--
+        <button id="btnGuardarDatosPersonales" name="btnGuardarDatosPersonales" class="btn btn-primary" type="button" onclick="guardarDatosPersonalesSubmit();"> <span class="glyphicon glyphicon-floppy-save"></span>Guardar</button>
+        <button id="desbloqueoDatosGenerales" name="desbloqueoDatosGenerales" class="btn btn-success" type="button" onclick="desbloquearDatosGenerales();"> <span class="glyphicon glyphicon-refresh"></span>Editar</button>
+      -->
+      </td>
+      </tr>
+      
+      
+    </table>
+   
+  </div>
+  <!--Termina Div datos personales -->
+  
+
+  <!--Inicia Div datos Directorio -->
+
+  <div align="center" class="tab-pane" id="containerDirectorioEdited" >
+
+    <legend><h3>Directorio</h3></legend>
+      <table align="center" class="table1">
+        <tr>
+          <td><label class="control-label label " for="cp">C.P Vivienda</label></label> </td>
+          <td>
+            <input id="txtCPEdited" name="txtCPEdited" type="text"  class="input-large"  maxlength="5" onkeyup="consultaCPEdited();">
+            <input id="txtIdAsentamientoEdited" name="txtIdAsentamientoEdited" type="hidden" />
+          </td>
+          <td>&nbsp;</td>
+          <td style="width:400px;" rowspan="13" valign="top"><div id="multipleDireccionesE"></div></td>
+        </tr>
+        <tr >
+          <td ><label class="control-label label" for="Entidad">Entidad</label></td>
+          <td><input id="txtEntidadViviendaEdited" name="txtEntidadViviendaEdited" type="text"  class="input-large" readonly></td>
+        </tr>
+        <tr>
+          <td ><label class="control-label label" for="municipio">Municipio</label></td>
+          <td><input id="txtMunicipioViviendaEdited" name="txtMunicipioViviendaEdited" type="text" placeholder="Municipio" class="input-large" readonly>
+            <input id="txtIdMunicipioEdited" name="txtIdMunicipioEdited" type="hidden"></td></td>
+        </tr>
+        <tr>
+          <td ><label class="control-label label" for="colonia">Colonia</label></td>
+          <td><input id="txtColoniaEdited" name="txtColoniaEdited" type="text" placeholder="Colonia" class="input-large" readonly></td>
+        </tr>
+        <tr>
+          <td ><label class="control-label label" for="calle">Calle</label></td>
+          <td><input id="txtCalleEdited" name="txtCalleEdited" type="text" placeholder="Calle" class="input-large"></td>
+        </tr>
+        <tr>
+          <td ><label class="control-label label" for="numero">Numero</label></td>
+          <td><input id="txtNumeroExtEdited" name="txtNumeroExtEdited" type="text" placeholder="EXT" class="input-small"><input id="txtNumeroIntEdited" name="txtNumeroIntEdited" type="text" placeholder="INT" class="input-small"></td>
+        </tr>
+        <tr>
+          <td ><label class="control-label label" for="TelefonoFijo">Telefono Fijo</label></td>
+          <td><input id="txtTelefonoFijoEdited" name="txtTelefonoFijoEdited" type="text" class="input-large"></td>
+        </tr>
+        <tr>
+          <td ><label class="control-label label" for="TelefonoMovil">Telefono Movil</label></td>
+          <td><input id="txtTelefonoMovilEdited" name="txtTelefonoMovilEdited" type="text"  class="input-large"></td>
+       </tr>
+       <tr>
+        <td ><label class="control-label label" for="correo">Correo</label></td>
+        <td><input id="txtCorreoEdited" name="txtCorreoEdited" type="text"  class="input-large-email"></td>
+       </tr>
+               <tr>
+        <td ><label class="control-label label" for="nombreDel">Nombre UMF</label></td>
+        <td >
+          <input id="txtNombreUmfEdited" name="txtNombreUmfEdited" type="text"  class="input-large" readonly>
+          <input id="txtIdUmfEdited" name="txtIdUmfEdited"  type="hidden">
+          
+        </td>
+        <td></td>
+        <td style="width:400px;" rowspan="13" valign="top"><div id="multipleUmfE"></div></td>
+      </tr>
+       <tr>
+          <td ><label class="control-label label" for="direccionUMF">Direccion UMF</label></td>
+          <td ><textarea id="txtDireccionUmfEdited" name="txtDireccionUmfEdited" class="txtArea" readonly></textarea></td></td>
+       </tr>
+      <tr>
+        <td></td>
+        <td>
+            <div id='divButtonGuardarDireccion' name='divButtonGuardarDireccion'></div>
+
+            <?php
+          if ($usuario["rol"] =="Administrador" || $usuario["rol"] =="Contrataciones" || $usuario["rol"] =="Lider Unidad" )
+                {
+          ?>
+            <div id='divEditarDatosDireccion' name='divEditarDatosDireccion'><button id="desbloqueoDatosDireccion" name="desbloqueoDatosDireccion" class="btn btn-success" type="button" onclick="desbloquearDatosDireccion();"> <span class="glyphicon glyphicon-refresh"></span>Editar</button>
+            </div>
+            <?php
+            }
+            ?>
+          <!--
+          <button id="btnGuardarDatosDireccion" name="btnGuardarDatosDireccion" class="btn btn-primary" type="button" onclick="guardarDatosDireccionSubmit();"> <span class="glyphicon glyphicon-floppy-save"></span>Guardar</button>
+         <button id="cancelar" name="guardar" class="btn btn-danger" type="button" onclick="" > <span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+          <button id="desbloqueoDatosGenerales" name="desbloqueoDatosGenerales" class="btn btn-success" type="button" onclick="desbloquearDatosGenerales();"> <span class="glyphicon glyphicon-refresh"></span>Editar</button>-->
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!--Termina Div datos Directorio -->
+
+<div align="center" class="tab-pane" id="containerDatosFamiliaresEdited" >
+
+    <legend><h3>Datos Familiares</h3></legend>
+      <table >
+        <tr>
+
+        <tr >
+          <td ><label class="control-label label" for="Entidad">Nombre Padre</label></td>
+          <td><input id="txtNombrePadreEdited" name="txtNombrePadreEdited" type="text"  class="input-xlarge" ></td>
+          <td><input type='checkbox' name='checkPadreE' class='style3' id='checkPadreE'  >Beneficiario 
+          <?php
+          if ($usuario["rol"] =="Administrador" || $usuario["rol"] =="Contrataciones" || $usuario["rol"] =="Lider Unidad")
+                {
+          ?>
+            <button type='button' id='btnActualizarPadre' name='btnActualizarPadre' class='btn btn-success' type='button' onclick="editarDatosPadre();"> <span class='glyphicon glyphicon-refresh'></span>Editar</button></td>
+            <?php
+          }
+          ?>
+          <td></td>
+        </tr>
+        <tr>
+          <td ><label class="control-label label" for="municipio">Nombre Madre</label></td>
+          <td><input id="txtNombreMadreEdited" name="txtNombreMadreEdited" type="text" placeholder="" class="input-xlarge" ></td>
+          <td><input type='checkbox' name='checkMadreE1' id='checkMadreE1' class='style3' >Beneficiario 
+            <?php
+          if ($usuario["rol"] =="Administrador" || $usuario["rol"] =="Contrataciones" || $usuario["rol"] =="Lider Unidad")
+                {
+          ?>
+            <button type='button' id='btnActualizarMadre' name='btnActualizarMadre' class='btn btn-success' type='button' onclick="editarDatosMadre();"> <span class='glyphicon glyphicon-refresh'></span>Editar</button></td>
+            <?php
+          }
+          ?>
+          <td></td>
+        </tr>
+
+        <tr>
+          
+          <td ><label class="control-label label" for="Beneficiario">Beneficiario</label></td>
+          <td><input type='checkbox' name='checkBeneficiarioE' id='checkBeneficiarioE' onclick="obtenerListaBeneficiariosEdited();" class='style3' >Otro Beneficiario</td>
+          
+        </tr>
+        <tr>
+
+        <td><label class='control-label label' for='Beneficiario'>Otro Beneficiario</label> </td>
+        <td><select id='selectOtroBeneficiarioEdited' name='selectOtroBeneficiarioEdited' class='input-large'> </select> </td>
+          <td><input type='text' id='txtOtroBeneficiarioE' name='txtOtroBeneficiarioE' class='input-xlarge' placeholder='NOMBRE BENEFICIARIO'  ></td>
+
+          <td>
+            <?php
+          if ($usuario["rol"] =="Administrador" || $usuario["rol"] =="Contrataciones" || $usuario["rol"] =="Lider Unidad")
+                {
+          ?>
+            <button type='button' id='btnActualizarBeneficiario' name='btnActualizarBeneficiario' class='btn btn-success' type='button' onclick="editarDatosBeneficiario();"> <span class='glyphicon glyphicon-refresh'></span>Editar</button>
+            <?php
+          }
+          ?>
+
+          </td>
+        </tr>
+        
+        <!--
+        <tr>
+          
+            <td colspan="3"><div id="divOtroBeneficiarioEdited" ></div></td>
+          
+          <td ><div id="etiquedaBeneficiario"></div></td>
+          <td><div id="datoBeneficiarioEdited" ></div></td>
+        </tr>
+        -->
+      <tr>
+        <td></td>
+        <td>
+          <!--<button id="btnGuardarDatosFamiliares" name="btnGuardarDatosFamiliares" class="btn btn-primary" type="button" onclick=""> <span class="glyphicon glyphicon-floppy-save"></span>Guardar</button>-->
+          
+         <!-- <button id="cancelar" name="guardar" class="btn btn-danger" type="button" onclick="" > <span class="glyphicon glyphicon-remove"></span>Cancelar</button>-->
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div align="center" class="tab-pane" id="containerFormatosEdited" >
+
+    <?php
+          if ($usuario["rol"] =="Administrador" || $usuario["rol"] =="Contrataciones" || $usuario["rol"] =="Lider Unidad")
+                {
+          ?>
+
+    <table>
+      <tr>
+        <!-- <td><button class="btn btn-large" type="button" onclick="generarCredencialEdited();"> <img src="img/credencial2.png" >Credencial</button></td> -->
+        <td><button class="btn btn-large" type="button" onclick="generadorNuevaCredencialEdited();"> <img src="img/new.png">Credencial</button></td>
+        <td><button class="btn btn-large" type="button" onclick="generarCartaPatronalEdited();"> <img src="img/hojaDatos.png">Carta Patronal</button></td>
+        <td><button class="btn btn-large" type="button" onclick="generarCartaPatronal2Edited();"> <img src="img/hojaDatos.png">Carta Patronal 2</button></td>
+        
+      </tr>
+      <tr>
+        <td><button class="btn btn-large" type="button" onclick="generarContratoSa1Edited(); generarContratoSa2Edited(); generarContratoScEdited();"> <img src="img/contratos2.png">Contratos</button></td>
+        <td><button class="btn btn-large" type="button" onclick="generarHojaDatosEdited();"> <img src="img/hojaDatos1.png">Hoja de Datos</button></td>
+        <td><button class="btn btn-large" type="button" onclick="generarDocumentoBancoEdited();"> <img src="img/bank.png">Formato Banco</button></td>
+        
+      </tr>
+         <tr>
+        <td></td>
+        <td><button class="btn btn-large" type="button" onclick="generadorFormatoDocumentosRecibidosEdited(); generadorCartaResponsivaEdited();"> <img src="img/checkDocumentos.png">Doc. Reci</button></td>
+        
+        
+      </tr>
+
+    </table>
+
+    <?php
+    } else if ($usuario["rol"] =="Socioeconomico" || $usuario["rol"] =="Consulta Rh" )
+    {
+    ?>
+
+        <table>
+      <tr>
+        <td><button class="btn btn-large" type="button" onclick="generarHojaDatosEdited();"> <img src="img/hojaDatos1.png">Hoja de Datos</button></td>
+                
+      </tr>
+
+
+    </table>
+
+    <?php 
+  }
+  ?>
+  </div>
+  
+<?php //###Start_Section_DocumentosDigitalizados### ?>
+<div align="center" class="tab-pane" id="containerDocumentosDigitalizadosEdited" >
+
+    <legend><h3>Documentos Digitalizados</h3></legend>
+    
+    <table border="0" width="800px" class="table table-striped">
+    <?php
+    $documentos = $negocio -> negocio_traerListaDocumentos();
+    
+    foreach ($documentos as $documento):
+    ?>
+    <tr >
+    <td width="250px"><b>
+    <?php echo $documento["nombreDocumento"]; ?>
+    </b>
+    <input type="file" id="documentoDigitalizado1_<?php echo $documento["idDocumento"]; ?>" name="documentoDigitalizado1" class="file-loading" />
+    </td>
+    <td><div id="icons_documentos_edited_<?php echo $documento["idDocumento"]; ?>"></div></td>
+    </tr>
+    <?php endforeach; ?>
+    </table>
+</div>
+<?php //###End_Section_DocumentosDigitalizados### ?>
+
+<div id="botonesExtras"></div>
+
+</div> <!--TERMINA tab-content -->
+
+<!-- Modal  -->
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  
+      <div class="modal-header">
+        
+        <h4 class="modal-title" id="myModalLabel">Registro De Documentacion</h4>
+      </div>
+      <div class="modal-body">
+     
+      <div id="cajonleft">
+       <label class="label-success"> Documentos Originales</label><br>
+      <?php
+      for($i = 0 ; $i < count($catalogoDocumentos); $i++)
+        {
+          echo "<input type='checkbox' value='".$catalogoDocumentos[$i]["idDocumento"]."' id='checkOriginales".$catalogoDocumentos[$i]["idDocumento"]."' name='checkOriginales' class='style3' ><label class='control-label label-Doc' for='lbl'>".$catalogoDocumentos[$i]["nombreDocumento"]."</label><br>";
+        }
+        ?>
+     </div>
+     <div id="cajonrightModal">
+      <label class="label-success">Documentos Copia</label><br>
+        <?php
+
+      for($i = 0 ; $i < count($catalogoDocumentos); $i++)
+        {
+
+          echo "<input type='checkbox' value='".$catalogoDocumentos[$i]["idDocumento"]."' id='checkCopia".$catalogoDocumentos[$i]["idDocumento"]."' name='checkCopia' class='style3' ><label class='control-label label-Doc' for='lbl1'>".$catalogoDocumentos[$i]["nombreDocumento"]."</label><br>";
+        }
+        ?>
+     </div>
+        
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary" onClick="registrarEntregaDocumentosOriginales(); registrarEntregaDocumentosCopias();" data-dismiss="modal">Save changes</button>
+      </div>
+    </div> <!-- FIN MODAL REGISTRO DOCUMENTACION-->
+    
+
+
+<!-- Modal  Baja Empleado-->
+    <div id="myModalBajaEmpleado" name="myModalBajaEmpleado" class="modalEdit hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" >
+  <div id="alertMsg1"> 
+  </div>
+  
+   <div class="modal-header">
+
+      <h4 class="modal-title" id="myModalLabel"> <img src="img/warning.png">¿DESEA APLICAR BAJA DEL EMPLEADO?</h4>
+    </div>
+
+    <div class="modal-body">
+
+
+        <div class="input-prepend">
+          <span class="add-on">NÚMERO EMPLEADO</span>
+          <input id="txtNumeroEmpleadoModal" name="txtNumeroEmpleadoModal" type="text" class="input-medium" readonly>
+        </div>
+        <div class="input-prepend">
+          <span class="add-on">NOMBRE EMPLEADO</span>
+          <input id="txtNombreEmpleadoModal" name="txtNombreEmpleadoModal" type="text" class="input-xlarge" readonly>
+        </div>
+        <div class="input-prepend">
+          <span class="add-on">FECHA INGRESO</span>
+          <input id="txtFechaIngresoModal" name="txtFechaIngresoModal" type="date" class="input-medium" readonly>
+        </div>
+
+        <div class="input-prepend">
+          <span class="add-on">FECHA BAJA</span>
+          <input id="txtFechaBajaModal" name="txtFechaBajaModal" type="date" class="input-medium"  >
+
+        </div>
+
+        <div class="input-prepend">
+          <span class="add-on">TIPO BAJA</span>
+          <select id="selectTipoBaja" name="selectTipoBaja" class="input-large" onChange='selectMotivosBajaPorTipoBaja();'>
+            <option>TIPO BAJA</option>
+                <?php
+              for ($i=0; $i<count($catalogoTipoBaja); $i++)
+              {
+                echo "<option value='". $catalogoTipoBaja[$i]["idTipoBaja"]."'>". $catalogoTipoBaja[$i]["descripcionTipoBaja"] ." </option>";
+              }
+              ?>
+          </select>
+        </div>
+
+        <div class="input-prepend">
+          <span class="add-on">MOTIVO BAJA</span>
+          <select id="selectMotivoBaja" name="selectMotivoBaja" class="input-large ">
+          </select>
+         </div>
+
+        <div class="input-prepend">
+          <span class="add-on">COMENTARIO</span>
+          <input id="txtComentarioBaja" name="txtComentarioBaja" type="text" class="input-xlarge">
+          <input id="txtPuestoBajaModal" name="txtPuestoBajaModal" type="hidden" class="input-medium"  >
+        </div>
+        <div class="input-prepend">
+          
+          <input id="txtTipoPeriodo" name="txtTipoPeriodo" type="hidden" class="input-small">
+        </div>
+        <div class="input-prepend">
+          
+          <input id="txtPuntoServicioBaja" name="txtPuntoServicioBaja" type="hidden" class="input-small">
+        </div>
+        <div class="input-prepend">
+          
+          <input id="txtTipoEmpleado" name="txtTipoEmpleado" type="hidden" class="input-small">
+        </div>
+
+        <div class="input-prepend">
+          
+          <input id="txtResponsableAsistencia" name="txtResponsableAsistencia" type="hidden" class="input-small">
+          <input id="txtEstatusImss" name="txtEstatusImss" type="hidden" class="input-small">
+        </div>
+    </div>
+      <div class="modal-footer" id="footerBajaEmpleado">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" onclick='guardarHistoricoBajaSubmit();'>Guardar Cambios</button>
+      </div>
+    </div>  <!-- FIN MODAL BAJA EMPLEADO -->
+
+
+    <!-- Modal  reingreso Empleado-->
+    <div id="myModalReingresoEmpleado" name="myModalReingresoEmpleado" class="modalEdit hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" >
+  <div id="alertMsg1R" name="alertMsg1R"> 
+  </div>
+  
+   <div class="modal-header">
+
+      <h4 class="modal-title" id="myModalLabel"> <img src="img/warning.png">¿DESEA APLICAR REINGRESO DEL EMPLEADO?</h4>
+    </div>
+
+    <div class="modal-body">
+
+
+        <div class="input-prepend">
+          <span class="add-on">NÚMERO EMPLEADO</span>
+          <input id="txtNumeroEmpleadoModalR" name="txtNumeroEmpleadoModalR" type="text" class="input-medium" readonly>
+        </div>
+        <div class="input-prepend">
+          <span class="add-on">NOMBRE EMPLEADO</span>
+          <input id="txtNombreEmpleadoModalR" name="txtNombreEmpleadoModalR" type="text" class="input-xlarge" readonly>
+        </div>
+        <div class="input-prepend">
+          <span class="add-on">FECHA REINGRESO</span>
+          <input id="txtFechaIngresoModalR" name="txtFechaIngresoModalR" type="date" class="input-medium" >
+        </div>
+
+        <div class="input-prepend">
+          <span class="add-on">ENTIDAD PARA LABORAR</span>
+          <select id="selectEntidadLaboralReingreso" name="selectEntidadLaboralReingreso" class="input-large " onChange="obtenerListaPuntosServiciosReingreso();" >
+             <option>ENTIDAD FEDERATIVA</option>
+              <?php
+                for ($i=0; $i<count($catalogoEntidadesFederativas); $i++)
+                {
+                echo "<option value='". $catalogoEntidadesFederativas[$i]["idEntidadFederativa"]."'>". $catalogoEntidadesFederativas[$i]["nombreEntidadFederativa"] ." </option>";
+                }
+              ?>
+              </select>
+        </div>
+
+        <div class="input-prepend">
+          <span class="add-on">LINEA NEGOCIO</span>
+          <select id="selectLineaNegocioModalR" name="selectLineaNegocioModalR" type="date" class="input-large" >
+          <option>LiNEA NEGOCIO</option>
+              <?php
+                for ($i=0; $i<count($catalogoLineaNegocio); $i++)
+                {
+                echo "<option value='". $catalogoLineaNegocio[$i]["idLineaNegocio"]."'>". $catalogoLineaNegocio[$i]["descripcionLineaNegocio"] ." </option>";
+                }
+              ?>
+              </select>
+        </div>
+
+        <div class="input-prepend">
+          <span class="add-on">TIPO PUESTO</span>
+          <select id="selectTipoPuestoReingreso" name="selectTipoPuestoReingreso" class="input-large " onChange="seleccionarPuestoPorTipoReingreso(); obtenerSupervisoresOperativosReingreso();">
+            <option>TIPO PUESTO</option>
+              <?php
+              for ($i = 0; $i < count($catalogoTipoPuestos); $i++)
+              {
+                echo "<option value='" . $catalogoTipoPuestos [$i]["idCategoria"] . "' >" . $catalogoTipoPuestos [$i]["descripcionCategoria"] . " </option>";
+              }
+              ?>
+            </select>
+        </div>
+   
+        <div class="input-prepend">
+          <span class="add-on">PUESTO</span>
+          <select id="selectPuestoModalR" name="selectPuestoModalR"  class="input-large" >
+            <option>PUESTO</option>
+          </select>
+        </div>
+
+        <div class="input-prepend">
+          <span class="add-on">TURNO</span>
+           <select id="selectTurnoReingreso" name="selectTurnoReingreso" class="input-large ">
+              <option>TURNO</option>
+                <?php
+                  for ($i = 0; $i < count($catalogoTurnos); $i++)
+                  {
+                    echo "<option value='" . $catalogoTurnos [$i]["idTipoTurno"] . "' >" . $catalogoTurnos [$i]["descripcionTurno"] . " </option>";
+                  }
+                ?>
+            </select>
+        </div>
+        <div class="input-prepend">
+          <span class="add-on">PERIODO</span>
+           <select id="selectPeriodoReingreso" name="selectPeriodoReingreso" class="input-large ">
+              <option>PERIODO</option>
+                <?php
+                  for ($i = 0; $i < count($catalogoPeriodos); $i++)
+                  {
+                    echo "<option value='" . $catalogoPeriodos [$i]["tipoPeriodoId"] . "' >" . $catalogoPeriodos [$i]["descripcionTipoPeriodo"] . " </option>";
+                  }
+                ?>
+            </select>
+        </div>
+        <div class="input-prepend">
+          <span class="add-on">SUPERVISOR</span>
+          <select id="selectSupervisorModalR" name="selectSupervisorModalR" class="input-large" >
+            <option>RESPONSABLE ASISTENCIA</option>
+            
+          </select>
+        </div>
+
+        <div class="input-prepend">
+          <span class="add-on">PUNTO SERVICIO</span>
+          <select id="selectPuntoServicioModalR" name="selectPuntoServicioModalR" class="input-large" >
+            <option>PUNTOS SERVICIOS</option>
+          </select>
+          <input type="hidden" id="txtGeneroReingreso" name="txtGeneroReingreso">
+          
+        </div>
+   
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        
+        <button type="button" class="btn btn-primary" onclick="actualizaFechaReingreso();">Guardar Cambios</button>
+      </div>
+    </div>  <!-- FIN MODAL BAJA EMPLEADO -->
+
+    <!-- modal firma -->
+    <div id="modalFirma" name="modalFirma" class="modalFirma hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div class="modal-header">
+        <div id="divFirmaMsg" name="divFirmaMsg"></div>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Firma del elemento</h3>
+        
+      </div>
+     <div class="modal-body" id="sketch_div">
+        <p>Dibuje firma del elemento…</p>
+        <canvas id="tools_sketch" class="divTrFirma" width="900" height="350" ><td></canvas>
+      </div>
+      <div class="modal-footer1">
+
+        <button type="button" id="btnLimpiar" name="btnLimpiar"class="btn btn-secundary" onclick="limpiarCanvas();">Limpiar</button>
+        
+        <button type="button" class="btn btn-primary" onclick="saveImage();">Guardar Firma</button>
+        
+      </div>
+  </div>
+
+    <!--  fin modal firma -->
+
+    <div class="modal fade" tabindex="-1" role="dialog" name="modalErrorBajaImss" id="modalErrorBajaImss" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><img src="img/alert.png">No se puede procesar baja</h4>
+      </div>
+      <div class="modal-body">
+        <p><strong>El empleado no puede darse de baja debido a que está en proceso de confirmación de alta en Imss, intente más tarde.</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+</form>
+
+</div>
+
+<script type="text/javascript">
+var existeDatosPersonales=0;
+var existeDirectorio=0;
+
+var puntoServicioConsulta="";
+var puestoConsulta="";
+
+
+
+$('input[type="checkbox"].style3').checkbox({
+    buttonStyle: 'btn-danger',
+    buttonStyleChecked: 'btn-success',
+    checkedClass: 'icon-check',
+    uncheckedClass: 'icon-check-empty'
+});
+	
+function obtenerListaEmpleadosActivos()
+{
+
+    var estatusEmpleado=1;
+    var tipoEmpleado='03';
+    //var fechaConsulta1 = $("#fechaConsulta1").val();
+
+ $.ajax({
+            
+            type: "POST",
+            url: "ajax_obtenerListaPersonalActivo.php",
+            dataType: "json",
+             success: function(response) {
+                if (response.status == "success")
+                {
+                  
+                    var listaPersonalActivo = response.listaPersonalActivo;
+
+                    
+                    listaPersonalActivoTable="<table class='table table-hover' id='Exportar_a_Excel'><thead><th>Estatus</th><th># Empleado</th><th>Nombre</th><th>Fecha Ingreso</th><th>#IMSS</th><th>Puesto</th><th>Tipo Puesto</th><th>Horario</th><th>Genero</th><th>Estatus Datos Personales</th><th>Estatus Directorio</th><th>Estatus Datos Familiares</th></thead><tbody>";
+
+                    for ( var i = 0; i < listaPersonalActivo.length; i++ ){
+                      var empleadoEntidad = listaPersonalActivo[i].entidadFederativaId;
+                      var empleadoConsecutivo = listaPersonalActivo[i].empleadoConsecutivoId;
+                      var empleadoCategoria = listaPersonalActivo[i].empleadoCategoriaId;
+                      var empleadoApellidoPaterno= listaPersonalActivo[i].apellidoPaterno;
+                      var empleadoApellidoMaterno= listaPersonalActivo[i].apellidoMaterno;
+                      var nombreEmpleado= listaPersonalActivo[i].nombreEmpleado;
+                      var fechaIngresoEmpleado = listaPersonalActivo[i].fechaIngresoEmpleado;
+                      var empleadoNumeroSeguroSocial =listaPersonalActivo[i].empleadoNumeroSeguroSocial;
+                      var descripcionPuesto= listaPersonalActivo[i].descripcionPuesto;
+                      var descripcionCategoria=listaPersonalActivo[i].descripcionCategoria;
+                      var descripcionTurno=listaPersonalActivo[i].descripcionTurno;
+                      var descripcionOficio=listaPersonalActivo[i].descripcionOficio;
+                      var descripcionGenero=listaPersonalActivo[i].descripcionGenero;
+                      var tipoSangre=listaPersonalActivo[i].tipoSangre;
+                      var descripcionEstatusEmpleado=listaPersonalActivo[i].descripcionEstatusEmpleado;
+                      var numeroEmpleadoCompleto=listaPersonalActivo[i].entidadFederativaId +"-"+ listaPersonalActivo[i].empleadoConsecutivoId+"-"+listaPersonalActivo[i].empleadoCategoriaId;
+                      var nombreCompleto=empleadoApellidoPaterno+" "+empleadoApellidoMaterno+" "+nombreEmpleado;
+                      var estatusDatosPersonales = listaPersonalActivo[i].datoPersonal;
+                      var estatusDatosDireccion = listaPersonalActivo[i].directorio;
+                      var estatusDatosFamiliares = listaPersonalActivo[i].datoFamiliar;
+                      var estatusEmpleado=listaPersonalActivo[i].empleadoEstatusId;
+                      var tooltipEstatusEmpleado=listaPersonalActivo[i].descripcionEstatusEmpleado;
+
+
+
+                      if (estatusDatosPersonales !=0)
+                      {
+                        imgEstatusDatosPersonales="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/folderok.png";
+                        tooltipDatosPersonales="OK";
+                      }else{
+                        imgEstatusDatosPersonales="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/notfolder.png";
+                        
+                        tooltipDatosPersonales="SIN INFORMACION";
+                      }
+
+                      if (estatusDatosDireccion !=0)
+                      {
+                        imgEstatusDatosDireccion="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/addressok.png";
+                      }else{
+                        imgEstatusDatosDireccion="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/notaddress.png";
+                      }
+                      if (estatusDatosFamiliares !=0)
+                      {
+                        imgEstatusDatosFamiliares="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/familyok.png";
+                      }else{
+                        imgEstatusDatosFamiliares="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/notFamily.png";
+                      }
+
+                      if (estatusEmpleado==1){
+                        imgEstatusEmpleado="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/empleadoActivo.png";
+
+                      }else if(estatusEmpleado==2){
+                        imgEstatusEmpleado="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/empleadoActivo.png";
+                      }else
+                        imgEstatusEmpleado="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/empleadoBaja.png";
+
+
+
+
+                      listaPersonalActivoTable += "<tr><td><img class='cursorImg' src='"+imgEstatusEmpleado+ "' data-toggle='tooltip' data-placement='right' title='"+tooltipEstatusEmpleado+"'></td><td>"+numeroEmpleadoCompleto+" </td><td>"+nombreCompleto+
+                      "</td><td>"+fechaIngresoEmpleado+"</td><td>"+empleadoNumeroSeguroSocial+"</td><td>"
+                      +descripcionPuesto+"</td><td>"+descripcionCategoria+"</td><td>"+descripcionTurno+"</td><td>"+descripcionGenero+"</td><td><img class='cursorImg' src='"+imgEstatusDatosPersonales+ "' data-toggle='tooltip' data-placement='right' title='"+tooltipDatosPersonales+"'></td><td><img class='cursorImg' src='"+imgEstatusDatosDireccion+ "'></td><td><img class='cursorImg' src='"+imgEstatusDatosFamiliares+ "' ></td><tr>";
+                    }
+
+                    listaPersonalActivoTable += "</tbody></table>";
+                    $('#listaDePersonalActivo').html(listaPersonalActivoTable); 
+                  
+                }
+                else if (response.status == "error" && response.message == "No autorizado")
+                {
+                    window.location = "login.php";
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+
+            }
+        });
+}
+
+
+function verificaConsultaEmpleado()
+{
+  var txtSearch = $("#txtSearch").val ();
+  var expreg = /^[0-9]{2}\-[0-9]{4}\-[0-9]{2}/;
+
+  if (txtSearch.length != 10)
+    {
+        return;
+    }
+
+  if(expreg.test(txtSearch))
+  {
+    var numeroEmpleado = $("#txtSearch").val();
+    $("#txtSearchName").val("");
+   
+    consultaEmpleado(numeroEmpleado);
+
+
+  }else{
+    
+  }
+}
+
+
+function consultaEmpleado (numeroEmpleado)
+{
+    var numeroEmpleado1 = numeroEmpleado;
+    
+
+   // alert(numeroEmpleado1);
+
+ $.ajax({
+            
+            type: "POST",
+            url: "ajax_obtenerEmpleadoPorId.php",
+            data:{"numeroEmpleado":numeroEmpleado1},
+            dataType: "json",
+             success: function(response) {
+                if (response.status == "success")
+                {
+             
+                   var empleadoEncontrado = response.empleado;
+
+
+                    if (empleadoEncontrado.length == 0){
+                    
+
+                    alertMsg1="<div id='msgAlert' class='alert alert-error'><strong><center>No existe Número de empleado</center></strong><a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                    limpiarFormulario();
+
+                        
+                    }else{
+                      
+                      listaPersonalActivoTable="<table class='table table-hover' id='Exportar_a_Excel'><thead><th>Estatus</th><th># Empleado</th><th>Nombre</th><th>Fecha Ingreso</th><th>#Cta</th><th>Cta Clabe</th><th>Puesto</th><th>Tipo Puesto</th><th>D.P.</th><th>Dir</th><th>D.F</th></thead><tbody>";
+
+                      for ( var i = 0; i < empleadoEncontrado.length; i++ ){
+                        var empleadoEntidad = empleadoEncontrado[i].entidadFederativaId;
+                        var empleadoConsecutivo = empleadoEncontrado[i].empleadoConsecutivoId;
+                        var empleadoCategoria = empleadoEncontrado[i].empleadoCategoriaId;
+                        var empleadoApellidoPaterno= empleadoEncontrado[i].apellidoPaterno;
+                        var empleadoApellidoMaterno= empleadoEncontrado[i].apellidoMaterno;
+                        var nombreEmpleado= empleadoEncontrado[i].nombreEmpleado;
+                        var fechaIngresoEmpleado = empleadoEncontrado[i].fechaIngresoEmpleado;
+                        var empleadoNumeroSeguroSocial =empleadoEncontrado[i].empleadoNumeroSeguroSocial;
+                        var empleadoNumeroCta =empleadoEncontrado[i].numeroCta;
+                        var empleadoNumeroCtaClabe =empleadoEncontrado[i].numeroCtaClabe;
+                        var descripcionPuesto= empleadoEncontrado[i].descripcionPuesto;
+                        var descripcionCategoria=empleadoEncontrado[i].descripcionCategoria;
+                        var descripcionTurno=empleadoEncontrado[i].descripcionTurno;
+                        var tipoTurnoId=empleadoEncontrado[i].empleadoIdTurno;
+                        var descripcionOficio=empleadoEncontrado[i].descripcionOficio;
+                        var descripcionGenero=empleadoEncontrado[i].descripcionGenero;
+                        var empleadoIdGenero=empleadoEncontrado[i].empleadoIdGenero;
+                        var tipoSangre=empleadoEncontrado[i].tipoSangre;
+                        var descripcionEstatusEmpleado=empleadoEncontrado[i].descripcionEstatusEmpleado;
+                        var numeroEmpleadoCompleto=empleadoEncontrado[i].entidadFederativaId +"-"+ empleadoEncontrado[i].empleadoConsecutivoId+"-"+empleadoEncontrado[i].empleadoCategoriaId;
+                        var nombreCompleto=empleadoApellidoPaterno+" "+empleadoApellidoMaterno+" "+nombreEmpleado;
+                        var estatusDatosPersonales = empleadoEncontrado[i].datoPersonal;
+                        var estatusDatosDireccion = empleadoEncontrado[i].directorio;
+                        var estatusDatosFamiliares = empleadoEncontrado[i].datoFamiliar;
+                        var estatusEmpleado=empleadoEncontrado[i].empleadoEstatusId;
+                        var tooltipEstatusEmpleado=empleadoEncontrado[i].descripcionEstatusEmpleado;
+                        var tipoEmpleado= empleadoEncontrado[i].idTipoPuesto;
+                        var empleadoPuesto= empleadoEncontrado[i].empleadoIdPuesto;
+                        var entidadTrabajo=empleadoEncontrado[i].idEntidadTrabajo;
+                        var empleadoIdPuntoServicio=empleadoEncontrado[i].empleadoIdPuntoServicio;
+                        var empleadoLineaNegocioId=empleadoEncontrado[i].empleadoLineaNegocioId;
+                        var idResponsableAsistencia= empleadoEncontrado[i].idEntidadResponsableAsistencia+"-"+empleadoEncontrado[i].consecutivoResponsableAsistencia+"-"+empleadoEncontrado[i].tipoResponsableAsistencia;
+                        var tipoPeriodo=empleadoEncontrado[i].tipoPeriodo;
+                        var empleadoFechaBaja=empleadoEncontrado[i].fechaBajaEmpleado;
+                        var clienteId= empleadoEncontrado[i].idCliente;
+                        var medioInformacionVacanteId=empleadoEncontrado[i].medioInformacionVacanteId; 
+                        var reclutadorId= empleadoEncontrado[i].reclutadorId;
+                        var nombreReclutador=empleadoEncontrado[i].nombreReclutador;
+                        var empleadoEstatusImss=empleadoEncontrado[i].empleadoEstatusImss;
+                        var descripcionEstatusImss=empleadoEncontrado[i].descripcionEstatusImss;
+
+                      
+                        var fechaNacimiento=empleadoEncontrado[i].fechaNacimiento;
+                        var paisNacimientoId=empleadoEncontrado[i].paisNacimientoId;
+                        var entidadNacimientoId=empleadoEncontrado[i].entidadNacimientoId;
+                        var curpEmpleado=empleadoEncontrado[i].curpEmpleado;
+                        var rfcEmpleado=empleadoEncontrado[i].rfcEmpleado;
+                        var estadoCivilId=empleadoEncontrado[i].estadoCivilId;
+                        var gradoEstudiosId=empleadoEncontrado[i].gradoEstudiosId;
+                        var tipoSangreId=empleadoEncontrado[i].tipoSangreId;
+                        var oficioId=empleadoEncontrado[i].oficioId;
+                        var numeroCartilla=empleadoEncontrado[i].numeroCartilla;
+                        var estatusCartillaId=empleadoEncontrado[i].estatusCartillaId;
+                        var municipioNacimiento=empleadoEncontrado[i].municipioNacimientoId;
+
+                        var codigoPostalAsentamiento=empleadoEncontrado[i].codigoPostalAsentamiento;
+                        var nombreEntidadFederativa =empleadoEncontrado[i].nombreEntidadFederativa;
+                        var nombreMunicipio=empleadoEncontrado[i].nombreMunicipio;
+                        var idAsentamientoDireccion=empleadoEncontrado[i].idAsentamientoDireccion;
+                        var nombreAsentamiento=empleadoEncontrado[i].nombreTipoAsentamiento+" "+empleadoEncontrado[i].nombreAsentamiento;
+                        var calle=empleadoEncontrado[i].calle;
+                        var numeroExterior=empleadoEncontrado[i].numeroExterior;
+                        var numeroInterior=empleadoEncontrado[i].numeroInterior;
+                        var telefonoFijoEmpleado=empleadoEncontrado[i].telefonoFijoEmpleado;
+                        var telefonoMovilEmpleado=empleadoEncontrado[i].telefonoMovilEmpleado;
+                        var correoEmpleado=empleadoEncontrado[i].correoEmpleado;
+                        var descripcionPuesto=empleadoEncontrado[i].descripcionPuesto;
+                        var nombreUnidad=empleadoEncontrado[i].nombreUnidad;
+                        var domicilioUnidad=empleadoEncontrado[i].domicilioUnidad;
+                        var idUnidadMedicaAsignada=empleadoEncontrado[i].idUnidadMedicaAsignada;
+                        var imgEditarEmpleado="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/editarEmpleado.png";
+                        var foto = empleadoEncontrado[i].fotoEmpleado;
+
+                        puntoServicioConsulta=empleadoEncontrado[i].empleadoIdPuntoServicio;
+                        puestoConsulta=empleadoEncontrado[i].empleadoIdPuesto;
+                        obtenerSupervisoresOperativos1(idResponsableAsistencia);
+                     
+                     
+					               // Carga la foto del empleado
+					               $("#fotoEmpleadoEdited").html ("<img src='thumbs/" + empleadoEncontrado[i].fotoEmpleado + "' />");
+
+
+
+
+                      if (estatusDatosPersonales !=0)
+                      {
+                        imgEstatusDatosPersonales="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/folderok.png";
+                        existeDatosPersonales=1;
+                        tooltipDatosPersonales="OK";
+
+                        $("#selectPaisNacimientoEdited").val(paisNacimientoId);
+                        $("#selectEntidadNacimientoEdited").val(entidadNacimientoId);
+                        $("#selectEstadoCivilEdited").val(estadoCivilId);
+                        $("#selectGradoEstudiosEdited").val(gradoEstudiosId);
+                        $("#selectTipoSangreEdited").val(tipoSangreId);
+                        $("#selectOficioEdited").val(oficioId);
+                      }else{
+                        imgEstatusDatosPersonales="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/notfolder.png";
+                        existeDatosPersonales=0;
+                        tooltipDatosPersonales="SIN INFORMACIÓN";
+                        $("#selectEntidadNacimientoEdited").prop('selectedIndex', 0);
+                        $("#selectEstadoCivilEdited").prop('selectedIndex', 0);
+                        $("#selectOficioEdited").prop('selectedIndex', 0);
+                        $("#selectTipoSangreEdited").prop('selectedIndex', 0);
+                        $("#selectGradoEstudiosEdited").prop('selectedIndex', 0);
+                      }
+
+                      if (estatusDatosDireccion !=0)
+                      {
+                        imgEstatusDatosDireccion="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/addressok.png";
+                        tooltipDatosDireccion="OK";
+                        existeDirectorio=1;
+                      }else{
+                        imgEstatusDatosDireccion="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/notaddress.png";
+                        tooltipDatosDireccion="SIN INFORMACIÓN";
+                        existeDirectorio=0;
+                      }
+                      if (estatusDatosFamiliares !=0)
+                      {
+                        imgEstatusDatosFamiliares="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/familyok.png";
+                        tooltipDatosFamiliares="OK";
+                        estatusDatosFamiliares =1;
+                      }else{
+                        imgEstatusDatosFamiliares="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/notFamily.png";
+                        tooltipDatosFamiliares="SIN INFORMACIÓN";
+                      }
+
+
+                      if (estatusEmpleado==1){
+                        imgEstatusEmpleado="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/empleadoActivo.png";
+                        imgAcccion="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/remove.png";
+                        tooltipAccion="DAR BAJA";
+
+                      }else if(estatusEmpleado==2){
+                        imgEstatusEmpleado="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/empleadoActivo.png";
+                        imgAcccion="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/remove.png";
+                        tooltipAccion="DAR BAJA";
+                      }else {
+                        imgEstatusEmpleado="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/empleadoBaja.png";
+                        imgAcccion="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/reingreso.png";
+                        tooltipAccion="REINGRESO";
+                      }
+
+                      $("#numeroEmpleadoEntidadEdited").val(empleadoEntidad);
+                      $("#numeroEmpleadoConsecutivoEdited").val(empleadoConsecutivo);
+                      $("#numeroEmpleadoTipoEdited").val(empleadoCategoria);
+                      $("#apellidoPaternoEmpleadoEdited").val(empleadoApellidoPaterno);
+                      $("#apellidoMaternoEmpleadoEdited").val(empleadoApellidoMaterno);
+                      $("#nombreEmpleadoEdited").val(nombreEmpleado);
+                      $("#numeroSeguroSocialEdited").val(empleadoNumeroSeguroSocial);
+                      $("#txtNumeroCtaEdited").val(empleadoNumeroCta);
+                      $("#txtCtaClabeEdited").val(empleadoNumeroCtaClabe);
+                      $("#fechaIngresoEdited").val(fechaIngresoEmpleado);
+                      $("#idEndidadFederativaEdited").val(entidadTrabajo);
+                      $("#tipoPuestoEdited").val(tipoEmpleado);
+                      $("#selectLineaNegocioEdited").val(empleadoLineaNegocioId);
+
+
+                      if(empleadoLineaNegocioId==2){
+
+                        getMediosInformacionVacanteEdited(medioInformacionVacanteId);
+
+                      }else if(empleadoLineaNegocioId==1){
+
+                        if(tipoEmpleado=='02'){
+                          getMediosInformacionVacanteEdited(medioInformacionVacanteId);
+                        }else if(tipoEmpleado=='03'){
+
+                          if(medioInformacionVacanteId==6 || medioInformacionVacanteId==null ){
+                            $("#divMedioInformacionEdited").html("");
+                            $("#divLblMedioEdited").html("");
+                            getReclutadoresSeguridadFisicaEdited(reclutadorId);
+
+                          }else if (medioInformacionVacanteId!=6){
+                            $("#divReclutadorEdited").html("");
+                            $("#divLblReclutadorEdited").html("");
+
+                            getMediosInformacionVacanteEdited(medioInformacionVacanteId);
+                          }
+                        }
+                      } 
+
+                    
+                      seleccionarPuestoPorTipo(empleadoPuesto);
+                      obtenerSupervisoresOperativos1(idResponsableAsistencia);
+                      obtenerListaPuntosServiciosPorEntidad1(empleadoIdPuntoServicio);
+                      consultarMunicipiosPorEntidadE(municipioNacimiento);
+                                           
+
+                      $("#txtFechaNacimientoEdited").val(fechaNacimiento);
+                      
+                      //$("#txtMunicipioNacEdited").val(municipioNacimiento);
+                      $("#txtCurpEdited").val(curpEmpleado);
+                      $("#txtRfcEdited").val(rfcEmpleado);
+                      
+                      $("#txtNumeroCartillaEdited").val(numeroCartilla);
+                      
+                      $("#selectPuntoServicioEdited").val(empleadoIdPuntoServicio);
+
+                      $("#txtClienteIdEdited").val(clienteId);
+
+                      $("#txtCPEdited").val(codigoPostalAsentamiento);
+                      $("#txtIdAsentamientoEdited").val(idAsentamientoDireccion);
+                      $("#txtEntidadViviendaEdited").val(nombreEntidadFederativa);
+                      $("#txtMunicipioViviendaEdited").val(nombreMunicipio);
+                      $("#txtColoniaEdited").val(nombreAsentamiento);
+                      $("#txtCalleEdited").val(calle);
+                      $("#txtNumeroExtEdited").val(numeroExterior);
+                      $("#txtNumeroIntEdited").val(numeroInterior);
+                      $("#txtTelefonoMovilEdited").val(telefonoMovilEmpleado);
+                      $("#txtTelefonoFijoEdited").val(telefonoFijoEmpleado);
+                      $("#txtCorreoEdited").val(correoEmpleado);
+                      $("#txtNombreUmfEdited").val(nombreUnidad);
+                      $("#txtDireccionUmfEdited").val(domicilioUnidad);
+                      $("#txtIdUmfEdited").val(idUnidadMedicaAsignada);
+
+                      $("#tipoTurnoEdited").val(tipoTurnoId);
+                                   
+
+                      if (estatusEmpleado==0){
+                        var txtFechaBaja="<td><label class='control-label label' for='lblFechaBaja' name='lblFechaBaja' id='lblFechaBaja'>Fecha Baja</label></td><td><input type='date' name='txtfechaBajaEmpleado' id='txtfechaBajaEmpleado' class='input-medium'></td>";
+                        $("#trFechaBaja").html(txtFechaBaja);
+                        $("#txtfechaBajaEmpleado").val(empleadoFechaBaja);
+                        $( "#txtfechaBajaEmpleado" ).prop( "disabled", true );
+                      }else
+                      {
+                        $("#txtfechaBajaEmpleado").remove();
+                        $("#lblFechaBaja").remove();
+                      }
+
+
+                      if (empleadoIdGenero==1){
+
+                        jQuery("#1generoEdited").prop('checked', true);
+
+                      }else if(empleadoIdGenero==2){
+                        jQuery("#2generoEdited").prop('checked', true);
+
+                      }
+
+
+                      if (tipoPeriodo==1){
+
+                        jQuery("#1periodoEdited").prop('checked', true);
+
+                      }else if(tipoPeriodo==2){
+                        jQuery("#2periodoEdited").prop('checked', true);
+
+                      } else if (tipoPeriodo==3){
+                        jQuery("#3periodoEdited").prop('checked', true);
+                      }else{
+                        $("input[name=periodoEdited]").prop('checked', false);
+                      }
+
+                      $("#selectMedioInformacionEdited").prop('disabled', true);
+                      $("#selectReclutadorEdited").prop('disabled', true);
+
+                      jQuery("#"+estatusCartillaId+"estatusCartillaEdited").attr('checked', true);
+        
+                      listaPersonalActivoTable += "<tr><td><img class='cursorImg' src='"+imgEstatusEmpleado+ "' data-toggle='tooltip' data-placement='right' title='"+tooltipEstatusEmpleado+"'></td><td>"+numeroEmpleadoCompleto+
+                      " </td><td>"+nombreCompleto+
+                      "</td><td>"+fechaIngresoEmpleado+"</td><td>"+empleadoNumeroCta+"</td><td>"
+                      +empleadoNumeroCtaClabe+"</td><td>"+descripcionPuesto+"</td><td>"+descripcionCategoria+"</td><td><img class='cursorImg' src='"+imgEstatusDatosPersonales+ 
+                      "' data-toggle='tooltip' data-placement='right' title='"+tooltipDatosPersonales+"'></td><td><img class='cursorImg' src='"+imgEstatusDatosDireccion+ 
+                      "' data-toggle='tooltip' data-placement='right' title='"+tooltipDatosDireccion+"'></td><td><img class='cursorImg' src='"+imgEstatusDatosFamiliares+ 
+                      "' data-toggle='tooltip' data-placement='right' title='"+tooltipDatosFamiliares+
+                      "'></td><td><img class='cursorImg' onclick='mostrarModalBajaEmpleado(\"" + numeroEmpleadoCompleto + "\",\"" +fechaIngresoEmpleado + "\",\"" + nombreCompleto + "\","+ estatusEmpleado+" ,"+ tipoPeriodo +", "+ empleadoIdPuntoServicio +",\"" + tipoEmpleado + "\",\"" + idResponsableAsistencia + "\","+empleadoPuesto+","+entidadTrabajo+", "+empleadoIdGenero+", "+empleadoEstatusImss+");' src='"
+                      +imgAcccion+ "' data-toggle='tooltip' data-placement='right' title='"
+                      +tooltipAccion+"'></td><td><img class='cursorImg' src='"+imgEditarEmpleado+ 
+                      "' data-toggle='tooltip' data-placement='right' title='EDITAR'></td><tr>";
+                    }
+
+                    listaPersonalActivoTable += "</tbody></table>";
+                    $('#listaDePersonalActivo').html(listaPersonalActivoTable); 
+                    consultaDatosFamiliares(numeroEmpleadoCompleto);
+
+                    consultarDocumentos();
+
+                    var botones =$('#divEditarDatosGenerales');                     
+                    var boton = "<button type='button' id='desbloqueoDatosGenerales' name='desbloqueoDatosGenerales' class='btn btn-success' type='button' onclick='desbloquearDatosGenerales();'> <span class='glyphicon glyphicon-refresh'></span>Editar</button>";
+                    botones.html(boton);
+
+                    $("#divButtonGuardarDatosGenerales").html("");
+                    
+
+    
+
+                    }
+                    bloquearDatosGenerales();
+
+                }else if (response.status == "error" && response.message == "No autorizado")
+                {
+                    window.location = "login.php";
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+
+            }
+        });
+
+}
+
+
+function consultaEmpleadoPorNombre()
+{
+    var nombre = $("#txtSearchName").val();
+    
+    
+
+ $.ajax({
+            
+            type: "POST",
+            url: "ajax_obtenerEmpleadoPorNombre.php",
+            data:{"nombre":nombre},
+            dataType: "json",
+             success: function(response) {
+                if (response.status == "success")
+                {
+                  
+                    var empleadoEncontrado = response.empleado;
+
+                    
+                    listaPersonalActivoTable="<table class='table table-hover' id='Exportar_a_Excel'><thead><th>Estatus Emp</th><th># Empleado</th><th>Nombre</th><th>Fecha Ingreso</th><th>#Cta</th><th>Cta Clabe</th><th>Puesto</th><th>Tipo Puesto</th><th>D.P.</th><th>DIR.</th><th>D.F.</th></thead><tbody>";
+
+                    for ( var i = 0; i < empleadoEncontrado.length; i++ ){
+                      var empleadoEntidad = empleadoEncontrado[i].entidadFederativaId;
+                      var empleadoConsecutivo = empleadoEncontrado[i].empleadoConsecutivoId;
+                      var empleadoCategoria = empleadoEncontrado[i].empleadoCategoriaId;
+                      var empleadoApellidoPaterno= empleadoEncontrado[i].apellidoPaterno;
+                      var empleadoApellidoMaterno= empleadoEncontrado[i].apellidoMaterno;
+                      var nombreEmpleado= empleadoEncontrado[i].nombreEmpleado;
+                      var fechaIngresoEmpleado = empleadoEncontrado[i].fechaIngresoEmpleado;
+                      var empleadoNumeroSeguroSocial =empleadoEncontrado[i].empleadoNumeroSeguroSocial;
+                      var empleadoNumeroCta =empleadoEncontrado[i].numeroCta;
+                      var empleadoNumeroCtaClabe =empleadoEncontrado[i].numeroCtaClabe;
+                      var descripcionPuesto= empleadoEncontrado[i].descripcionPuesto;
+                      var descripcionCategoria=empleadoEncontrado[i].descripcionCategoria;
+                      var descripcionTurno=empleadoEncontrado[i].descripcionTurno;
+                      var tipoTurnoId=empleadoEncontrado[i].empleadoIdTurno;
+                      var descripcionOficio=empleadoEncontrado[i].descripcionOficio;
+                      var descripcionGenero=empleadoEncontrado[i].descripcionGenero;
+                      var empleadoIdGenero=empleadoEncontrado[i].empleadoIdGenero;
+                      var tipoSangre=empleadoEncontrado[i].tipoSangre;
+                      var descripcionEstatusEmpleado=empleadoEncontrado[i].descripcionEstatusEmpleado;
+                      var numeroEmpleadoCompleto=empleadoEncontrado[i].entidadFederativaId +"-"+ empleadoEncontrado[i].empleadoConsecutivoId+"-"+empleadoEncontrado[i].empleadoCategoriaId;
+                      var nombreCompleto=empleadoApellidoPaterno+" "+empleadoApellidoMaterno+" "+nombreEmpleado;
+                      var estatusDatosPersonales = empleadoEncontrado[i].datoPersonal;
+                      var estatusDatosDireccion = empleadoEncontrado[i].directorio;
+                      var estatusDatosFamiliares = empleadoEncontrado[i].datoFamiliar;
+                      var estatusEmpleado=empleadoEncontrado[i].empleadoEstatusId;
+                      var tooltipEstatusEmpleado=empleadoEncontrado[i].descripcionEstatusEmpleado;
+                      var tipoEmpleado= empleadoEncontrado[i].idTipoPuesto;
+                      var empleadoPuesto= empleadoEncontrado[i].empleadoIdPuesto;
+                      var entidadTrabajo=empleadoEncontrado[i].idEntidadTrabajo;
+                      var empleadoIdPuntoServicio=empleadoEncontrado[i].empleadoIdPuntoServicio;
+                      var empleadoLineaNegocioId=empleadoEncontrado[i].empleadoLineaNegocioId;
+                      var idResponsableAsistencia= empleadoEncontrado[i].idEntidadResponsableAsistencia+"-"+empleadoEncontrado[i].consecutivoResponsableAsistencia+"-"+empleadoEncontrado[i].tipoResponsableAsistencia;
+                      var tipoPeriodo = empleadoEncontrado[i].tipoPeriodo;
+                      var empleadoEstatusImss=empleadoEncontrado[i].empleadoEstatusImss;
+                      var descripcionEstatusImss=empleadoEncontrado[i].descripcionEstatusImss;
+
+                      var fechaNacimiento=empleadoEncontrado[i].fechaNacimiento;
+                      var paisNacimientoId=empleadoEncontrado[i].paisNacimientoId;
+                      var entidadNacimientoId=empleadoEncontrado[i].entidadNacimientoId;
+                      var curpEmpleado=empleadoEncontrado[i].curpEmpleado;
+                      var rfcEmpleado=empleadoEncontrado[i].rfcEmpleado;
+                      var estadoCivilId=empleadoEncontrado[i].estadoCivilId;
+                      var gradoEstudiosId=empleadoEncontrado[i].gradoEstudiosId;
+                      var tipoSangreId=empleadoEncontrado[i].tipoSangreId;
+                      var oficioId=empleadoEncontrado[i].oficioId;
+                      var numeroCartilla=empleadoEncontrado[i].numeroCartilla;
+                      var estatusCartillaId=empleadoEncontrado[i].estatusCartillaId;
+                      var municipioNacimiento=empleadoEncontrado[i].municipioNacimientoId;
+
+                      var codigoPostalAsentamiento=empleadoEncontrado[i].codigoPostalAsentamiento;
+                      var nombreEntidadFederativa =empleadoEncontrado[i].nombreEntidadFederativa;
+                      var nombreMunicipio=empleadoEncontrado[i].nombreMunicipio;
+                      var idAsentamientoDireccion=empleadoEncontrado[i].idAsentamientoDireccion;
+                      var nombreAsentamiento=empleadoEncontrado[i].nombreTipoAsentamiento+" "+empleadoEncontrado[i].nombreAsentamiento;
+                      var calle=empleadoEncontrado[i].calle;
+                      var numeroExterior=empleadoEncontrado[i].numeroExterior;
+                      var numeroInterior=empleadoEncontrado[i].numeroInterior;
+                      var telefonoFijoEmpleado=empleadoEncontrado[i].telefonoFijoEmpleado;
+                      var telefonoMovilEmpleado=empleadoEncontrado[i].telefonoMovilEmpleado;
+                      var correoEmpleado=empleadoEncontrado[i].correoEmpleado;
+                      var descripcionPuesto=empleadoEncontrado[i].descripcionPuesto;
+                      var nombreUnidad=empleadoEncontrado[i].nombreUnidad;
+                      var domicilioUnidad=empleadoEncontrado[i].domicilioUnidad;
+                      var idUnidadMedicaAsignada=empleadoEncontrado[i].idUnidadMedicaAsignada;
+
+                      puntoServicioConsulta=empleadoEncontrado[i].empleadoIdPuntoServicio;
+                      puestoConsulta=empleadoEncontrado[i].empleadoIdPuesto;
+
+                      var imgEditarEmpleado="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/editarEmpleado.png";
+                      //alert(estatusDatosDireccion);
+
+                      if (estatusDatosPersonales !=0)
+                      {
+                        imgEstatusDatosPersonales="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/folderok.png";
+                        existeDatosPersonales=1;
+                        tooltipDatosPersonales="OK";
+                      }else{
+                        imgEstatusDatosPersonales="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/notfolder.png";
+                        existeDatosPersonales=1;
+                        tooltipDatosPersonales="SIN INFORMACIÓN";
+                      }
+
+                      if (estatusDatosDireccion !=0)
+                      {
+                        imgEstatusDatosDireccion="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/addressok.png";
+                        tooltipDatosDireccion="OK";
+                        existeDirectorio=1;
+                      }else{
+                        imgEstatusDatosDireccion="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/notaddress.png";
+                        tooltipDatosDireccion="SIN INFORMACIÓN";
+                        existeDirectorio=0;
+                      }
+                      if (estatusDatosFamiliares !=0)
+                      {
+                        imgEstatusDatosFamiliares="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/familyok.png";
+                        tooltipDatosFamiliares="OK";
+                        estatusDatosFamiliares =1;
+                      }else{
+                        imgEstatusDatosFamiliares="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/notFamily.png";
+                        tooltipDatosFamiliares="SIN INFORMACIÓN";
+                        estatusDatosFamiliares =0;
+                      }
+
+                      if (estatusEmpleado==1){
+                        imgEstatusEmpleado="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/empleadoActivo.png";
+                        imgAcccion="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/remove.png";
+                        tooltipAccion="DAR BAJA";
+
+                      }else if(estatusEmpleado==2){
+                        imgEstatusEmpleado="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/empleadoActivo.png";
+                        imgAcccion="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/remove.png";
+                        tooltipAccion="DAR BAJA";
+                      }else {
+                        imgEstatusEmpleado="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/empleadoBaja.png";
+                        imgAcccion="http://<?php echo $_SERVER["SERVER_NAME"] . ":" .  $_SERVER["SERVER_PORT"]  . dirname ($_SERVER ["SCRIPT_NAME"]); ?>/img/reingreso.png";
+                        tooltipAccion="REINGRESO";
+                      }
+
+                      listaPersonalActivoTable += "<tr><td><img class='cursorImg' src='"+imgEstatusEmpleado+ "' data-toggle='tooltip' data-placement='right' title='"+tooltipEstatusEmpleado+"'></td><td>"+numeroEmpleadoCompleto+" </td><td>"+nombreCompleto+
+                      "</td><td>"+fechaIngresoEmpleado+"</td><td>"+empleadoNumeroCta+"</td><td>"
+                      +empleadoNumeroCtaClabe+"</td><td>"+descripcionPuesto+"</td><td>"+descripcionCategoria+"</td><td><img class='cursorImg' src='"+imgEstatusDatosPersonales+ "' data-toggle='tooltip' data-placement='right' title='"+tooltipDatosPersonales+
+                      "'></td><td><img class='cursorImg' src='"+imgEstatusDatosDireccion+ "' data-toggle='tooltip' data-placement='right' title='"+tooltipDatosDireccion+"'></td><td><img class='cursorImg' src='"+imgEstatusDatosFamiliares+ 
+                      "' data-toggle='tooltip' data-placement='right' title='"+tooltipDatosFamiliares+"'></td><td><img class='cursorImg' onclick='mostrarModalBajaEmpleado(\"" + numeroEmpleadoCompleto + "\",\"" +fechaIngresoEmpleado + "\",\"" + nombreCompleto + "\","+ estatusEmpleado+", "+tipoPeriodo+", "+ empleadoIdPuntoServicio +" ,\"" + tipoEmpleado + "\",\"" + idResponsableAsistencia + "\", "+empleadoPuesto+", "+entidadTrabajo+", "+empleadoIdGenero+","+empleadoEstatusImss+");' src='"+imgAcccion+ "' data-toggle='tooltip' data-placement='right' title='"+tooltipAccion+
+                      "'></td><td><img class='cursorImg'  src='"+imgEditarEmpleado+ 
+                      "' data-toggle='tooltip' data-placement='right' title='EDITAR' onClick='consultaEmpleado(\"" + numeroEmpleadoCompleto + "\");'></td><tr>";
+                    }
+
+                    listaPersonalActivoTable += "</tbody></table>";
+                    $('#listaDePersonalActivo').html(listaPersonalActivoTable); 
+                    bloquearDatosGenerales();
+                  
+                }
+                else if (response.status == "error" && response.message == "No autorizado")
+                {
+                    window.location = "login.php";
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+
+            }
+        });
+  
+}
+
+function bloquearDatosGenerales()
+{
+  
+  $("#apellidoPaternoEmpleadoEdited").prop("disabled", true );
+  $("#apellidoMaternoEmpleadoEdited").prop("disabled", true );
+  $("#nombreEmpleadoEdited").prop("disabled", true );
+  $("#numeroSeguroSocialEdited").prop("disabled", true );
+  $("#txtNumeroCtaEdited").prop("disabled", true );
+  $("#txtCtaClabeEdited").prop("disabled", true );
+  $("#fechaIngresoEdited").prop("disabled", true );
+  $("#idEndidadFederativaEdited").prop("disabled", true );
+  $("#tipoPuestoEdited").prop("disabled", true );
+  $("#puestoEdited").prop("disabled", true );
+  $("#dirigenteEdited").prop("disabled", true );
+  $("#tipoTurnoEdited").prop("disabled", true );
+  $("#1generoEdited").prop("disabled", true );
+  $("#2generoEdited").prop("disabled", true );
+  $("#selectPuntoServicioEdited").prop("disabled", true );
+  $("#selectLineaNegocioEdited").prop("disabled", true);
+  $("#fileFotoEmpleadoEdited").prop("disabled", true);
+  $("input[name=periodoEdited]").attr('disabled', true);
+  $("#selectMedioInformacionEdited").prop("disabled", true );
+  $("#selectReclutadorEdited").prop("disabled", true );
+
+
+
+}
+
+function bloquearDatosPersonales()
+{
+  
+  $("#txtFechaNacimientoEdited").prop("disabled", true );
+  $("#selectPaisNacimientoEdited").prop("disabled", true );
+  
+  $("#txtMunicipioNacEdited").prop("disabled", true );
+  $("#selectEntidadNacimientoEdited").prop("disabled", true );
+  
+  $("#txtCurpEdited").prop("disabled", true );
+  $("#txtRfcEdited").prop("disabled", true );
+  $("#selectEstadoCivilEdited").prop("disabled", true );
+  $("#selectGradoEstudiosEdited").prop("disabled", true );
+  $("#selectGradoEstudiosEdited").prop("disabled", true );
+  $("#selectTipoSangreEdited").prop("disabled", true );
+  $("#selectOficioEdited").prop("disabled", true );
+  $("#txtNumeroCartillaEdited").prop("disabled", true );
+  $("#1estatusCartillaEdited").prop("disabled", true );
+  $("#2estatusCartillaEdited").prop("disabled", true );
+  $("#3estatusCartillaEdited").prop("disabled", true );
+  $("#4estatusCartillaEdited").prop("disabled", true );
+  $("#5estatusCartillaEdited").prop("disabled", true );
+
+}
+
+
+function bloquearDatosPersonales()
+{
+  
+  $("#txtCurpEdited").prop("disabled", true );
+  $("#selectPaisNacimientoEdited").prop("disabled", true );
+  $("#txtFechaNacimientoEdited").prop("disabled", true );
+  
+  
+  $("#selectMunicipioNacEdited").prop("disabled", true );
+  $("#selectEntidadNacimientoEdited").prop("disabled", true );
+  
+  
+  $("#txtCurpEdited").prop("disabled", true );
+  $("#txtRfcEdited").prop("disabled", true );
+  $("#selectEstadoCivilEdited").prop("disabled", true );
+  $("#selectGradoEstudiosEdited").prop("disabled", true );
+  $("#selectGradoEstudiosEdited").prop("disabled", true );
+  $("#selectTipoSangreEdited").prop("disabled", true );
+  $("#selectOficioEdited").prop("disabled", true );
+  $("#txtNumeroCartillaEdited").prop("disabled", true );
+  $("#1estatusCartillaEdited").prop("disabled", true );
+  $("#2estatusCartillaEdited").prop("disabled", true );
+  $("#3estatusCartillaEdited").prop("disabled", true );
+  $("#4estatusCartillaEdited").prop("disabled", true );
+  $("#5estatusCartillaEdited").prop("disabled", true );
+
+
+}
+
+function bloquearDatosGeneralesDirectorio()
+{
+  
+  $("#txtCPEdited").prop("disabled", true );
+  $("#txtCalleEdited").prop("disabled", true );
+  $("#txtNumeroIntEdited").prop("disabled", true );
+  $("#txtNumeroExtEdited").prop("disabled", true );
+  $("#txtTelefonoFijoEdited").prop("disabled", true );
+  $("#txtTelefonoMovilEdited").prop("disabled", true );
+  $("#txtCorreoEdited").prop("disabled", true );
+
+}
+ function seleccionarPuestoPorTipo(empleadoIdPuesto)
+    {
+      
+      var valorTipo = $("#tipoPuestoEdited").val();
+      var lineaNegocio = $("#selectLineaNegocioEdited").val();
+
+      //alert("EMPLEADO PUESTO "+empleadoIdPuesto);
+      //alert("TIPO DE PUESTO"+valorTipo);
+
+       //alert("aqui estoy");
+       //alert("valor tipoPuesto consulta puestos" +valorTipo);
+       //alert("valor line consulta puestos" + lineaNegocio);
+
+       $.ajax({
+            type: "POST",
+            url: "ajax_seleccionarPuestoPorTipo.php",
+            data: {"tipoPuesto": valorTipo, "lineaNegocio":lineaNegocio},
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "success")
+                {
+                    var puestos = response.puestos;
+					
+                    puestosOptions = "<option>PUESTO</option>";
+                    for (var i = 0; i < puestos.length; i++)
+                    {
+                        puestosOptions += "<option value='" + puestos[i].IdPuesto + "'";
+						
+						if (puestos[i].IdPuesto == empleadoIdPuesto)
+						{
+							puestosOptions += " selected='selected' ";
+						}
+						
+						puestosOptions += ">" + puestos[i].descripcionPuesto + "</option>";
+                    }
+                    
+                    $("#puestoEdited").html (puestosOptions);
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+            }
+        });
+    }
+
+    function seleccionarPuestoPorTipoReingreso(empleadoIdPuesto)
+    {
+      
+      var valorTipo = $("#selectTipoPuestoReingreso").val();
+      var lineaNegocio = $("#selectLineaNegocioModalR").val();
+
+      //alert("EMPLEADO PUESTO "+empleadoIdPuesto);
+      //alert("TIPO DE PUESTO"+valorTipo);
+
+       //alert("aqui estoy");
+       //alert("valor tipoPuesto consulta puestos" +valorTipo);
+       //alert("valor line consulta puestos" + lineaNegocio);
+
+       $.ajax({
+            type: "POST",
+            url: "ajax_seleccionarPuestoPorTipo.php",
+            data: {"tipoPuesto": valorTipo, "lineaNegocio":lineaNegocio},
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "success")
+                {
+                    var puestos = response.puestos;
+          
+                    puestosOptions = "<option>PUESTO</option>";
+                    for (var i = 0; i < puestos.length; i++)
+                    {
+                        puestosOptions += "<option value='" + puestos[i].IdPuesto + "'";
+            
+            if (puestos[i].IdPuesto == empleadoIdPuesto)
+            {
+              puestosOptions += " selected='selected' ";
+            }
+            
+            puestosOptions += ">" + puestos[i].descripcionPuesto + "</option>";
+                    }
+                    
+                    $("#selectPuestoModalR").html (puestosOptions);
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+            }
+        });
+    }
+
+
+    function obtenerListaPuntosServiciosPorEntidad1(empleadoIdPuntoServicio)
+    {
+       //alert("punto servicio enviado: "+empleadoIdPuntoServicio);
+       //var mitexto = $("#tipoPuesto option:selected").text();
+       var idEntidad=$("#idEndidadFederativaEdited").val();
+       var estatusPunto=1;
+        //alert(idEntidad);
+        //alert(estatusPunto);
+
+       $.ajax({
+            type: "POST",
+            url: "ajax_obtenerPuntoServicioPorEntidad.php",
+            data: {"idEntidad": idEntidad, "estatusPunto":estatusPunto},
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "success")
+                {
+                    var puntosServicios = response.puntoServicio;
+                    
+                    puntosServiciosOptions = "<option>PUNTOS SERVICIOS</option>";
+                    for (var i = 0; i < puntosServicios.length; i++)
+                    {
+                        puntosServiciosOptions += "<option value='" + puntosServicios[i].idPuntoServicio + "'";
+						
+						if (puntosServicios[i].idPuntoServicio == empleadoIdPuntoServicio)
+						{
+							puntosServiciosOptions += " selected='selected' "; 
+						}
+						
+						puntosServiciosOptions += ">" + puntosServicios[i].puntoServicio + "</option>";
+                    }
+                    
+                    $("#selectPuntoServicioEdited").html (puntosServiciosOptions);
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+            }
+        });
+
+
+    }
+
+    function obtenerListaPuntosServiciosReingreso(empleadoIdPuntoServicio)
+    {
+       //alert("punto servicio enviado: "+empleadoIdPuntoServicio);
+       //var mitexto = $("#tipoPuesto option:selected").text();
+       var idEntidad=$("#selectEntidadLaboralReingreso").val();
+       var estatusPunto=1;
+        //alert(idEntidad);
+        //alert(estatusPunto);
+
+       $.ajax({
+            type: "POST",
+            url: "ajax_obtenerPuntoServicioPorEntidad.php",
+            data: {"idEntidad": idEntidad, "estatusPunto":estatusPunto},
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "success")
+                {
+                    var puntosServicios = response.puntoServicio;
+                    
+                    puntosServiciosOptions = "<option>PUNTOS SERVICIOS</option>";
+                    for (var i = 0; i < puntosServicios.length; i++)
+                    {
+                        puntosServiciosOptions += "<option id='opps_"+puntosServicios[i].idPuntoServicio+"' name='opps_"+puntosServicios[i].idPuntoServicio+"'value='" + puntosServicios[i].idPuntoServicio + "' idClientePunto='"+puntosServicios[i].idClientePunto+"'";
+            
+            if (puntosServicios[i].idPuntoServicio == empleadoIdPuntoServicio)
+            {
+              puntosServiciosOptions += " selected='selected' "; 
+            }
+            
+            puntosServiciosOptions += ">" + puntosServicios[i].puntoServicio + "</option>";
+                    }
+                    
+                    $("#selectPuntoServicioModalR").html (puntosServiciosOptions);
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+            }
+        });
+
+
+    }
+
+    function seleccionaEstatusCartilla1(genero)
+    {
+
+      var generoSeleccion=genero;
+
+      //alert(generoSeleccion);
+
+      if (generoSeleccion==1)
+      {
+
+      $("#1estatusCartillaEdited").prop("disabled",true);
+      $("#2estatusCartillaEdited").prop("disabled",true);
+      $("#3estatusCartillaEdited").prop("disabled",true);
+      $("#5estatusCartillaEdited").prop("disabled",true);
+
+      jQuery("#4estatusCartillaEdited").attr('checked',true);
+      
+
+      $("#txtNumeroCartillaEdited").val("NO APLICA");
+
+      }else if (generoSeleccion==2) 
+      {
+       
+        jQuery("#1estatusCartillaEdited").attr('checked', true);
+
+        $("#4estatusCartillaEdited" ).prop( "disabled", true );
+
+        $("#1estatusCartillaEdited").prop("disabled", false );
+        $("#2estatusCartillaEdited").prop("disabled", false );
+        $("#3estatusCartillaEdited").prop("disabled", false );
+        $("#5estatusCartillaEdited").prop("disabled", false );
+        //$("#txtNumeroCartillaEdited").prop("disabled", false );
+        $("#txtNumeroCartillaEdited").val("");
+
+      }
+
+     
+
+
+
+    }
+ function desbloquearDatosGenerales(){
+
+          $("#apellidoPaternoEmpleadoEdited").prop("disabled", false);
+          $("#apellidoMaternoEmpleadoEdited").prop("disabled", false);
+          $("#nombreEmpleadoEdited").prop("disabled", false);
+          $("#numeroSeguroSocialEdited").prop("disabled", false);
+          $("#txtNumeroCtaEdited").prop("disabled", false);
+          $("#txtCtaClabeEdited").prop("disabled", false);
+          $("#fechaIngresoEdited").prop("disabled", false);
+          $("#idEndidadFederativaEdited").prop("disabled", false);
+          $("#tipoPuestoEdited").prop("disabled", false);
+          $("#puestoEdited").prop("disabled", false);
+          $("#dirigenteEdited").prop("disabled", false);
+          $("#tipoTurnoEdited").prop("disabled", false);
+          $("#1generoEdited").prop("disabled", false);
+          $("#2generoEdited").prop("disabled", false);
+          $("#selectPuntoServicioEdited").prop("disabled", false);
+          $("#selectReclutadorEdited").prop("disabled", false);
+          $("#selectMedioInformacionEdited").prop("disabled", false);
+          $("#txtfechaBajaEmpleado").prop("disabled", false);
+          $("#fileFotoEmpleadoEdited").prop("disabled", false);
+          $("input[name=periodoEdited]").attr('disabled', false);
+          
+          $("#selectLineaNegocioEdited").prop("disabled", false);
+
+            var boton = "<button type='button' class='btn btn-info' id='buttonGuardarDatosGenerales' name='buttonGuardarDatosGenerales' onclick='editarDatosGenerales();'><span class='glyphicon glyphicon-save' ></span>Guardar</button>";
+            
+            $('#divButtonGuardarDatosGenerales').html(boton);
+            $("#desbloqueoDatosGenerales").remove();
+      }
+
+      function editarDatosGenerales(){
+
+        var datastring = $("#form_EditaEmpleado").serialize();
+        var entidadEmpleado=$("#numeroEmpleadoEntidadEdited").val();
+        var empleadoConsecutivo=$("#numeroEmpleadoConsecutivoEdited").val();
+        var empleadoTipo=$("#numeroEmpleadoTipoEdited").val();
+        var puntoServicioConsultaSend=puntoServicioConsulta;
+        var puestoConsultaSend=puestoConsulta;
+
+        
+
+       // alert(datastring);
+        var puntoServicio =$("#selectPuntoServicioEdited").val();
+        var puestoNuevo =$("#puestoEdited").val();
+        datastring += "&puntoServicio=" + puntoServicio; 
+        datastring += "&puntoServicioConsultaSend=" + puntoServicioConsultaSend; 
+        datastring += "&puestoConsultaSend=" + puestoConsultaSend; 
+        //alert(datastring);
+        
+        //alert(empleadoConsecutivo);
+        //alert(empleadoTipo);
+        //alert(puntoServicioConsulta+"-"+puntoServicio+", "+puestoConsulta+"-"+puestoNuevo);
+
+        $.ajax({
+            type: "POST",
+            url: "ajax_actualizaDatosGenerales.php",
+            data: datastring,
+            dataType: "json",
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+            
+
+                    alertMsg1="<div id='msgAlert' class='alert alert-success'><strong>Datos Gegerales</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+
+
+                    var elemento = document.getElementById("spanDatosGenerales");
+                    elemento.className = "glyphicon glyphicon-ok";
+               
+                    var botones =$('#divEditarDatosGenerales');                     
+                    var boton = "<button type='button' id='desbloqueoDatosGenerales' name='desbloqueoDatosGenerales' class='btn btn-success' type='button' onclick='desbloquearDatosGenerales();'> <span class='glyphicon glyphicon-refresh'></span>Editar</button>";
+                    botones.html(boton);
+
+                    $("#buttonGuardarDatosGenerales").remove();
+                    bloquearDatosGenerales();
+
+                    var numeroEmpleado=$("#numeroEmpleadoEntidadEdited").val()+"-"+$("#numeroEmpleadoConsecutivoEdited").val()+"-"+$("#numeroEmpleadoTipoEdited").val();
+                    consultaEmpleado(numeroEmpleado);
+
+
+                } else if (response.status=="error")
+                {
+                  alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Error en el registro de Datos Generales:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                }
+
+
+                var mensajes = "";
+                for (var i = 0; i < response.messages.length; i++)
+                {
+                    mensajes += response.messages [i] + "\n";
+                }
+
+                if (mensajes != "")
+                {
+                    alert (mensajes);
+                }
+              },
+            error: function(){
+                  alert('error handing here');
+            }
+        });  
+
+  
+      }
+
+      function editarDatosPersonales(){
+
+        var datastring = $("#form_EditaEmpleado").serialize();
+
+        if (existeDatosPersonales==0){
+
+        
+        $.ajax({
+            type: "POST",
+            url: "ajax_registrarEmpleadoDatosPersonalesDesdeEdicion.php",
+            data: datastring,
+            dataType: "json",
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+            
+
+                    alertMsg1="<div id='msgAlert' class='alert alert-success'><strong>Datos Gegerales</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+
+
+                    var elemento = document.getElementById("spanDatosGenerales");
+                    elemento.className = "glyphicon glyphicon-ok";
+               
+                  
+                  
+                    //$('#myModal').modal();
+                    var botones =$('#divEditarDatosPersonales');                     
+                    var boton = "<button type='button' id='desbloqueoDatosPersonales' name='desbloqueoDatosPersonales' class='btn btn-success' type='button' onclick='desbloquearDatosPersonales();'> <span class='glyphicon glyphicon-refresh'></span>Editar</button>";
+                    botones.append (boton);
+
+                    $("#buttonGuardarDatosPersonales").remove();
+                    bloquearDatosPersonales();
+
+                    var numeroEmpleado=$("#numeroEmpleadoEntidadEdited").val()+"-"+$("#numeroEmpleadoConsecutivoEdited").val()+"-"+$("#numeroEmpleadoTipoEdited").val();
+                    //alert("numero empleado desde editar datos personales"+numeroEmpleado);
+                    consultaEmpleado(numeroEmpleado);
+
+
+                } else if (response.status=="error")
+                {
+                  alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Error en el registro de Datos Generales:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                }
+              },
+            error: function(){
+                  alert('error handing here');
+            }
+        });
+   
+        }else if (existeDatosPersonales==1){
+
+                  $.ajax({
+            type: "POST",
+            url: "ajax_actualizarDatosPersonales.php",
+            data: datastring,
+            dataType: "json",
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+            
+
+                    alertMsg1="<div id='msgAlert' class='alert alert-success'><strong>Datos Gegerales</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+
+
+                    var elemento = document.getElementById("spanDatosGenerales");
+                    elemento.className = "glyphicon glyphicon-ok";
+               
+                  
+                  
+                    //$('#myModal').modal();
+                    var botones =$('#divEditarDatosPersonales');                     
+                    var boton = "<button type='button' id='desbloqueoDatosPersonales' name='desbloqueoDatosPersonales' class='btn btn-success' type='button' onclick='desbloquearDatosPersonales();'> <span class='glyphicon glyphicon-refresh'></span>Editar</button>";
+                    botones.append (boton);
+
+                    $("#buttonGuardarDatosPersonales").remove();
+                    bloquearDatosPersonales();
+                    var numeroEmpleado=$("#numeroEmpleadoEntidadEdited").val()+"-"+$("#numeroEmpleadoConsecutivoEdited").val()+"-"+$("#numeroEmpleadoTipoEdited").val();
+                    consultaEmpleado(numeroEmpleado);
+
+
+                } else if (response.status=="error")
+                {
+                  alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Error en el registro de Datos Generales:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                }
+              },
+            error: function(){
+                  alert('error handing here');
+            }
+        });
+
+        }       
+  
+      } // fin funcion editar datos personales
+
+      function editarDatosDireccion(){
+
+
+        var datastring = $("#form_EditaEmpleado").serialize();
+        //alert(datastring);
+        //alert(existeDirectorio);
+
+        if (existeDirectorio==0){
+
+          //alert("entre");
+        
+        $.ajax({
+            type: "POST",
+            url: "ajax_registroDatosDireccionDesdeEdicion.php",
+            data: datastring,
+            dataType: "json",
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+            
+
+                    alertMsg1="<div id='msgAlert' class='alert alert-success'><strong>Datos Gegerales</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+
+
+                    var elemento = document.getElementById("spanDatosGenerales");
+                    elemento.className = "glyphicon glyphicon-ok";
+               
+                    var botones =$('#divButtonGuardarDireccion');                     
+                    var boton = "<button type='button' id='desbloqueoDatosDireccion' name='desbloqueoDatosDireccion' class='btn btn-success' type='button' onclick='desbloquearDatosDireccion();'> <span class='glyphicon glyphicon-refresh'></span>Editar</button>";
+                    botones.append (boton);
+
+                    $("#buttonGuardarDatosDireccion").remove();
+                    bloquearDatosGeneralesDirectorio();
+                    var numeroEmpleado=$("#numeroEmpleadoEntidadEdited").val()+"-"+$("#numeroEmpleadoConsecutivoEdited").val()+"-"+$("#numeroEmpleadoTipoEdited").val();
+                    consultaEmpleado(numeroEmpleado);
+
+
+                } else if (response.status=="error")
+                {
+                  alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Error en el registro de Datos Generales:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                }
+              },
+            error: function(){
+                  alert('error handing here');
+            }
+        });
+   
+        }else if (existeDirectorio==1){
+
+                  $.ajax({
+            type: "POST",
+            url: "ajax_actualizaDatosDireccion.php",
+            data: datastring,
+            dataType: "json",
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+            
+
+                    alertMsg1="<div id='msgAlert' class='alert alert-success'><strong>Datos Gegerales</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+
+
+                    var elemento = document.getElementById("spanDatosGenerales");
+                    elemento.className = "glyphicon glyphicon-ok";
+               
+                    var botones =$('#divButtonGuardarDireccion');                     
+                    var boton = "<button type='button' id='desbloqueoDatosDireccion' name='desbloqueoDatosDireccion' class='btn btn-success' type='button' onclick='desbloquearDatosDireccion();'> <span class='glyphicon glyphicon-refresh'></span>Editar</button>";
+                    botones.append (boton);
+
+                    $("#buttonGuardarDatosDireccion").remove();
+
+
+
+                    bloquearDatosGeneralesDirectorio();
+                    
+                    var numeroEmpleado=$("#numeroEmpleadoEntidadEdited").val()+"-"+$("#numeroEmpleadoConsecutivoEdited").val()+"-"+$("#numeroEmpleadoTipoEdited").val();
+                    consultaEmpleado(numeroEmpleado);
+
+
+                } else if (response.status=="error")
+                {
+                  alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Error en el registro de Datos Generales:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                }
+              },
+            error: function(){
+                  alert('error handing here');
+            }
+        });
+
+        }       
+   
+ 
+      }
+  
+
+ function desbloquearDatosPersonales(){
+
+        $("#txtFechaNacimientoEdited").prop("disabled", false);
+        $("#selectPaisNacimientoEdited").prop("disabled", false);
+        $("#txtFechaNacimientoEdited").prop("disabled", false);
+  
+        $("#selectMunicipioNacEdited").prop("disabled", false);
+        $("#selectEntidadNacimientoEdited").prop("disabled", false);
+  
+        $("#txtCurpEdited").prop("disabled", false);
+        $("#txtRfcEdited").prop("disabled", false);
+        $("#selectEstadoCivilEdited").prop("disabled", false);
+        $("#selectGradoEstudiosEdited").prop("disabled", false);
+        $("#selectGradoEstudiosEdited").prop("disabled", false);
+        $("#selectTipoSangreEdited").prop("disabled", false);
+        $("#selectOficioEdited").prop("disabled",false);
+        $("#txtNumeroCartillaEdited").prop("disabled",false);
+        $("#1estatusCartillaEdited").prop("disabled",false);
+        $("#2estatusCartillaEdited").prop("disabled",false);
+        $("#3estatusCartillaEdited").prop("disabled",false);
+        $("#4estatusCartillaEdited").prop("disabled",false);
+        $("#5estatusCartillaEdited").prop("disabled",false);
+
+        $("#selectReclutadorEdited").prop("disabled",false);
+        $("#selectMedioInformacionEdited").prop("disabled",false);
+
+
+
+
+            var botones =$('#divButtonGuardarDatosPersonales');                     
+            var boton = "<button type='button' class='btn btn-info' id='buttonGuardarDatosPersonales' name='buttonGuardarDatosPersonales' onclick='editarDatosPersonales();'><span class='glyphicon glyphicon-floppy-save' ></span>Guardar</button>";
+            botones.append (boton);
+            $("#desbloqueoDatosPersonales").remove();
+      }
+
+ function desbloquearDatosDireccion(){
+
+            $("#txtCPEdited").prop("disabled", false);
+            $("#txtCalleEdited").prop("disabled", false);
+            $("#txtNumeroIntEdited").prop("disabled", false);
+            $("#txtNumeroExtEdited").prop("disabled", false);
+            $("#txtTelefonoFijoEdited").prop("disabled", false);
+            $("#txtTelefonoMovilEdited").prop("disabled", false);
+            $("#txtCorreoEdited").prop("disabled", false);
+
+            var botones =$('#divButtonGuardarDireccion');                     
+            var boton = "<button type='button' class='btn btn-info' id='buttonGuardarDatosDireccion' name='buttonGuardarDatosDireccion' onclick='editarDatosDireccion();'><span class='glyphicon glyphicon-floppy-save' ></span>Guardar</button>";
+            botones.append (boton);
+            $("#desbloqueoDatosDireccion").remove();
+      }
+
+
+    function consultaCPEdited()
+{
+    var codigoPostal = $("#txtCPEdited").val ();
+        $("#txtIdUmfEdited").val("");
+    $("#txtNombreUmfEdited").val("");
+    $("#txtDireccionUmfEdited").val("");
+    
+    $("#multipleDireccionesE").html ("");
+    setDireccionData ("","","","","");
+    
+    // Si el código postal no tiene una longitud de 5 caracteres
+    // entonces no hagas nada. Sal de la función.
+    if (codigoPostal.length != 5)
+    {
+        return;
+    }
+    
+    $.ajax({
+            type: "POST",
+            url: "ajax_obtenerDirecciones.php",
+            data: {txtCP : codigoPostal},
+            dataType: "json",
+            success: function(response) {
+                if (response.listaDirecciones.length == 0)
+                {
+                    $.notify("El código postal es inválido", {autoHideDelay: 3000, className: 'error'});
+                    return;
+                }
+                else if (response.listaDirecciones.length == 1)
+                {
+                    var direccion = response.listaDirecciones [0];
+                    
+                    setDireccionDataE (direccion.idAsentamiento,
+                        direccion.nombreEntidadFederativa, 
+                        direccion.nombreMunicipio,
+                        direccion.nombreAsentamiento,
+                        direccion.municipioAsentamiento);
+
+                    consultaUmf();
+
+                    console.log (direccion);
+                }
+                else 
+                {
+                    var displayDirecciones = "";
+                    for (var i = 0; i < response.listaDirecciones.length; i++)
+                    {
+                        var direccion = response.listaDirecciones [i];
+                        
+                        var params = "\"" + direccion.idAsentamiento + "\"," +
+                            "\"" + direccion.nombreEntidadFederativa + "\"," +
+                            "\"" + direccion.nombreMunicipio + "\"," +
+                            "\"" + direccion.nombreAsentamiento + "\"," +
+                            "\"" + direccion.municipioAsentamiento + "\"";
+                        
+                        displayDirecciones += "<p>" + (i + 1) + "<a href='javascript:setDireccionDataE(" + params + ")';>" + 
+                            direccion.nombreTipoAsentamiento + " " +
+                            direccion.nombreAsentamiento + " " +
+                            direccion.nombreMunicipio + ", " +
+                            direccion.nombreEntidadFederativa + "</a></p>";
+                    }
+                    
+                    
+                    console.log (displayDirecciones);
+                    $("#multipleDireccionesE").html (displayDirecciones);
+                }
+            },
+            error: function(){
+                  alert('error handing here');
+            }
+    });
+}
+
+function setDireccionDataE (idAsentamiento, nombreEntidadFederativa, nombreMunicipio, nombreAsentamiento,municipioAsentamiento )
+{
+    $("#txtIdAsentamientoEdited").val(idAsentamiento);
+    $("#txtEntidadViviendaEdited").val (nombreEntidadFederativa);
+    $("#txtMunicipioViviendaEdited").val(nombreMunicipio);
+    $("#txtColoniaEdited").val(nombreAsentamiento);
+    $("#txtIdMunicipioEdited").val(municipioAsentamiento);
+
+    consultaUmfE();
+    $("#txtIdUmfEdited").val("");
+    $("#txtNombreUmfEdited").val("");
+    $("#txtDireccionUmfEdited").val("");
+}
+
+function consultaUmfE ()
+{
+
+    var idMunicipio = $("#txtIdMunicipioEdited").val ();
+
+    $.ajax({
+            type: "POST",
+            url: "ajax_obtenerUmf.php",
+            data: {idMunicipio : idMunicipio},
+            dataType: "json",
+            success: function(response) {
+              if (response.listaUmf.length == 1)
+                {
+                    var umf = response.listaUmf [0];
+                    
+                    setUmfDataE (umf.idUnidadMedica,
+                        umf.nombreUnidad, 
+                        umf.domicilioUnidad);
+
+                    console.log (umf);
+                }
+                else 
+                {
+                    var displayUmf = "";
+                    for (var i = 0; i < response.listaUmf.length; i++)
+                    {
+                        var umf = response.listaUmf [i];
+                        
+                        var params = "\"" + umf.idUnidadMedica + "\"," +
+                            "\"" + umf.nombreUnidad + "\"," +
+                            "\"" + umf.domicilioUnidad + "\"";
+                        
+                        displayUmf += "<p>" + (i + 1) + "<a href='javascript:setUmfDataE(" + params + ")';>" + 
+                            umf.nombreUnidad + "</a></p>";
+                    }
+                    
+                    
+                    console.log (displayUmf);
+                    $("#multipleUmfE").html (displayUmf);
+                }
+            },
+            error: function(){
+                  alert('error handing here');
+            }
+    });
+}
+
+function setUmfDataE (idUnidadMedica,nombreUnidad, domicilioUnidad )
+{
+    $("#txtIdUmfEdited").val(idUnidadMedica);
+    $("#txtNombreUmfEdited").val (nombreUnidad);
+    $("#txtDireccionUmfEdited").val(domicilioUnidad);
+
+}
+
+function consultarMunicipiosPorEntidadE(municipioNacimiento)
+    {
+        
+    
+       var entidadId = $("#selectEntidadNacimientoEdited").val();
+
+       //alert(entidadId);
+       //alert(municipioNacimiento);
+
+      $.ajax({
+            type: "POST",
+            url: "ajax_obtenerMunicipiosPorEntidad.php",
+            data: {"entidadId": entidadId},
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "success")
+
+                {
+
+                     var listaMunicipios = response.listaMunicipios;
+                     //alert(listaMunicipios);
+                     
+                     municipiosNacOptions = "<option>MUNICIPIOS</option>";
+
+                    for ( var i = 0; i < listaMunicipios.length; i++ ){
+
+                        municipiosNacOptions += "<option value='" + listaMunicipios[i].idMunicipio + "'";
+
+                        if (listaMunicipios[i].idMunicipio == municipioNacimiento)
+            {
+              municipiosNacOptions += " selected='selected' ";
+            }
+            
+
+                        municipiosNacOptions += ">" + listaMunicipios[i].nombreMunicipio + "</option>";
+                    }
+
+                    $("#selectMunicipioNacEdited").html (municipiosNacOptions);
+
+                  //console.log (municipios);
+                                    
+                }
+               // console.log (response);
+            },
+            error: function (response)
+            {
+                console.log (response);
+            }
+        });
+           
+    }
+    function generarCartaPatronalEdited()
+    {
+      var entidadEmpleado=$("#numeroEmpleadoEntidadEdited").val();
+      var consecutivoEmpleado=$("#numeroEmpleadoConsecutivoEdited").val();
+      var tipoEmpleado=$("#numeroEmpleadoTipoEdited").val();
+    //  alert(apellido);
+      window.open("generadorCartaPatronal.php?entidadEmpleado="+entidadEmpleado+"&consecutivoEmpleado="+consecutivoEmpleado+"&tipoEmpleado="+tipoEmpleado+"",'Informe3','fullscreen=no');
+     //
+      //parent.opener=top;
+      //opener.close();
+
+    }
+    function generarCartaPatronal2Edited()
+    {
+      var entidadEmpleado=$("#numeroEmpleadoEntidadEdited").val();
+      var consecutivoEmpleado=$("#numeroEmpleadoConsecutivoEdited").val();
+      var tipoEmpleado=$("#numeroEmpleadoTipoEdited").val();
+    //  alert(apellido);
+      
+      window.open("generadorCartaPatronal2.php?entidadEmpleado="+entidadEmpleado+"&consecutivoEmpleado="+consecutivoEmpleado+"&tipoEmpleado="+tipoEmpleado+"",'Informe3','fullscreen=no');
+      //parent.opener=top;
+      //opener.close();
+   
+    }
+    function generarContratoSa1Edited()
+    {
+      var entidadEmpleado=$("#numeroEmpleadoEntidadEdited").val();
+      var consecutivoEmpleado=$("#numeroEmpleadoConsecutivoEdited").val();
+      var tipoEmpleado=$("#numeroEmpleadoTipoEdited").val();
+    //  alert(apellido);
+      window.open("generadorContratoSa1.php?entidadEmpleado="+entidadEmpleado+"&consecutivoEmpleado="+consecutivoEmpleado+"&tipoEmpleado="+tipoEmpleado+"",'_blank','fullscreen=no');
+      
+     // parent.opener=top;
+    
+    }
+    function generarContratoSa2Edited()
+    {
+      var entidadEmpleado=$("#numeroEmpleadoEntidadEdited").val();
+      var consecutivoEmpleado=$("#numeroEmpleadoConsecutivoEdited").val();
+      var tipoEmpleado=$("#numeroEmpleadoTipoEdited").val();
+
+      window.open("generadorContratoSa2.php?entidadEmpleado="+entidadEmpleado+"&consecutivoEmpleado="+consecutivoEmpleado+"&tipoEmpleado="+tipoEmpleado+"",'_blank','fullscreen=no');
+      //parent.opener=top;
+      //opener.close();
+   
+    }
+
+    function generarContratoScEdited()
+    {
+      var entidadEmpleado=$("#numeroEmpleadoEntidadEdited").val();
+      var consecutivoEmpleado=$("#numeroEmpleadoConsecutivoEdited").val();
+      var tipoEmpleado=$("#numeroEmpleadoTipoEdited").val();
+
+      window.open("generadorContratoSc.php?entidadEmpleado="+entidadEmpleado+"&consecutivoEmpleado="+consecutivoEmpleado+"&tipoEmpleado="+tipoEmpleado+"",'_blank','fullscreen=no');
+      //parent.opener=top;
+      //opener.close();
+    
+    }
+
+    function generarHojaDatosEdited()
+    {
+      var entidadEmpleado=$("#numeroEmpleadoEntidadEdited").val();
+      var consecutivoEmpleado=$("#numeroEmpleadoConsecutivoEdited").val();
+      var tipoEmpleado=$("#numeroEmpleadoTipoEdited").val();
+    //  alert(apellido);
+      window.open("generadorHojaDatos.php?entidadEmpleado="+entidadEmpleado+"&consecutivoEmpleado="+consecutivoEmpleado+"&tipoEmpleado="+tipoEmpleado+"",'Informe2','fullscreen=no');
+      parent.opener=top;
+
+      /*
+      var strPrimerApellido="RUIZ ESPARZA";
+      var strSegundoAplido="GARCIA";
+      var strNombre="LUCIA ITZEL";
+      var strdia="03";
+      var strmes="05";
+      var stranio="1990";
+      var sEntidadA="DF";
+      var sSexoA="M";
+
+*/
+
+       //window.open("http://consultas.curp.gob.mx/CurpSP/curp1.do?strPrimerApellido=" & strPrimerApellido & "&strSegundoAplido=" & strSegundoAplido & "&strNombre=" & strNombre & "&strdia=" & strdia & "&strmes=" & strmes & "&stranio=" & stranio & "&sEntidadA=" & sEntidadA & "&sSexoA=" & sSexoA & "&strTipo=" & "A")
+    
+    }
+
+    function generarCredencialEdited()
+    {
+       var entidadEmpleado=$("#numeroEmpleadoEntidadEdited").val();
+      var consecutivoEmpleado=$("#numeroEmpleadoConsecutivoEdited").val();
+      var tipoEmpleado=$("#numeroEmpleadoTipoEdited").val();
+    //  alert(apellido);
+      window.open("generadorCredencial.php?entidadEmpleado="+entidadEmpleado+"&consecutivoEmpleado="+consecutivoEmpleado+"&tipoEmpleado="+tipoEmpleado+"",'Informe3','fullscreen=no');
+      //parent.opener=top;
+      //opener.close();
+
+    
+    }
+
+    function generadorNuevaCredencialEdited()
+    {
+
+      //alert("¡OPS! Estoy en construccion, aun no funciono pero quien me esta programando te notificara cuando este listo. Saludos :) ")
+      
+      var entidadEmpleado=$("#numeroEmpleadoEntidadEdited").val();
+      var consecutivoEmpleado=$("#numeroEmpleadoConsecutivoEdited").val();
+      var tipoEmpleado=$("#numeroEmpleadoTipoEdited").val();
+    //  alert(apellido);
+      window.open("generadorNuevaCredencial.php?entidadEmpleado="+entidadEmpleado+"&consecutivoEmpleado="+consecutivoEmpleado+"&tipoEmpleado="+tipoEmpleado+"",'Informe3','fullscreen=no');
+      parent.opener=top;
+      opener.close();
+
+    
+    }
+
+    function generarDocumentoBancoEdited()
+    {
+      var entidadEmpleado=$("#numeroEmpleadoEntidadEdited").val();
+      var consecutivoEmpleado=$("#numeroEmpleadoConsecutivoEdited").val();
+      var tipoEmpleado=$("#numeroEmpleadoTipoEdited").val();
+    //  alert(apellido);
+      window.open("generadorDocumentoBanco.php?entidadEmpleado="+entidadEmpleado+"&consecutivoEmpleado="+consecutivoEmpleado+"&tipoEmpleado="+tipoEmpleado+"",'Informe3','fullscreen=no');
+      //parent.opener=top;
+      //opener.close();
+
+    
+    }
+
+
+
+    function generadorFormatoDocumentosRecibidosEdited()
+    {
+      var entidadEmpleado=$("#numeroEmpleadoEntidadEdited").val();
+      var consecutivoEmpleado=$("#numeroEmpleadoConsecutivoEdited").val();
+      var tipoEmpleado=$("#numeroEmpleadoTipoEdited").val();
+      var nombreCompleto=$("#apellidoPaternoEmpleadoEdited").val()+" "+ $("#apellidoMaternoEmpleadoEdited").val()+" "+$ ("#nombreEmpleadoEdited").val();
+          //  alert(apellido);
+      window.open("generadorFormatoDocumentosRecibidos.php?entidadEmpleado="+entidadEmpleado+"&consecutivoEmpleado="+consecutivoEmpleado+"&tipoEmpleado="+tipoEmpleado+"&nombreCompleto="+nombreCompleto+"",'_blank','fullscreen=no');
+      //parent.opener=top;
+      //opener.close();
+
+    
+    }
+
+    function generadorCartaResponsivaEdited()
+    {
+      var entidadEmpleado=$("#numeroEmpleadoEntidadEdited").val();
+      var consecutivoEmpleado=$("#numeroEmpleadoConsecutivoEdited").val();
+      var tipoEmpleado=$("#numeroEmpleadoTipoEdited").val();
+      var nombreCompleto=$("#apellidoPaternoEmpleadoEdited").val()+" "+ $("#apellidoMaternoEmpleadoEdited").val()+" "+$ ("#nombreEmpleadoEdited").val();
+          //  alert(apellido);
+      window.open("generadorCartaResponsiva.php?entidadEmpleado="+entidadEmpleado+"&consecutivoEmpleado="+consecutivoEmpleado+"&tipoEmpleado="+tipoEmpleado+"&nombreCompleto="+nombreCompleto+"",'_blank','fullscreen=no');
+      //parent.opener=top;
+      //opener.close();
+
+    
+    }
+    function obtenerListaBeneficiariosEdited(idParentesco)
+    {
+        if ( $('input[name=checkBeneficiarioE]').is(':checked'))
+        {
+          $.ajax({
+            type: "POST",
+            url: "ajax_obtenerListaParentescos.php",
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "success")
+                {
+                    var parentescos = response.listaParentescos;
+                    
+                    parentescosOptions = "<option>PARENTESCO</option>";
+                    for (var i = 0; i < parentescos.length; i++)
+                    {
+                       parentescosOptions += "<option value='" + parentescos[i].idParentesco + "'";
+            
+            if (parentescos[i].idParentesco == idParentesco)
+            {
+              parentescosOptions += " selected='selected' ";
+            }
+            
+            parentescosOptions += ">" + parentescos[i].descripcionParentesco + "</option>";
+                    }
+                    
+
+
+                     $("#selectOtroBeneficiarioEdited").html (parentescosOptions);
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+
+             }
+          });
+
+        }else
+        {
+          
+          $("#contenidoOtroBeneficiarioEdited").remove();
+
+        }
+     
+    }
+   
+
+    function obtenerSupervisoresOperativos1(idResponsableAsistencia)
+    {
+
+       var puestoId = $("#tipoPuestoEdited").val();
+       var lineaNegocio = $("#selectLineaNegocioEdited").val();
+       //alert(puestoId);
+
+    if( puestoId=='03' && lineaNegocio==1){
+
+      $.ajax({
+
+            type: "POST",
+            url: "ajax_obtenerListaSupervisoresOperativos.php",
+            
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "success")
+                {
+                    var listaSupervisoresOperativos = response.listaSupervisoresOperativos;
+                    
+                    responsableAsistencia = "<option>RESPONSABLE ASISTENCIA</option>";
+                    for (var i = 0; i < listaSupervisoresOperativos.length; i++)
+                    {
+                      var numeroEmpleado=listaSupervisoresOperativos[i].entidadFederativaId+"-"+listaSupervisoresOperativos[i].empleadoConsecutivoId+"-"+listaSupervisoresOperativos[i].empleadoCategoriaId;
+                      
+                      responsableAsistencia += "<option value='" + numeroEmpleado + "'";
+
+            
+                         if (numeroEmpleado==idResponsableAsistencia)
+                          {
+                            responsableAsistencia += " selected='selected' "; 
+                          }
+                    
+            
+                          responsableAsistencia += ">" + listaSupervisoresOperativos[i].nombre + "</option>";
+                        }
+                    
+                    
+                    $("#dirigenteEdited").html (responsableAsistencia);
+                  
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+            }
+        });
+      }//fin if
+      else{
+
+        responsableAsistencia = "<option>NO APLICA</option>";
+        $("#dirigenteEdited").html (responsableAsistencia);
+
+      }
+    }
+
+        function obtenerSupervisoresOperativosReingreso(idResponsableAsistencia)
+    {
+
+       var puestoId = $("#selectTipoPuestoReingreso").val();
+       var lineaNegocio = $("#selectLineaNegocioModalR").val();
+       //alert(puestoId);
+
+    if( puestoId=='03' && lineaNegocio==1){
+
+      $.ajax({
+
+            type: "POST",
+            url: "ajax_obtenerListaSupervisoresOperativos.php",
+            
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "success")
+                {
+                    var listaSupervisoresOperativos = response.listaSupervisoresOperativos;
+                    
+                    responsableAsistencia = "<option>RESPONSABLE ASISTENCIA</option>";
+                    for (var i = 0; i < listaSupervisoresOperativos.length; i++)
+                    {
+                      var numeroEmpleado=listaSupervisoresOperativos[i].entidadFederativaId+"-"+listaSupervisoresOperativos[i].empleadoConsecutivoId+"-"+listaSupervisoresOperativos[i].empleadoCategoriaId;
+                      
+                      responsableAsistencia += "<option value='" + numeroEmpleado + "'";
+
+            
+                         if (numeroEmpleado==idResponsableAsistencia)
+                          {
+                            responsableAsistencia += " selected='selected' "; 
+                          }
+                    
+            
+                          responsableAsistencia += ">" + listaSupervisoresOperativos[i].nombre + "</option>";
+                        }
+                    
+                    
+                    $("#selectSupervisorModalR").html (responsableAsistencia);
+                  
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+            }
+        });
+      }//fin if
+      else{
+
+        responsableAsistencia = "<option>NO APLICA</option>";
+        $("#selectSupervisorModalR").html (responsableAsistencia);
+
+      }
+    }
+
+
+function consultaDatosFamiliares (numeroEmpleado)
+{
+    var numeroEmpleado = numeroEmpleado;
+if( $('#checkMadreE1').prop('checked') ) 
+{
+  $('#checkMadreE1').checkbox('click');
+  jQuery("#checkMadreE1").prop('checked',false);
+
+   // alert('Seleccionado mama');
+}
+
+if( $('#checkPadreE').prop('checked') ) 
+{
+  $('#checkPadreE').checkbox('click');
+  jQuery("#checkPadreE").prop('checked',false);
+
+    //alert('Seleccionado papa');
+}
+if( $('#checkBeneficiarioE').prop('checked') ) 
+{
+  $('#checkBeneficiarioE').checkbox('click');
+  jQuery("#checkBeneficiarioE").prop('checked',false);
+
+    //alert('Seleccionado papa');
+}
+
+$("#txtNombrePadreEdited").val("");
+$("#txtNombreMadreEdited").val("");
+$("#txtOtroBeneficiarioE").val("");
+//$("#selectOtroBeneficiarioEdited")val("PARENTESCO");
+$("#selectOtroBeneficiarioEdited").prop('selectedIndex', 0);
+
+ $.ajax({
+            
+            type: "POST",
+            url: "ajax_obtenerDatosFamiliares.php",
+            data:{"numeroEmpleado":numeroEmpleado},
+            dataType: "json",
+             success: function(response) {
+                if (response.status == "success")
+                {
+                  
+                    var datosFamiliares = response.listaFamiliares;
+               
+                   
+                    for ( var i = 0; i < datosFamiliares.length; i++ ){
+                      
+
+                      var nombreFamiliar=datosFamiliares[i].nombreFamiliar;
+                      var idParentescoFamiliar=datosFamiliares[i].idParentescoFamiliar;
+                      var beneficiario=datosFamiliares[i].beneficiario;
+
+
+                          if (idParentescoFamiliar==4){
+                            $("#txtNombrePadreEdited").val(nombreFamiliar);
+                            if(beneficiario==1) {
+								              $('#checkPadreE').checkbox('click');
+								             // $("#checkPadreE").attr('checked', true);
+                            }
+                          }
+                            if (idParentescoFamiliar==5 ){
+                              $("#txtNombreMadreEdited").val(nombreFamiliar);
+                           
+							                 if(beneficiario==1) {
+								                $('#checkMadreE1').checkbox('click');
+								                //$("#checkMadreE1").attr('checked', true);
+							                 }
+                            }
+
+                          if(idParentescoFamiliar!=5 && idParentescoFamiliar!=4){
+
+							             if(beneficiario==1) {
+
+								            //$("#checkBeneficiarioE").attr('checked', true);
+                            $('#checkBeneficiarioE').checkbox('click');
+                            
+                            //cargarDatosBeneficiario(idParentescoFamiliar, nombreFamiliar);
+                            cargarDatosBeneficiario(idParentescoFamiliar, nombreFamiliar);
+              
+							             }
+                           
+                          }                 
+
+                    }
+
+                 
+                }
+                else if (response.status == "error" && response.message == "No autorizado")
+                {
+                    window.location = "login.php";
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+
+            }
+        });
+    
+    
+}
+
+
+function cargarDatosBeneficiario(idParentescoFamiliar, nombreFamiliar)
+{
+    console.log ("cargarDatosBeneficiario");
+    console.log (nombreFamiliar);
+    console.log (idParentescoFamiliar);
+    
+    console.log ($("#txtOtroBeneficiarioE").val());
+    
+    $("#txtOtroBeneficiarioE").val(nombreFamiliar);
+    obtenerListaBeneficiariosEdited(idParentescoFamiliar);
+
+   // $("#contenidoOtroBeneficiarioEdited").val(idParentescoFamiliar);
+  
+  console.log ($("#txtOtroBeneficiarioE").val());
+}
+
+
+function editarDatosPadre(){
+
+          var numeroEmpleadoEntidad=$("#numeroEmpleadoEntidadEdited").val();
+          var numeroEmpleadoConsecutivo=$("#numeroEmpleadoConsecutivoEdited").val();
+          var numeroEmpleadoTipo=$("#numeroEmpleadoTipoEdited").val();
+          var nombreFamiliar=$("#txtNombrePadreEdited").val();
+          var idParentescoFamiliar=4;
+          var beneficiario=0;
+
+
+        if( $('#checkPadreE').prop('checked') ) 
+
+        {
+           beneficiario=1
+     
+        } //fin if 
+
+        $.ajax({
+            type: "POST",
+            url: "ajax_registroDatosFamiliares.php",
+            data: {"numeroEmpleadoEntidad":numeroEmpleadoEntidad,"numeroEmpleadoConsecutivo":numeroEmpleadoConsecutivo,"numeroEmpleadoTipo":numeroEmpleadoTipo,
+            "nombreFamiliar":nombreFamiliar,"idParentescoFamiliar":idParentescoFamiliar,"beneficiario":beneficiario},
+            dataType: "json",
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+            
+
+                    alertMsg1="<div id='msgAlert' class='alert alert-success'><strong>Datos Familoares</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                    
+                    var numeroEmpleado=$("#numeroEmpleadoEntidadEdited").val()+"-"+$("#numeroEmpleadoConsecutivoEdited").val()+"-"+$("#numeroEmpleadoTipoEdited").val();
+                    consultaEmpleado(numeroEmpleado);
+
+                } else if (response.status=="error")
+                {
+                  alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Error en el registro de Datos Generales:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                }
+              },
+            error: function(){
+                  alert('error handing here');
+            }
+        });
+
+      }
+
+      function editarDatosMadre(){
+
+          var numeroEmpleadoEntidad=$("#numeroEmpleadoEntidadEdited").val();
+          var numeroEmpleadoConsecutivo=$("#numeroEmpleadoConsecutivoEdited").val();
+          var numeroEmpleadoTipo=$("#numeroEmpleadoTipoEdited").val();
+          var nombreFamiliar=$("#txtNombreMadreEdited").val();
+          var idParentescoFamiliar=5;
+          var beneficiario=0;
+
+        if( $('#checkMadreE1').prop('checked') ) 
+
+        {
+           beneficiario=1
+     
+        } //fin if 
+
+        $.ajax({
+            type: "POST",
+            url: "ajax_registroDatosFamiliares.php",
+            data: {"numeroEmpleadoEntidad":numeroEmpleadoEntidad,"numeroEmpleadoConsecutivo":numeroEmpleadoConsecutivo,"numeroEmpleadoTipo":numeroEmpleadoTipo,
+            "nombreFamiliar":nombreFamiliar,"idParentescoFamiliar":idParentescoFamiliar,"beneficiario":beneficiario},
+            dataType: "json",
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+            
+
+                    alertMsg1="<div id='msgAlert' class='alert alert-success'><strong>Datos Familoares</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                    
+                    var numeroEmpleado=$("#numeroEmpleadoEntidadEdited").val()+"-"+$("#numeroEmpleadoConsecutivoEdited").val()+"-"+$("#numeroEmpleadoTipoEdited").val();
+                    consultaEmpleado(numeroEmpleado);
+
+                } else if (response.status=="error")
+                {
+                  alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Error en el registro de Datos Generales:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                }
+              },
+            error: function(){
+                  alert('error handing here');
+            }
+        });
+
+      }
+
+
+      function editarDatosBeneficiario(){
+
+
+          var numeroEmpleadoEntidad=$("#numeroEmpleadoEntidadEdited").val();
+          var numeroEmpleadoConsecutivo=$("#numeroEmpleadoConsecutivoEdited").val();
+          var numeroEmpleadoTipo=$("#numeroEmpleadoTipoEdited").val();
+          var nombreFamiliar=$("#txtOtroBeneficiarioE").val();
+          var idParentescoFamiliar=$("#selectOtroBeneficiarioEdited").val();;
+          var beneficiario=0;
+
+        if( $('#checkBeneficiarioE').prop('checked') ) 
+
+        {
+            beneficiario=1;
+
+            $.ajax({
+            type: "POST",
+            url: "ajax_insertaActualizaDatosBeneficiario.php",
+            data: {"numeroEmpleadoEntidad":numeroEmpleadoEntidad,"numeroEmpleadoConsecutivo":numeroEmpleadoConsecutivo,"numeroEmpleadoTipo":numeroEmpleadoTipo,
+            "nombreFamiliar":nombreFamiliar,"idParentescoFamiliar":idParentescoFamiliar,"beneficiario":beneficiario},
+            dataType: "json",
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+            
+
+                    alertMsg1="<div id='msgAlert' class='alert alert-success'><strong>Datos Familiares</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                    
+                    var numeroEmpleado=$("#numeroEmpleadoEntidadEdited").val()+"-"+$("#numeroEmpleadoConsecutivoEdited").val()+"-"+$("#numeroEmpleadoTipoEdited").val();
+                    consultaEmpleado(numeroEmpleado);
+
+
+
+                } else if (response.status=="error")
+                {
+                  alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Error en el registro de Datos Generales:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                }
+              },
+            error: function(){
+                  alert('error handing here');
+            }
+        });
+      }
+      }
+
+
+function limpiarFormulario(){
+
+  
+ $("#selectLineaNegocioEdited").prop('selectedIndex', 0);
+ $("#tipoPuestoEdited").prop('selectedIndex', 0);
+ $("#puestoEdited").prop('selectedIndex', 0);
+ $("#dirigenteEdited").prop('selectedIndex', -1);
+ $("#idEndidadFederativaEdited").prop('selectedIndex', 0);
+ $("#selectPuntoServicioEdited").prop('selectedIndex', 0);
+ $("#tipoTurnoEdited").prop('selectedIndex', 0);
+ $("#selectEntidadNacimientoEdited").prop('selectedIndex', 0);
+ $("#selectMunicipioNacEdited").prop('selectedIndex', 0);
+ 
+ $("#selectEstadoCivilEdited").prop('selectedIndex', 0);
+ $("#selectOtroBeneficiarioEdited").prop('selectedIndex', 0);
+ $("#selectGradoEstudiosEdited").prop('selectedIndex', 0);
+ $("#selectTipoSangreEdited").prop('selectedIndex', 0);
+ $("#selectOficioEdited").prop('selectedIndex', 0);
+
+ jQuery("#1generoEdited").prop('checked', false);
+ jQuery("#2generoEdited").prop('checked', false);
+ $("input[name=periodoEdited]").prop('checked', false);
+
+ // Limpia el div de la foto del empleado
+ $("#fotoEmpleadoEdited").html ("");
+
+if( $('#checkMadreE1').prop('checked') ) 
+{
+  $('#checkMadreE1').checkbox('click');
+  jQuery("#checkMadreE1").prop('checked',false);
+
+   // alert('Seleccionado mama');
+}
+
+if( $('#checkPadreE').prop('checked') ) 
+{
+  $('#checkPadreE').checkbox('click');
+  jQuery("#checkPadreE").prop('checked',false);
+
+    //alert('Seleccionado papa');
+}
+if( $('#checkBeneficiarioE').prop('checked') ) 
+{
+  $('#checkBeneficiarioE').checkbox('click');
+  jQuery("#checkBeneficiarioE").prop('checked',false);
+
+    //alert('Seleccionado papa');
+}
+
+ $('input[type=text]').each(function() {
+        $(this).val("");
+  });
+
+ $("#txtDireccionUmfEdited").val("");
+ $("#contenidoOtroBeneficiarioEdited").remove();
+
+}
+
+$('input[type="checkbox"].style3').checkbox({
+    buttonStyle: 'btn-danger',
+    buttonStyleChecked: 'btn-success',
+    checkedClass: 'icon-check',
+    uncheckedClass: 'icon-check-empty'
+});
+
+$( document ).ready(function() {
+  
+
+
+	var fileFotoEmpleadoEdited = $("#fileFotoEmpleadoEdited");
+
+    fileFotoEmpleadoEdited.fileinput({
+        uploadUrl: "upload_fotoempleadoEdited.php", // server upload action
+        uploadAsync: false,
+        showUpload: false, // hide upload button
+        showRemove: false, // hide remove button
+		showPreview: false,
+		uploadExtraData: {'type' : 'Edited'}
+    }).on("filebatchselected", function(event, files) {
+        // trigger upload method immediately after files are selected
+        fileFotoEmpleadoEdited.fileinput("upload");
+    }).on('filebatchuploadsuccess', function(event, data, previewId, index) {
+        var form = data.form, files = data.files, extra = data.extra, 
+            response = data.response, reader = data.reader;
+        
+        if (response.status == "error")
+        {
+            alert (response.message);
+            return;
+        }
+		
+		$("#fotoEmpleadoEdited").html ("<img style='margin:0 auto;' src='thumbs/" + response.file + "'/>");
+		$("#idFotoEmpleadoEdited").val (response.file);
+        
+    });
+
+<?php
+foreach ($documentos as $documento):
+?>
+    
+    var $input_<?php echo $documento["idDocumento"]; ?> = $("#documentoDigitalizado1_<?php echo $documento["idDocumento"]; ?>");
+    $input_<?php echo $documento["idDocumento"]; ?>.fileinput({
+        uploadUrl: "upload_documentodigitalizadoEdited.php", // server upload action
+        uploadAsync: false,
+        showUpload: false, // hide upload button
+        showRemove: false, // hide remove button
+        showPreview: false,
+        uploadExtraData: function () {
+            var data1 = {};
+            
+            data1 ["tipoDocumentoDigitalizado"] = <?php echo $documento["idDocumento"]; ?>;
+        
+            data1 ["numeroEmpleadoEntidadEdited"] = $("#numeroEmpleadoEntidadEdited").val();
+            data1 ["numeroEmpleadoConsecutivoEdited"] = $("#numeroEmpleadoConsecutivoEdited").val();
+            data1 ["numeroEmpleadoTipoEdited"] = $("#numeroEmpleadoTipoEdited").val();
+            
+            return data1;
+        }
+    }).on("filebatchselected", function(event, files) {
+        // trigger upload method immediately after files are selected
+        $input_<?php echo $documento["idDocumento"]; ?>.fileinput("upload");
+    }).on('filebatchuploadsuccess', function(event, data1, previewId, index) {
+        var form = data1.form, files = data1.files, extra = data1.extra, 
+            response = data1.response, reader = data1.reader;
+        console.log('File batch upload success');
+        console.log (data1);
+        
+        if (response.status == "error")
+        {
+            alert (response.message);
+            return;
+        }
+        
+        var icons_area = $("#icons_documentos_edited_<?php echo $documento["idDocumento"]; ?>");
+        
+        var documentos = "";
+        for (var i = 0; i < response.documentos.length; i++)
+        {
+            documento = response.documentos[i];
+            
+            documentos += "<p><a href='download_file.php?id=" + documento.id + "'><img src='img/" + documento.icono + "' height='24px' width='24px'/>" + documento.nombreArchivo + "</a></p>";
+        }
+        
+        console.log (icons_area);
+        
+        icons_area.html (documentos);
+        
+        //alert (icons_area.html());
+    });
+    
+<?php
+endforeach;
+?>
+    
+    
+});
+
+
+function consultarDocumentos(){
+
+  <?php
+foreach ($documentos as $documento):
+  ?>
+
+    var idDocumento=  <?php echo $documento["idDocumento"]; ?>;
+    var tipoDocumentoDigitalizado= <?php echo $documento["idDocumento"]; ?>;
+    var numeroEmpleadoEntidadEdited= $("#numeroEmpleadoEntidadEdited").val();
+    var numeroEmpleadoConsecutivoEdited=$("#numeroEmpleadoConsecutivoEdited").val();
+    var numeroEmpleadoTipoEdited= $("#numeroEmpleadoTipoEdited").val();
+
+       $.ajax({
+            type: "POST",
+            url: "ajax_obtenerDocumentos.php",
+            data: {"numeroEmpleadoEntidadEdited":numeroEmpleadoEntidadEdited,"numeroEmpleadoConsecutivoEdited":numeroEmpleadoConsecutivoEdited,
+             "numeroEmpleadoTipoEdited":numeroEmpleadoTipoEdited, "tipoDocumentoDigitalizado":tipoDocumentoDigitalizado},
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "ok")
+                {
+                  //alert(response);
+                    
+                         
+        var icons_area = $("#icons_documentos_edited_<?php echo $documento["idDocumento"]; ?>");
+        
+        var documentos = "";
+        for (var i = 0; i < response.documentos.length; i++)
+        {
+            documento = response.documentos[i];
+            
+            documentos += "<p><a href='download_file.php?id=" + documento.id + "'><img src='img/" + documento.icono + "' height='24px' width='24px'/>" + documento.nombreArchivo + "</a></p>";
+        }
+        
+        console.log (icons_area);
+        
+        icons_area.html (documentos);
+        
+        //alert (icons_area.html());
+
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+            }
+        });
+
+
+    
+<?php
+endforeach;
+?>
+
+}
+
+
+function mostrarModalBajaEmpleado(numeroEmpleado, fechaIngreso, nombreCompleto, estatusEmpleado, tipoPeriodo, empleadoIdPuntoServicio, tipoEmpleado, idResponsableAsistencia, puestoCubiertoId, entidadTrabajo,empleadoIdGenero,estatusImss){
+
+  //alert(estatusEmpleado);
+
+    <?php
+          if ($usuario["rol"] =="Administrador" || $usuario["rol"] =="Contrataciones" || $usuario["rol"] =="Lider Unidad" )
+                {
+          ?>
+
+  if (estatusEmpleado==1 || estatusEmpleado==2){
+      if(estatusImss==1 || estatusImss==2 ){
+
+        //alert("El empleado no puede darse de baja debido a que está en proceso de confirmación de Imss, intente más tarde.");
+        $("#modalErrorBajaImss").modal();
+
+      }else{
+
+        $('#myModalBajaEmpleado').modal();
+        $("#txtNumeroEmpleadoModal").val(numeroEmpleado);
+        $("#txtFechaIngresoModal").val(fechaIngreso);
+        $("#txtNombreEmpleadoModal").val(nombreCompleto);
+        $("#txtFechaBajaModal").val(currentDate);
+        $("#txtTipoPeriodo").val(tipoPeriodo);
+        $("#txtPuntoServicioBaja").val(empleadoIdPuntoServicio);
+        $("#txtTipoEmpleado").val(tipoEmpleado);
+        $("#txtResponsableAsistencia").val(idResponsableAsistencia);
+        $("#txtPuestoBajaModal").val(puestoCubiertoId);
+        $("#txtEstatusImss").val(estatusImss);
+
+      }
+   
+}else if(estatusEmpleado==0){
+  
+  limpiarModalReingreso();
+  $('#myModalReingresoEmpleado').modal();
+  $("#txtNumeroEmpleadoModalR").val(numeroEmpleado);
+  $("#txtFechaIngresoModalR").val(currentDate);
+  $("#txtNombreEmpleadoModalR").val(nombreCompleto);
+  $("#txtGeneroReingreso").val(empleadoIdGenero);
+
+  //$("#selectEntidadLaboralReingreso").val(entidadTrabajo);
+
+  //obtenerListaPuntosServiciosReingreso(entidadTrabajo);
+}
+
+<?php
+}
+?>
+}
+
+
+function mostrarModalFirma(){
+
+
+  $('#modalFirma').modal();
+}
+
+
+function cerrarModalBajaEmpleado ()
+{
+    $("#myModalBajaEmpleado").modal("hide");
+    
+    configureFooterBajaEmpleado ();
+}
+
+function configureFooterBajaEmpleado ()
+{
+    $("#footerBajaEmpleado").html ("<button type='button' class='btn btn-danger' data-dismiss='modal'>Cancelar</button><button type='button' class='btn btn-primary' onclick='guardarHistoricoBajaSubmit();'>Guardar Cambios</button>");
+}
+
+function guardarHistoricoBajaSubmit ()
+    {
+     
+        var numeroEmpleado=$("#txtNumeroEmpleadoModal").val();
+        var fechaIngreso=$("#txtFechaIngresoModal").val();
+        var fechaBaja=$("#txtFechaBajaModal").val();
+        var motivoBaja=$("#selectMotivoBaja").val();
+        var comentarioBaja=$("#txtComentarioBaja").val();
+        var puntoServicioId=$("#txtPuntoServicioBaja").val();
+        var tipoPeriodo=$("#txtTipoPeriodo").val();
+        var supervisorId=$("#txtResponsableAsistencia").val();
+        var puestoCubiertoId=$("#txtPuestoBajaModal").val();
+        var estatusImss=$("#txtEstatusImss").val();
+        
+        $("#footerBajaEmpleado").html ("<img src='img/loading-sm.gif' />");
+        
+        /*
+        setTimeout(function(){
+            console.log("in pause);
+        }, 2000);
+        */
+        
+        $.ajax({
+            type: "POST",
+            url: "ajax_registroHistoricoBaja.php",
+            data: {"numeroEmpleado":numeroEmpleado,"idMotivoBaja":motivoBaja, "fechaIngreso":fechaIngreso,"fechaCausaBaja":fechaBaja,"comentarioBaja":comentarioBaja, puntoServicioId:puntoServicioId, tipoPeriodo:tipoPeriodo, supervisorId:supervisorId, puestoCubiertoId:puestoCubiertoId },
+            dataType: "json",
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+  
+                    alertMsg1="<div id='msgAlert' class='alert alert-success'><strong>Datos Gegerales</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg1").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                     
+                     if(estatusImss!=8){
+
+                      solicitaBajaImss();
+
+                     }
+                    
+
+                    $("#selectMotivoBaja").val("MOTIVO BAJA");
+                    $("#txtComentarioBaja").val("");
+                    $("#selectTipoBaja").val("TIPO BAJA");
+                    
+                    $("#footerBajaEmpleado").html ("<button class='btn btn-primary' onclick='cerrarModalBajaEmpleado ();' type='button'>Cerrar</button>");
+
+                    cerrarModalBajaEmpleado();
+                    //$("#myModalBajaEmpleado").modal("hide");
+                    
+
+                    consultaEmpleado(numeroEmpleado);
+                    getSolicitudesBajas();
+
+                } else if (response.status=="error")
+                {
+                  alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Registro baja:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg1").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                    
+                    configureFooterBajaEmpleado ();
+                }
+              },
+            error: function(){
+                  alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Registro baja:</strong>Ocurrio un error en la comunicación con el servidor.<a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                  $("#alertMsg1").html(alertMsg1);
+                  $('#msgAlert').delay(3000).fadeOut('slow');
+                  
+                  configureFooterBajaEmpleado ();
+            }
+        });
+    }
+
+    
+
+    function aplicarReingreso(){
+
+      var fechaReingreso=$("#txtFechaIngresoModalR").val();
+      var numeroEmpleado=$("#txtNumeroEmpleadoModalR").val();
+      var estatusEmpleado=2;
+
+      var fechaBaja="";
+
+      $.ajax({
+            type: "POST",
+            url: "ajax_actualizaEstatusEmpleado.php",
+            data: {"fechaReingreso":fechaReingreso, "numeroEmpleado":numeroEmpleado, "estatusEmpleado":estatusEmpleado, "fechaBaja":fechaBaja},
+            dataType: "json",
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+
+                    alertMsg1="<div id='msgAlert' name='msgAlert' class='alert alert-success'><strong>Reingreso</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg1").html(alertMsg1);
+                    $("#msgAlert").delay(3000).fadeOut('slow');
+                   // actualizaFechaReingreso();
+                    $('#myModalReingresoEmpleado').modal('hide');
+                    consultaEmpleado(numeroEmpleado);
+                    
+
+                } else if (response.status=="error")
+                {
+                  alertMsg1="<div id='msgAlert' name='msgAlert' class='alert alert-error'><strong>Reingreso:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg1").html(alertMsg1);
+                    $("#msgAlert").delay(3000).fadeOut('slow');
+                }
+              },
+            error: function(){
+                  alert('error handing here');
+            }
+        });
+
+    }
+
+
+    function solicitaReingresoImss(){
+    
+          var numeroEmpleado=$("#txtNumeroEmpleadoModalR").val();
+          var folioTxt="";
+          var empleadoEstatusImss="1";
+          var numeroLote="";
+          var fechaImss=$("#txtFechaIngresoModalR").val();
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "ajax_actualizaEstatusEmpleadoImssReingreso.php",
+            data: {"numeroEmpleado":numeroEmpleado,"folioTxt":folioTxt,"empleadoEstatusImss":empleadoEstatusImss, "numeroLote":numeroLote,"fechaImss":fechaImss },
+            dataType: "json",
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+            
+
+                } else if (response.status=="error")
+                {
+                  alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Error al reingresar:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg1").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+
+                    
+                }
+              },
+            error: function(){
+                  alert('error handing here');
+            }
+        });
+
+      }
+
+    function actualizaFechaReingreso(){
+
+      var fechaReingreso=$("#txtFechaIngresoModalR").val();
+      var numeroEmpleado=$("#txtNumeroEmpleadoModalR").val();
+      var idEntidadTrabajo=$("#selectEntidadLaboralReingreso").val();
+      var empleadoLineaNegocioId=$("#selectLineaNegocioModalR").val();
+      var idTipoPuesto=$("#selectTipoPuestoReingreso").val();
+      var empleadoIdPuesto=$("#selectPuestoModalR").val();
+      var supervisor=$("#selectSupervisorModalR").val();
+      var empleadoIdPuntoServicio=$("#selectPuntoServicioModalR").val();
+      var empleadoIdTurno=$("#selectTurnoReingreso").val();
+      var idClientePunto=$("#opps_"+empleadoIdPuntoServicio).attr("idClientePunto");
+      var empleadoIdGenero=$("#txtGeneroReingreso").val();
+      var tipoPeriodo=$("#selectPeriodoReingreso").val();
+      //alert(idClientePunto);
+
+      var fechaBaja="";
+
+      $.ajax({
+            type: "POST",
+            url: "ajax_actualizaFechaReingreso.php",
+            data: {"fechaReingreso":fechaReingreso, "numeroEmpleado":numeroEmpleado, "fechaBaja":fechaBaja, idEntidadTrabajo:idEntidadTrabajo, empleadoLineaNegocioId:empleadoLineaNegocioId, idTipoPuesto:idTipoPuesto, empleadoIdPuesto:empleadoIdPuesto, supervisor:supervisor, empleadoIdPuntoServicio:empleadoIdPuntoServicio, empleadoIdTurno:empleadoIdTurno, idClientePunto:idClientePunto, empleadoIdGenero:empleadoIdGenero, tipoPeriodo:tipoPeriodo},
+            dataType: "json",
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+                  aplicarReingreso();
+                  solicitaReingresoImss();
+  
+                    var alertMsg1="<div id='msgAlert' name='msgAlert' class='alert alert-success'><strong>Reingreso</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg1R").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+
+                    $('#myModalReingresoEmpleado').modal('hide');
+
+                    consultaEmpleado(numeroEmpleado);
+
+                } else if (response.status=="error")
+                {
+                  var alertMsg1="<div id='msgAlert' name='msgAlert' class='alert alert-error'><strong>Reingreso:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg1R").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                }
+              },
+            error: function(){
+                  alert('error handing here');
+            }
+        });
+
+    }
+
+    function limpiarModalReingreso(){
+      $("#txtFechaIngresoModalR").val("");
+      $("#selectEntidadLaboralReingreso").val("ENTIDAD FEDERATIVA");
+      $("#selectLineaNegocioModalR").val("LiNEA NEGOCIO");
+      $("#selectTipoPuestoReingreso").val("TIPO PUESTO");
+      $("#selectPuestoModalR").val("PUESTO");
+      $("#selectTurnoReingreso").val("TURNO");
+      $("#selectSupervisorModalR").val("RESPONSABLE ASISTENCIA");
+      $("#selectPuntoServicioModalR").val("PUNTOS SERVICIOS");
+      $("#selectPeriodoReingreso").val("PERIODO");
+      
+
+   }
+
+
+
+
+ $('#txtSearchName').keypress(function(event){  
+       var keycode = (event.keyCode ? event.keyCode : event.which);  
+      if(keycode == '13'){  
+           //alert('Se ha presionado Enter!');  
+           consultaEmpleadoPorNombre();
+           $("#txtSearch").val("");
+      }   
+ }); 
+
+
+ function selectMotivosBajaPorTipoBaja()
+  {
+       
+       var idTipoBaja = $("#selectTipoBaja").val();
+       $.ajax({
+            type: "POST",
+            url: "ajax_obtenerMotivosBajaPorTipoBaja.php",
+            data: {"idTipoBaja": idTipoBaja},
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "success")
+                {
+                    
+                    var listaMotivos = response.motivosBaja;
+                    
+                    motivosOptions = "<option>MOTIVO BAJA</option>";
+                    for (var i = 0; i < listaMotivos.length; i++)
+                    {
+                        motivosOptions += "<option value='" + listaMotivos[i].idcatalogoMotivosBaja + "'>"+listaMotivos[i].descripcionMotivoBaja+ "</option>";
+                    }
+                    
+                    $("#selectMotivoBaja").html (motivosOptions);
+                   // $("#selectMotivoBaja").val(idClaveMovimiento);
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+            }
+        });
+  }
+
+  function solicitaBajaImss(){
+    
+          var numeroEmpleado=$("#txtNumeroEmpleadoModal").val();
+          var empleadoEstatusImss="5";
+          var idMotivoBajaImss="2";
+          var fechaBajaImss=$("#txtFechaBajaModal").val();
+
+        $.ajax({
+            type: "POST",
+            url: "ajax_registraBajaImss.php",
+            data: {"numeroEmpleado":numeroEmpleado,"idMotivoBajaImss":idMotivoBajaImss,"empleadoEstatusImss":empleadoEstatusImss,"fechaBajaImss":fechaBajaImss },
+            dataType: "json",
+            async: false,
+            success: function(response) {
+                var mensaje=response.message;
+
+                if (response.status=="success") {
+            
+
+                } else if (response.status=="error")
+                {
+                  alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Error al reingresar:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#alertMsg1").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+
+                    
+                }
+              },
+            error: function(){
+                  alert('error handing here');
+            }
+        });
+
+      }
+
+      function checarPlantilla(){
+        var puesto =$("#puestoEdited").val();
+        var tipoTurno=$("#tipoTurnoEdited").val();
+        var sexo=$( "input:radio[name=generoEdited]:checked" ).val();
+        var puntoServicio=$("#selectPuntoServicioEdited").val();
+
+        // alert("puesto: "+puesto+" tipoTurno:"+tipoTurno+" Sexo:"+sexo+" puntoServiio"+puntoServicio);
+
+
+        $.ajax({
+            type: "POST",
+            url: "ajax_actualizaDatosGeneralesPlantilla.php",
+            data:{"puesto":puesto,"tipoTurno":tipoTurno, "sexo":sexo,"puntoServicio":puntoServicio,"action":"consultar"},
+            dataType: "json",
+            async: false,
+            success: function(response) {
+                if (response.status == "success")
+                {
+                    var continuar = confirm (response.message);
+                    
+                    if (continuar)
+                    {
+                        alert("Continua");
+                    }
+                }
+                else
+                {
+                    alert (response.message);
+                }
+            },
+            error: function (response)
+            {
+                alert ("Ocurrio un error al consultar los datos de la plantilla");
+            }
+       });
+
+      }
+
+      function limpiarCanvas()
+      {
+          sketch_firma = null;
+          $("#sketch_div").html ();
+
+          $("#sketch_div").html ('<p>Dibuje firma del elemento…</p><canvas id="tools_sketch" class="divTrFirma" width="900" height="350" ><td></canvas>');
+
+          
+          sketch_firma = $('#tools_sketch').sketch();
+      }
+
+              function obtenerClienteByPuntoServicioIdEdited()
+    {
+            
+       var idPuntoServicio = $("#selectPuntoServicioEdited").val();
+       //var tipo = $("#numeroEmpleadoTipo").val();
+
+      $.ajax({
+            type: "POST",
+            url: "ajax_obtenerClienteByPuntoServicio.php",
+            data: {"idPuntoServicio":idPuntoServicio},
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "success")
+                {
+                    var clienteId = response.lista[0].idClientePunto;
+                    $("#txtClienteIdEdited").val(clienteId);
+
+                                        
+                }
+            },
+            error: function (response)
+            {
+                console.log (response);
+            }
+        });
+           
+    }
+
+ function saveImage(){
+ 
+        var empleadoEntidad=$("#numeroEmpleadoEntidadEdited").val();
+        var empleadoConsecutivo=$("#numeroEmpleadoConsecutivoEdited").val();
+        var empleadoTipo=$("#numeroEmpleadoTipoEdited").val();
+
+        var canvas = document.getElementById("tools_sketch");
+        canvasData = canvas.toDataURL("image/png");
+
+        // alert("puesto: "+puesto+" tipoTurno:"+tipoTurno+" Sexo:"+sexo+" puntoServiio"+puntoServicio);
+
+        $.ajax({
+            type: "POST",
+            url: "save.php",
+            data:{"empleadoEntidad":empleadoEntidad,"imgData":canvasData, "empleadoConsecutivo":empleadoConsecutivo, "empleadoTipo":empleadoTipo},
+            dataType: "json",
+            async: false,
+            success: function(response) {
+                if (response.status == "success")
+                {
+                    //alert("correcto");
+
+                    alertMsg1="<div id='msgAlert' class='alert alert-success'><strong>Firma</strong>Firma guardada<a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+                   
+                    $("#divFirmaMsg").html(alertMsg1);
+                    $('#msgAlert').delay(3000).fadeOut('slow');
+                    $('#modalFirma').modal('hide');
+                    //$("#modalFirma").hide();
+                    //$("modalFirma").
+
+                    limpiarCanvas();
+
+                }
+                else
+                {
+                    alert (response.message);
+                }
+            },
+            error: function (response)
+            {
+                alert ("Ocurrio un error al consultar los datos de la plantilla");
+            }
+       });
+
+
+      }
+      function getMediosInformacionVacanteEdited(id){
+
+      $.ajax({
+            type: "POST",
+            url: "ajax_getMediosInformacionVacante.php",
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "success")
+
+                {
+
+                  var listaMediosInformacionVacante = response.mediosInformacion;
+                  var mediosInformacionOptionsEdited="<select id='selectMedioInformacionEdited' name='selectMedioInformacionEdited'>";
+                  mediosInformacionOptionsEdited += "<option>MEDIO INFORMACIÓN</option>";
+
+                  for ( var i = 0; i < listaMediosInformacionVacante.length; i++ ){
+                    mediosInformacionOptionsEdited += "<option value='"+ listaMediosInformacionVacante[i].idMedio+"'";
+
+                    if(listaMediosInformacionVacante[i].idMedio==id){
+                      mediosInformacionOptionsEdited += " selected='selected' ";
+                    }
+
+                    mediosInformacionOptionsEdited+=">"+listaMediosInformacionVacante[i].nombreMedio+"</option>";
+                  }
+                  mediosInformacionOptionsEdited += "</select>";
+
+                  $("#divLblMedioEdited").html("<label class='control-label2 label' for='medioEdited'>¿Comó se entero de GIF?</label>");
+                  $("#divMedioInformacionEdited").html (mediosInformacionOptionsEdited);
+
+                  
+                  $("#selectMedioInformacionEdited").prop("disabled", false);
+                }
+                console.log (response);
+            },
+            error: function (response)
+            {
+                console.log (response);
+            }
+        });
+
+      }
+
+      function getReclutadoresSeguridadFisicaEdited(id){
+
+      $.ajax({
+            type: "POST",
+            url: "ajax_getReclutadoresSeguridadFisica.php",
+            dataType: "json",
+            success: function(response) {
+                if (response.status == "success")
+
+                {
+
+                  var listaReclutadores = response.reclutadores;
+                  var reclutadoresOptions="<select name='selectReclutadorEdited' id='selectReclutadorEdited' onChange='optionReclutadorEdited();'><option>RECLUTADOR</option>";
+                  
+                  for ( var i = 0; i < listaReclutadores.length; i++ ){
+                    reclutadoresOptions += "<option value='" + listaReclutadores[i].reclutadorId + "'";
+
+                    if(listaReclutadores[i].reclutadorId==id){
+                      reclutadoresOptions += " selected='selected' ";
+                    }
+                    reclutadoresOptions +=">" + listaReclutadores[i].nombre + "</option>";
+                  }
+                  reclutadoresOptions += "<option>OTRO</option></select>";
+                  $("#divReclutadorEdited").html (reclutadoresOptions);
+                  $("#divLblReclutadorEdited").html("<label class='control-label2 label' for='medio'>Reclutador</label>");
+                  $("#selectReclutadorEdited").prop("disabled", true );
+                  
+                }
+                console.log (response);
+            },
+            error: function (response)
+            {
+                console.log (response);
+            }
+        });
+
+      }
+
+      function optionReclutadorEdited(){
+        var lineaNegocio=$("#selectLineaNegocioEdited").val();
+        var tipoEmpleado=$("#tipoPuestoEdited").val();
+        var selectReclutadorEdited=$("#selectReclutadorEdited").val();
+        if(selectReclutadorEdited=="OTRO"){
+
+          $("#divReclutadorEdited").html("");
+          $("#divLblReclutadorEdited").html("");
+          getMediosInformacionVacanteEdited();
+
+
+        }else if(lineaNegocio==1 && tipoEmpleado=='03'){
+          
+          $("#divMedioInformacionEdited").html("");
+          $("#divLblMedioEdited").html("");
+          //getReclutadoresSeguridadFisicaEdited();
+
+
+        }else if( (lineaNegocio==1 || lineaNegocio==2 ) && tipoEmpleado=='02'){
+
+          $("#divReclutadorEdited").html("");
+          $("#divLblReclutadorEdited").html("");
+          getMediosInformacionVacanteEdited();
+
+        }else if( (lineaNegocio==1 || lineaNegocio==2 ) && tipoEmpleado=='03'){
+
+          $("#divReclutadorEdited").html("");
+          $("#divLblReclutadorEdited").html("");
+          getMediosInformacionVacanteEdited();
+
+        }
+      }
+
+var sketch_firma;
+
+
+  $(function() {
+    sketch_firma = $('#tools_sketch').sketch();
+  });
+
+      
+</script>
+
+<script language="javascript">
+$(document).ready(function() {
+
+    //obtenerListaEmpleadosActivos();
+     /*$("#descargar").click(function(event) {
+     $("#datos_a_enviar").val( $("<div>").append( $("#Exportar_a_Excel").eq(0).clone()).html());
+     $("#FormularioExportacion").submit();*/
+
+              jQuery("#checkMadreE1").prop('checked',false);
+              jQuery("#checkPadreE").prop('checked',false);
+              jQuery("#checkBeneficiarioE").prop('checked',false);
+
+    
+              bloquearDatosGenerales();
+              bloquearDatosPersonales();
+              bloquearDatosGeneralesDirectorio();
+
+                <?php
+          if ($usuario["rol"] =="Administrador" || $usuario["rol"] =="Contrataciones" || $usuario["rol"] =="Lider Unidad" )
+                {
+          ?>
+
+
+          $("#divFirma").html("<button id='btnFirma' name='btnFirma' class='btn btn-primary' type='button' onClick='mostrarModalFirma();'> <span class='glyphicon glyphicon-pencil'></span>Firma</button>");
+
+          <?php
+        }
+        ?>
+
+              $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            });
+
+
+//$("#txtFechaIngresoModalR").val(currentDate);
+//$("#txtFechaBajaModal").val(currentDate);
+                
+
+
+});
+
+</script>

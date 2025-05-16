@@ -1,0 +1,43 @@
+<?php
+// Iniciamos la sesión. session_start(); debe realizarse en cada archivo.
+// Y debe ser la primer linea en el archivo.
+session_start ();
+require_once ("../Negocio/Negocio.class.php");
+require_once ("Helpers.php");
+$negocio = new Negocio ();
+$response = array ();
+verificarInicioSesion ($negocio);
+if (!empty ($_POST)){
+    try{
+        // $log = new KLogger ( "ajaxRegistroDatosFamiliares.log" , KLogger::DEBUG );
+        // $log->LogInfo("Valor de la variable _POST: " . var_export ($_POST, true));
+        $usuario = $_SESSION ["userLog"]["usuario"];
+        $conteoBenef=getValueFromPost("conteoBenef");
+        $Entidad=getValueFromPost("numeroEmpleadoEntidad");
+        $Consecutivo=getValueFromPost("numeroEmpleadoConsecutivo");
+        $Tipo=getValueFromPost("numeroEmpleadoTipo");
+
+        for($i=1; $i <= $conteoBenef; $i++) { 
+            if($i=='1'){
+                $idBeneficiario='14';
+            }else{
+                $idBeneficiario++;
+            }
+            $parentescoB=getValueFromPost("txtParentescoBeneficiario".$i);
+            $nombreB=getValueFromPost("txtNombreBeneficiario".$i);
+            $porcentajeB=getValueFromPost("txtPorcentajeBeneficiario".$i);
+            $negocio -> registrarBeneficiarios($Entidad,$Consecutivo,$Tipo,$parentescoB,$nombreB,$porcentajeB,$usuario,$i,$idBeneficiario);
+        }
+  
+        $response ["status"] = "success";
+        $response ["message"] = "Datos Familiares registrados Exitosamente";
+    }catch (Exception $e){
+        $response ["status"] = "error";
+        $response ["message"] =  $e -> getMessage ();
+    }
+}else{
+    $response ["status"] = "error";
+    $response ["message"]= "No se proporcionaron datos";
+}
+echo json_encode ($response);
+?>

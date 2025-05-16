@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <script src="jquery.min.js"></script>
+    <script src="Chart.min.js"></script>
+</head>
+<body>
+<h1>Ejemplo de Grafica con Chart.js</h1>
+<canvas id="chart1" width="400" height="100"></canvas>
+<script>
+var ctx = document.getElementById("chart1");
+var data = {
+        labels: ["Dia 1", "Dia 2", "Dia 3" ],
+        datasets: [{
+            label: '# Dias de uso Enero',
+            data: [20, 50, 10 ],
+            backgroundColor: [
+                'rgba(100, 100, 100, 0.25)',
+                'rgba(100, 100, 100, 0.25)',
+                'rgba(100, 100, 100, 0.25)',
+            ],
+            borderColor: [
+                'rgba(200,200,200,1)',
+                'rgba(200,200,200,1)',
+                'rgba(200,200,200,1)',
+            ],
+            borderWidth: 2
+        }]
+    };
+var options = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    };
+var chart1 = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options
+});
+
+var dataURL = ctx.toDataURL('image/png');
+//window.location.href = canvas.toDataURL("image/png");
+
+
+
+</script>
+
+<form method="POST" action="generar.php" name="form" id="form">
+  <input type="hidden" name="base64" id="base64"/>
+  <button type="submit">
+    Guardar imagen
+  </button>
+</form>
+
+<script>
+
+   // on the submit event, generate a image from the canvas and save the data in the textarea
+   document.getElementById('form').addEventListener("submit",function(){
+      var image = ctx.toDataURL(); // data:image/png....
+      document.getElementById('base64').value = image;
+   },false);
+
+</script>
+
+
+</body>
+</html>

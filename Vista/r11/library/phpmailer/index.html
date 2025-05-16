@@ -1,0 +1,23 @@
+<?php
+
+require("class.phpmailer.php");
+
+$mail = new PHPMailer();
+
+$mail->IsSMTP();  // telling the class to use SMTP
+$mail->Host     = "smtp.office365.com"; // SMTP server
+
+$mail->From     = "itzel.ruiz@gifseguridad.com.mx";
+$mail->AddAddress("itzel.ruiz@gifseguridad.com.mx");
+
+$mail->Subject  = "First PHPMailer Message";
+$mail->Body     = "Hi! \n\n This is my first e-mail sent through PHPMailer.";
+$mail->WordWrap = 50;
+
+if(!$mail->Send()) {
+  echo 'Message was not sent.';
+  echo 'Mailer error: ' . $mail->ErrorInfo;
+} else {
+  echo 'Message has been sent.';
+}
+?>

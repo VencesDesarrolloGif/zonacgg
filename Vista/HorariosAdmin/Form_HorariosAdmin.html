@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+    <body>
+        <center><h3 class="card-title">CATALOGO HORARIOS PARA PLANTILLAS</h3>
+        <br>
+        <div id="divErrorHorariosAdmin" name="divErrorHorariosAdmin"></div>
+        <div style="margin-top: 2%"></div>
+        <div class="container top-buffer-submenu vertical-buffer">
+          <div align="center" id="divListaHorarios"></div>
+        </div>
+        <div align="center" class="container top-buffer-submenu vertical-buffer">
+          <button  id="btnguardarHorariosAdmin" disabled='true' class="btn btn-success" onclick="guardarHorario()">Guardar</button>
+          <button  id="btnagregarHorariosAdmin" class="btn btn-default" onclick="agregarHorario()"><span class="glyphicon glyphicon-plus"></span>Agregar</button>
+        </div>
+        <div tabindex="-1" role="dialog" id="ModalTipoContrato" name="ModalP" aria-labelledby="aaaa1" aria-hidden="true">
+          <h1 align="center" id="procesandoHorariosAdmin" name="procesandoHorariosAdmin" style="display:none;" >Procesando ....</h1>
+        </div>    
+        <script src="HorariosAdmin/HorariosAdmin.js"></script> 
+    </body>

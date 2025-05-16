@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+    <body>
+        <center><h3 class="card-title">CATALOGO JORNADAS PARA HORARIOS</h3>
+        <br>
+        <div id="divErrorJornadasAdmin" name="divErrorJornadasAdmin"></div>
+        <div style="margin-top: 2%"></div>
+        <div class="container top-buffer-submenu vertical-buffer">
+          <div align="center" id="divListaJornadas" ></div>
+        </div>
+        <div align="center" class="container top-buffer-submenu vertical-buffer">
+          <button  id="btnguardarJornadasAdmin" disabled='true' class="btn btn-success" onclick="guardarJornada()">Guardar</button>
+          <button  id="btnagregarJornadasAdmin" class="btn btn-default" onclick="agregarJornada()"><span class="glyphicon glyphicon-plus"></span>Agregar</button>
+        </div>
+        <div tabindex="-1" role="dialog" id="ModalTipoContrato" name="ModalP" aria-labelledby="aaaa1" aria-hidden="true">
+          <h1 align="center" id="procesandoJornadasAdmin" name="procesandoJornadasAdmin" style="display:none;" >Procesando ....</h1>
+        </div>    
+        <script src="Jornadas/Jornadas.js"></script> 
+    </body>

@@ -1,0 +1,51 @@
+
+<div class="container">
+	        <form class="form-horizontal" action='ajax_registrarVisitante.php' method="post" id="form_registrarEmpleado">
+  <fieldset>
+    <legend>Libro de Visitas</legend>
+    <div>
+      <code>Registro De Vistante</code> 
+      <table class="table">
+        <thead>
+          <th>Apellido Paterno</th>
+          <th>Apellido Materno</th>
+          <th>Nombre</th>
+          <th>Area de Visita</th>
+          <th>Asunto</th>
+         
+        </thead>
+        <tbody>
+          <tr>
+          <td><input id="vApellidoPaterno" name="vApellidoPaterno" type="text" placeholder="LETRAS" class="input-medium" ></td>
+          <td><input id="vApellidoMaterno" name="vApellidoMaterno" type="text" placeholder="LETRAS" class="input-medium" ></td>
+          <td><input id="vNombre" name="vNombre" type="text" placeholder="LETRAS" class="input-medium" ></td>
+          <td><select id="areaVisita" name="areaVisita" class="input-medium " >
+                <option> Seleccione Area de Visita</option>
+              </select></td>
+          <td><select id="asunto" name="asunto" class="input-medium " >
+                <option> Seleccione Asunto</option>
+              </select></td>
+              <td><button id="guardar" name="guardar" class="btn btn-primary" type="button" > Guardar</button></td>
+          </tr>
+          
+        </tbody>
+       </table>
+    </div>
+  </fieldset>
+
+<div id="listaVisitantes" name="listaVisitantes">
+ 
+    <table><thead><th>Apellido Paterno</th>
+                                          <th>Apellido Materno</th>
+                                          <th>Nombre</th>
+                                          <th>Area de Visita</th>
+                                          <th>Asunto</th>
+                                          </thead></tbody>
+  
+
+</div>
+
+
+</form>
+</div>
+

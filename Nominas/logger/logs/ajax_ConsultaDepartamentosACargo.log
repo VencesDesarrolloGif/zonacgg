@@ -1,0 +1,18 @@
+2023-05-30 23:30:17 - INFO  --> Valor de variable sql'SELECT * 
+            FROM relaciondepartamentosniveles rdn
+            LEFT JOIN catalogo_organigramadepartamentos cod on (cod.idDepartamentoOrg=rdn.idDepartamento)
+            WHERE idNivel=\'5\'
+            AND departamentoACargo=\'0\'' 
+2023-05-30 23:30:17 - INFO  --> Valor de variable datosarray (
+  0 => 
+  array (
+    'idRelacionDN' => '2',
+    'idDepartamento' => '16',
+    'idNivel' => '5',
+    'departamentoACargo' => '0',
+    'idDepartamentoOrg' => '16',
+    'descripcionDepartamento' => 'ALMACEN',
+    'lineaNegocio' => '1',
+    'categoria' => '03',
+  ),
+) 

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+      <input type="hidden" class="input-medium" readonly="true" id="constraseniaFirmaEditHidden" name="constraseniaFirmaEditHidden">
+
+   
+<div class="modalEdit hide fade" tabindex="-1" role="dialog" name="modalFirmaElectronicaEditHistorico" id="modalFirmaElectronicaEditHistorico" data-backdrop="static">
+  <div id="errorModalFirmaEditHistorico"></div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" align="center"><img src="img/alert.png">Escribe tu numero de empleado y la contraseña que generaste !!!</h3>
+      </div>
+      <div class="modal-body" align="center">
+        <h5>ADMINISTRATIVO</h5>
+      </div>
+      <div class="modal-body" align="center">
+        <span class="add-on"># Empleado</span>
+        <input type="text" id="NumEmpModalFirmaEdit" class="input-medium" name="NumEmpModalFirmaEdit" placeholder="00-0000-00 Ó 00-00000-00">
+        <span class="add-on">Contraseña</span>
+        <input type="password" id="constraseniaFirmaEdit" class="input-xlarge"name="constraseniaFirmaEdit" title="El campo identifica entre mayusculas y minusculas favor de considerarlo">
+      </div>
+      <div class="modal-body" align="center">
+        
+      <button type="button" id="btnFirmarEdit" name="btnFirmarEdit" class="btn btn-primary" >Firmar</button>
+      <button type="button" id="btnCancelarFirmaEdit" name="btnCancelarFirmaEdit"class="btn btn-danger" >Cancelar</button>
+      </div>      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+    <div class="modalEdit hide fade" tabindex="-1" role="dialog" name="ModalEditPdfComprobantePago" id="ModalEditPdfComprobantePago" data-backdrop="static">
+            <div id="errorModalEditPdfComprobante"></div>
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">  
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h3 class="modal-title" align="center"><img src="img/alert.png">Cargar Comprobante</h3>
+                </div>
+                <div class="modal-body" align="center">
+                    <div class="input-prepend">
+                        <input type="hidden" id="idFiniquitoEdit" class="input-medium" name="idFiniquitoEdit" readonly="true">
+                        <input type="hidden" id="nameDocumentEdit" class="input-medium" name="nameDocumentEdit" readonly="true">
+                        <span class="add-on"># Empleado</span>
+                        <input type="text" id="NumeroEmpleadoEdit" class="input-medium" name="NumeroEmpleadoEdit" readonly="true">
+                        <span class="add-on">Nombre Empleado</span>
+                        <input type="text" id="NombreEmpleadoEdit" class="input-medium" name="NombreEmpleadoEdit" readonly="true">
+                    </div><br><br>
+                    <div class="input-prepend" id="divCargarEditComprobante">
+                        <form enctype='multipart/form-data' id='formEditComprobantePago' name='formEditComprobantePago'>
+                            <label class="control-label label" for="archivoEditComprobantePago">Seleccionar archivo: </label>
+                            <span class="btn btn-success btn-file" >Examinar
+                                <input type='file' class='btn-success' id='archivoEditComprobantePago' name='archivoEditComprobantePago[]'/>  
+                            </span>     
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer" align="center">
+                  <button type="button" id="btnGuardarComprobanteEdit" name="btnGuardarComprobanteEdit" class="btn btn-primary" >Cargar</button>
+                  <button type="button" id="btnCancelarComprobanteEdit" name="btnCancelarComprobanteEdit" class="btn btn-danger" >Cancelar</button>
+                </div>      
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+    <body>
+        <center><h3 class="card-title">HISTORICO DE MOVIMIENTOS DE LOS FINIQUITOS PARA PAGO</h3></center>
+    <br>
+        <center>
+            <span>Inicio: </span><input type="date" id="fechaInicioHisMov" name="fechaInicioHisMov"><span>Fin: </span><input type="date" id="fechaFinHisMov" name="fechaFinHisMov">
+            <br><br>
+            <span>O</span>
+            <br><br>
+            <span >Número Empleado</span><input type="text" id="NumEmpleadoCosHistoMov" name="NumEmpleadoCosHistoMov" placeholder="00-0000-00 o 00-00000-00">
+            <br><br>
+            <img title='Consulta/Cargar/Actualizar Pagina' src='img/ActualizarEjecutar.jpg' class='cursorImg' id='btnguardar' onclick="ConsultaHistoricoMovimientosFiniquitoPago11();" width="50px">
+            <br>
+            <input type="hidden" id="opcionconsultahidden" name="opcionconsultahidden">
+        </center>
+        <br>
+        <div id="tablanomeclaturaAA"></div>
+        <br>
+        <section>
+            <table id="tablaHistoricoMovimientosFiniquitoPago" style="display:none;"  class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="text-align: center;background-color: #B0E76E">Número De Empleado</th>
+                        <th style="text-align: center;background-color: #B0E76E">Nombre Del Empleado</th>
+                        <th style="text-align: center;background-color: #B0E76E">Entidad</th>
+                        <th style="text-align: center;background-color: #B0E76E">Fecha Baja</th>
+                        <th style="text-align: center;background-color: #B0E76E">Número Admin Baja</th>
+                        <th style="text-align: center;background-color: #B0E76E">Nombre Admin Baja</th>
+                        <th style="text-align: center;background-color: #B0E76E">Estatus Origen</th>
+                        <th style="text-align: center;background-color: #B0E76E">Estatus Destino</th>
+                        <th style="text-align: center;background-color: #B0E76E">Fecha De Movimiento</th>
+                        <th style="text-align: center;background-color: #B0E76E">Comprobante De Pago</th>
+                        <th style="text-align: center;background-color: #B0E76E">Edición Comprobante De Pago</th>
+                        <th style="text-align: center;background-color: #B0E76E">Fecha Edición</th>
+                    </tr>
+                </thead>
+            </table>
+        </section>
+        <script type="text/javascript" src="css-Bootstrap-V4.1.3/js/sweetalet2021.js"></script>
+        <script src="HistoricoMovimientosFiniquitosPago/HistoricoMovimientosFiniquitosPago.js"></script>
+    </body>
+</html>

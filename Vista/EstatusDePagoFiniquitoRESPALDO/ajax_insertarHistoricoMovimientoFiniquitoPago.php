@@ -1,0 +1,22 @@
+<?php
+session_start();
+require "../conexion.php";
+require_once("../../libs/logger/KLogger.php");
+// $log = new KLogger ( "ajax_insertarHistoricoMovimientoFiniquitoPago.log" , KLogger::DEBUG );
+$response = array("status" => "success");
+$idFiniquito = $_POST['idFiniquito'];
+$estatusActual = $_POST['estatusActual'];
+$estatusNuevo = $_POST['estatusNuevo'];
+$usuario = $_SESSION ["userLog"]["usuario"];
+// $log->LogInfo("Valor de la variable numeroFolioSPF: " . var_export ($numeroFolioSPF, true));
+
+try{
+    $sql1 ="INSERT INTO historicomovimientosFiniquitosPago (idHstMovFinPago, idFiniquito, idEstatusActual, idEstatusNuevo, fechamovimiento, usuarioMovimiento) VALUES (null,'$idFiniquito','$estatusActual','$estatusNuevo',now(),'$usuario')";
+        $res = mysqli_query($conexion, $sql1);
+    
+}catch( Exception $e ){
+	$response["status"]="error";
+	$response["error"]="No se pudo eliminar folio";
+}
+echo json_encode($response);
+?>

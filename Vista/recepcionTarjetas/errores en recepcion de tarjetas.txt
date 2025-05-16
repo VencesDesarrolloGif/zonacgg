@@ -1,0 +1,2 @@
+revisar primero el response de upload_RecepcionTarjetas y ver que haya eliminado todo, en las tablas: archivosExcelTarjetas,Hojapedido,pedidotarjetas y tarjetasdespensa.
+asi como tambien los documentos en uploads/ExcelTarjetas y uploads/JojasPedidoTarjetas

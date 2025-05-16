@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8"> 
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+  <body>
+      <center><h3 class="card-title">CREACIÓN DE USUARIOS PARA LA APLICACIÓN DE ASISTENCIA</h3>
+        <br>
+        <div id="divErrorUsuarioApp" name="divErrorUsuarioApp"></div>
+        <br>
+        <button class="boton azulTransparente" id="btnComenzarUsrApp">COMENZAR</button><br>
+        <div id="divFirmaInternaUseraApp" style="display: none;">
+          <h4 style="font-family: American Typewriter;color: blue;">INGRESA TU FIRMA INTERNA Y PULSA CONTINUAR</h4><br>
+          <div id="divNumeroEmpleadoApp">
+            <span style="font-family: American Typewriter;">Número Empleado</span>
+            <input type="text" id="NumeroEmpleadoApp" name="NumeroEmpleadoApp" style="width: 250px;padding: 5px;border: 0;font-family: American Typewriter;"><br>
+          </div>
+
+          <div id="divcontraseniaEmpleadoApp">
+            <span style="font-family: American Typewriter; ">Constraseña Interna</span>
+            <input type="password" id="contraseniaApp" name="contraseniaApp" style="width: 250px;padding: 5px;border: 0;font-family: American Typewriter;">
+          </div>
+          <input type="hidden" id="NombreEmpAppHidden" name="NombreEmpAppHidden">
+          <input type="hidden" id="ApellidoPAppHidden" name="ApellidoPAppHidden">
+          <input type="hidden" id="ApelledoMAppHidden" name="ApelledoMAppHidden">
+          <input type="hidden" id="idEntidaAppdHideen" name="idEntidaAppdHideen">
+        </div><br>
+        <button class="boton naranjaTransparente" id="btnContinuarUsrApp" style="display: none;">CONTINUAR</button><br>
+        <div id="divUsuarioApp" style="display: none;">
+          <h4 style="font-family: American Typewriter;color: green;">INGRESA TU NUEVO USUARIO Y CONTRASEÑA</h4><br>
+          <div id="divUssuarioNuevoApp">
+            <span style="font-family: American Typewriter;">Usuario</span>
+            <input type="text" id="UsuarioNuevoApp" name="UsuarioNuevoApp" style="width: 250px;padding: 5px;background-color: #eee;border: 0;font-family: American Typewriter;" maxlength="10" ><br>
+          </div>
+
+          <div id="divContraseniaUsuarioNuevoApp">
+            <span style="font-family: American Typewriter; ">Constraseña</span>
+            <input type="password" id="contraseniaUsuarioNuevoApp" name="contraseniaUsuarioNuevoApp" style="width: 250px;padding: 5px;background-color: #eee;border: 0;font-family: American Typewriter;">
+          </div><br>
+        </div>
+
+        <div id="divMensajeUsuarioCreadoApp" style="display: none;">
+          <h3 style="font-family: American Typewriter;color: red; ">YA CUENTAS CON UN USUARIO PARA ACCEDER, CONSULTA EN TU ACCESO DE ROLES</h3>
+          <h3 style="font-family: American Typewriter;color: red; ">LA CONTRASEÑA PODRÁ SER EDITADA DESDE ESTE ACCESO.</h3><br>
+        </div>
+
+        <div id="divMensajeUsuarioCreadoContraseniaBloqueadaApp" style="display: none;">
+          <h3 style="font-family: American Typewriter;color: orange; ">YA CUENTAS CON UN USUARIO PARA ACCEDER, ACTUALIZA TU CONTRASEÑA </h3>
+          <h3 style="font-family: American Typewriter;color: orange; ">PARA PODER ACCEDER A LA APLICACIÓN.</h3><br>
+          <input type="hidden" id="inpUserActual"  name="inpUserActual"><br><br>
+          <span style="font-family: American Typewriter;">Contraseña</span>
+          <input type="password" id="inpContraseniaNueva"  name="inpContraseniaNueva"><br><br>
+          <button class="boton verdeTransparente" id="btnActualizarContraseniaApp" >GUARDAR</button>
+        </div><br>
+
+          <button class="boton verdeTransparente" id="btnGuardarUsuario" style="display: none;">GUARDAR</button>
+          <button class="boton rojoTransparente" id="btnCancelarApp" style="display: none;">CANCELAR</button>
+      </center>
+
+    <script src="UsuariosApp/crearUsuariosParaApp.js"></script> 
+  </body>
+</html>

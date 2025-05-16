@@ -1,0 +1,45 @@
+<?php
+session_start();
+use setasign\Fpdi\Fpdi;
+require_once('../libs/fpdi/src/autoload.php');
+require_once("../Negocio/Negocio.class.php");
+require_once("Helpers.php");
+require_once ("../libs/logger/KLogger.php");
+require('../libs/fpdf/fpdf.php');
+// require('../libs/fpdi/fpdi.php');
+//require_once "../../libs/numLetras/numeroLetras.php";
+$datos          = array();
+$nombreempleado=$_GET["nombreempleado"];
+$puesto=$_GET["puesto"];
+$numcuenta=$_GET["numcuenta"];
+$banco= $_GET["banco"];
+$lineanegocio= $_GET["lineanegocio"];
+//$log = new KLogger("ajax_diastrabajados.log", KLogger::DEBUG);
+date_default_timezone_set('America/Mexico_City'); //Asignas la zona horaria de tu país.
+setlocale(LC_TIME, 'spanish'); //Fijamos el tiempo local
+$fecha_dia= date('d');
+$fecha_mes=date('m');
+$fecha_anio=date('Y');
+//$log->LogInfo("Valor de variable fecha_dia" . var_export ($fecha_dia, true));
+$pdf                       = new FPDI();
+//$numletras                 = new NumeroALetras();
+//$letras                    = $numletras->convertir($netoalPago, 'PESOS', 'CENTAVOS');
+$pageCount                 = $pdf->setSourceFile("../archivos/doccajaschicas/RESPONSIVA_FONDO_DE_CAJA.pdf");
+$tplIdx                    = $pdf->importPage(1);
+$pdf->addPage('P', 'Letter');
+$pdf->useTemplate($tplIdx, null, null, null, null, true);
+$pdf->SetFont("Arial", 'B', 9);
+//$pdf->SetXY(50, 47);
+//$pdf->Cell(140, 6, utf8_decode($numempleado), 0, 0, 'L');
+$pdf->Text(164, 30.2, utf8_decode($fecha_dia));
+$pdf->Text(178, 30.2, utf8_decode($fecha_mes));
+$pdf->Text(191, 30.2, utf8_decode($fecha_anio));
+$pdf->Text(136, 62.5, utf8_decode($nombreempleado));
+$pdf->Text(69, 68.5, utf8_decode($puesto));
+$pdf->Text(88, 75, utf8_decode($numcuenta));
+$pdf->Text(159, 75, utf8_decode($banco));
+$pdf->Text(54, 81, utf8_decode($lineanegocio));
+//$pdf->Cell(33, 6, utf8_decode("$" . number_format($netoalPago, 2, '.', ',')), 0, 0, 'R');
+//$pdf->MultiCell(132.5, 6, utf8_decode($letras . " 00/100 MXN"), 0, 'C');
+$pdf->Output();
+$response = array("status" => "success");

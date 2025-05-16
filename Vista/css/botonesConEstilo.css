@@ -1,0 +1,37 @@
+.boton {
+  border: none; 
+  color: black; 
+  padding: 14px 28px; 
+  cursor: pointer; 
+  border-radius: 20px; 
+}
+
+.azulRelleno {background-color: #007bff;} 
+.azulRelleno:hover {background: #0b7dda;}
+
+.grisRelleno {background-color: #e7e7e7; color: black;} 
+.grisRelleno:hover {background: #ddd;}
+
+.verdeRelleno {background-color: #04AA6D;} 
+.verdeRelleno:hover {background-color: #46a049;}
+
+.naranjaRelleno {background-color: #ff9800;} 
+.naranjaRelleno:hover {background: #e68a00;}
+
+.rojoRelleno {background-color: #f44336;} 
+.rojoRelleno:hover {background: #da190b;}
+
+.azulTransparente {background-color: white; border: 2px solid #007bff;} 
+.azulTransparente:hover {background: #0b7dda; color: white;}
+
+.grisTransparente {background-color: white; border: 2px solid #e7e7e7;} 
+.grisTransparente:hover {background: #ddd; color: white;}
+
+.verdeTransparente {background-color: white; border: 2px solid #04AA6D;} 
+.verdeTransparente:hover {background-color: #46a049; color: white;}
+
+.naranjaTransparente {background-color: white; border: 2px solid #ff9800;} 
+.naranjaTransparente:hover {background: #e68a00; color: white;}
+
+.rojoTransparente {background-color: white; border: 2px solid #f44336;} 
+.rojoTransparente:hover {background: #da190b; color: white;}

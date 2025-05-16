@@ -1,0 +1,12 @@
+2023-05-30 23:28:15 - INFO  --> Valor de variable _POSTarray (
+  'depaSubDep' => '10',
+  'nivel' => '4',
+) 
+2023-05-30 23:28:15 - INFO  --> Valor de variable sql1'SELECT * 
+FROM relaciondepartamentosniveles rdna
+LEFT JOIN catalogo_organigramadepartamentos codi on (codi.idDepartamentoOrg=rdna.idDepartamento)
+WHERE rdna.idNivel=\'1\'
+AND rdna.departamentoACargo=\'0\'' 
+2023-05-30 23:28:15 - INFO  --> Valor de variable resfalse 
+2023-05-30 23:28:15 - INFO  --> Valor de variable datosarray (
+) 

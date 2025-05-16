@@ -1,0 +1,214 @@
+2015-08-21 12:58 CDT mail_recipient Issue = #32, add Reporter = @U2
+2015-08-21 12:58 CDT mail_recipient Issue = #32, add Handler = @U2
+2015-08-21 12:58 CDT mail Issue = #32, Type = new, Msg = 'email_notification_title_for_action_bug_submitted', User = @U2, Email = 'itzel.ruiz@gifseguridad.com.mx'.
+2015-08-21 12:58 CDT mail message #111 queued
+2015-08-21 12:58 CDT mail Processing e-mail queue (2 messages)
+2015-08-21 12:58 CDT mail Sending message #110 queued on 2015-08-21 12:55 CDT
+2015-08-21 12:58 CDT mail ERROR: Message could not be sent - La(s) siguiente(s) direcciones de remitente fallaron: 69.49.115.40 : MAIL not accepted from server,553,5.5.4 <69.49.115.40>... Domain name required for sender address 69.49.115.40
+<p>Error del servidor SMTP: 5.5.4 <69.49.115.40>... Domain name required for sender address 69.49.115.40
+</p>
+<p>Error del servidor SMTP: 5.5.4 <69.49.115.40>... Domain name required for sender address 69.49.115.40
+</p>
+
+2015-08-21 12:58 CDT mail Sending message #111 queued on 2015-08-21 12:58 CDT
+2015-08-21 12:58 CDT mail ERROR: Message could not be sent - La(s) siguiente(s) direcciones de remitente fallaron: 69.49.115.40 : MAIL not accepted from server,553,5.5.4 <69.49.115.40>... Domain name required for sender address 69.49.115.40
+<p>Error del servidor SMTP: 5.5.4 <69.49.115.40>... Domain name required for sender address 69.49.115.40
+</p>
+<p>Error del servidor SMTP: 5.5.4 <69.49.115.40>... Domain name required for sender address 69.49.115.40
+</p>
+
+2015-11-04 13:04 CST mail_recipient Issue = #28, add Reporter = @U1
+2015-11-04 13:04 CST mail_recipient Issue = #28, add Handler = @U4
+2015-11-04 13:04 CST mail_recipient Issue = #28, add Note Author = @U1
+2015-11-04 13:04 CST mail_recipient Issue = #28, drop @U1 (own)
+2015-11-04 13:04 CST mail Issue = #28, Type = bugnote, Msg = 'email_notification_title_for_action_bugnote_submitted', User = @U4, Email = 'itzel.ruiz@gifseguridad.com.mx'.
+2015-11-04 13:04 CST mail message #146 queued
+2015-11-04 13:04 CST mail Processing e-mail queue (19 messages)
+2015-11-04 13:04 CST mail Sending message #128 queued on 2015-10-12 12:09 CDT
+2015-11-04 13:05 CST mail message #128 deleted from queue
+2015-11-04 13:05 CST mail Sending message #129 queued on 2015-10-13 16:57 CDT
+2015-11-04 13:05 CST mail message #129 deleted from queue
+2015-11-04 13:05 CST mail Sending message #130 queued on 2015-10-13 16:59 CDT
+2015-11-04 13:05 CST mail message #130 deleted from queue
+2015-11-04 13:05 CST mail Sending message #131 queued on 2015-10-13 16:59 CDT
+2015-11-04 13:05 CST mail message #131 deleted from queue
+2015-11-04 13:05 CST mail Sending message #132 queued on 2015-10-13 17:02 CDT
+2015-11-04 13:05 CST mail message #132 deleted from queue
+2015-11-04 13:05 CST mail Sending message #133 queued on 2015-10-14 15:05 CDT
+2015-11-04 13:05 CST mail message #133 deleted from queue
+2015-11-04 13:05 CST mail Sending message #134 queued on 2015-10-14 15:22 CDT
+2015-11-04 13:05 CST mail message #134 deleted from queue
+2015-11-04 13:05 CST mail Sending message #135 queued on 2015-10-14 15:45 CDT
+2015-11-04 13:05 CST mail message #135 deleted from queue
+2015-11-04 13:05 CST mail Sending message #136 queued on 2015-10-14 16:05 CDT
+2015-11-04 13:05 CST mail message #136 deleted from queue
+2015-11-04 13:05 CST mail Sending message #137 queued on 2015-10-14 17:44 CDT
+2015-11-04 13:05 CST mail message #137 deleted from queue
+2015-11-04 13:05 CST mail Sending message #138 queued on 2015-10-15 10:30 CDT
+2015-11-04 13:05 CST mail message #138 deleted from queue
+2015-11-04 13:05 CST mail Sending message #139 queued on 2015-10-15 10:39 CDT
+2015-11-04 13:05 CST mail message #139 deleted from queue
+2015-11-04 13:05 CST mail Sending message #140 queued on 2015-10-15 10:39 CDT
+2015-11-04 13:05 CST mail message #140 deleted from queue
+2015-11-04 13:05 CST mail Sending message #141 queued on 2015-11-03 17:44 CST
+2015-11-04 13:05 CST mail message #141 deleted from queue
+2015-11-04 13:05 CST mail Sending message #142 queued on 2015-11-03 17:47 CST
+2015-11-04 13:06 CST mail message #142 deleted from queue
+2015-11-04 13:06 CST mail Sending message #143 queued on 2015-11-04 10:40 CST
+2015-11-04 13:06 CST mail message #143 deleted from queue
+2015-11-04 13:06 CST mail Sending message #144 queued on 2015-11-04 11:03 CST
+2015-11-04 13:06 CST mail message #144 deleted from queue
+2015-11-04 13:06 CST mail Sending message #145 queued on 2015-11-04 11:11 CST
+2015-11-04 13:06 CST mail message #145 deleted from queue
+2015-11-04 13:06 CST mail Sending message #146 queued on 2015-11-04 13:04 CST
+2015-11-04 13:06 CST mail message #146 deleted from queue
+2015-11-04 13:16 CST mail message #147 queued
+2015-11-04 13:16 CST mail Password reset for user @U30 sent to diana.lagunas@gifseguridad.com.mx
+2015-11-04 13:16 CST mail Processing e-mail queue (1 messages)
+2015-11-04 13:16 CST mail Sending message #147 queued on 2015-11-04 13:16 CST
+2015-11-04 13:16 CST mail message #147 deleted from queue
+2015-11-04 15:37 CST mail message #148 queued
+2015-11-04 15:37 CST mail Password reset for user @U30 sent to diana.lagunas@gifseguridad.com.mx
+2015-11-04 15:37 CST mail Processing e-mail queue (1 messages)
+2015-11-04 15:37 CST mail Sending message #148 queued on 2015-11-04 15:37 CST
+2015-11-04 15:37 CST mail message #148 deleted from queue
+2015-11-09 10:37 CST mail_recipient Issue = #29, add Reporter = @U30
+2015-11-09 10:37 CST mail_recipient Issue = #29, add Handler = @U28
+2015-11-09 10:37 CST mail_recipient Issue = #29, drop @U30 (own)
+2015-11-09 10:37 CST mail Issue = #29, Type = new, Msg = 'email_notification_title_for_action_bug_submitted', User = @U28, Email = 'abril.sanroman@gifseguridad.com.mx'.
+2015-11-09 10:37 CST mail message #149 queued
+2015-11-09 10:37 CST mail Processing e-mail queue (1 messages)
+2015-11-09 10:37 CST mail Sending message #149 queued on 2015-11-09 10:37 CST
+2015-11-09 10:37 CST mail message #149 deleted from queue
+2015-11-09 11:22 CST mail message #150 queued
+2015-11-09 11:22 CST mail Password reset for user @U28 sent to abril.sanroman@gifseguridad.com.mx
+2015-11-09 11:22 CST mail Processing e-mail queue (1 messages)
+2015-11-09 11:22 CST mail Sending message #150 queued on 2015-11-09 11:22 CST
+2015-11-09 11:22 CST mail message #150 deleted from queue
+2016-07-13 12:34 CDT mail message #151 queued
+2016-07-13 12:34 CDT mail Signup Email = sailormss1@hotmail.com, Hash = 3ca9e37847f75699921f16b9e5737637, User = @U32
+2016-07-13 12:34 CDT mail Processing e-mail queue (1 messages)
+2016-07-13 12:34 CDT mail Sending message #151 queued on 2016-07-13 12:34 CDT
+2016-07-13 12:34 CDT mail message #151 deleted from queue
+2016-07-13 12:34 CDT mail message #152 queued
+2016-07-13 12:34 CDT mail New Account Notify for email = 'itzel.ruiz@gifseguridad.com.mx'
+2016-07-13 12:34 CDT mail Processing e-mail queue (1 messages)
+2016-07-13 12:34 CDT mail Sending message #152 queued on 2016-07-13 12:34 CDT
+2016-07-13 12:34 CDT mail message #152 deleted from queue
+2016-07-13 12:41 CDT mail message #153 queued
+2016-07-13 12:41 CDT mail Password reset for user @U4 sent to itzel.ruiz@gifseguridad.com.mx
+2016-07-13 12:41 CDT mail Processing e-mail queue (1 messages)
+2016-07-13 12:41 CDT mail Sending message #153 queued on 2016-07-13 12:41 CDT
+2016-07-13 12:41 CDT mail message #153 deleted from queue
+2016-07-17 13:18 CDT mail message #154 queued
+2016-07-17 13:18 CDT mail Signup Email = gabriel_punk@hotmail.es, Hash = 171717ca4d137b4cbe5470f84ba28bd4, User = @U33
+2016-07-17 13:18 CDT mail Processing e-mail queue (1 messages)
+2016-07-17 13:18 CDT mail Sending message #154 queued on 2016-07-17 13:18 CDT
+2016-07-17 13:18 CDT mail message #154 deleted from queue
+2016-07-17 13:18 CDT mail message #155 queued
+2016-07-17 13:18 CDT mail New Account Notify for email = 'itzel.ruiz@gifseguridad.com.mx'
+2016-07-17 13:18 CDT mail Processing e-mail queue (1 messages)
+2016-07-17 13:18 CDT mail Sending message #155 queued on 2016-07-17 13:18 CDT
+2016-07-17 13:18 CDT mail message #155 deleted from queue
+2016-07-17 13:29 CDT mail message #156 queued
+2016-07-17 13:29 CDT mail Signup Email = osunvo156@gmail.com, Hash = f740a2b0258e9c4b7ba16a7d5cc3b290, User = @U34
+2016-07-17 13:29 CDT mail Processing e-mail queue (1 messages)
+2016-07-17 13:29 CDT mail Sending message #156 queued on 2016-07-17 13:29 CDT
+2016-07-17 13:29 CDT mail message #156 deleted from queue
+2016-07-17 13:29 CDT mail message #157 queued
+2016-07-17 13:29 CDT mail New Account Notify for email = 'itzel.ruiz@gifseguridad.com.mx'
+2016-07-17 13:29 CDT mail Processing e-mail queue (1 messages)
+2016-07-17 13:29 CDT mail Sending message #157 queued on 2016-07-17 13:29 CDT
+2016-07-17 13:29 CDT mail message #157 deleted from queue
+2016-08-24 23:12 CDT mail message #158 queued
+2016-08-24 23:12 CDT mail Signup Email = joaquinguillen128@gmail.com, Hash = 52f08563c147f2de922b65a416091c28, User = @U35
+2016-08-24 23:12 CDT mail Processing e-mail queue (1 messages)
+2016-08-24 23:12 CDT mail Sending message #158 queued on 2016-08-24 23:12 CDT
+2016-08-24 23:12 CDT mail message #158 deleted from queue
+2016-08-24 23:12 CDT mail message #159 queued
+2016-08-24 23:12 CDT mail New Account Notify for email = 'itzel.ruiz@gifseguridad.com.mx'
+2016-08-24 23:12 CDT mail Processing e-mail queue (1 messages)
+2016-08-24 23:12 CDT mail Sending message #159 queued on 2016-08-24 23:12 CDT
+2016-08-24 23:12 CDT mail message #159 deleted from queue
+2016-10-05 13:29 CDT mail message #160 queued
+2016-10-05 13:29 CDT mail Password reset for user @U6 sent to manuel.gonzalez@gifseguridad.com.mx
+2016-10-05 13:29 CDT mail Processing e-mail queue (1 messages)
+2016-10-05 13:29 CDT mail Sending message #160 queued on 2016-10-05 13:29 CDT
+2016-10-05 13:29 CDT mail message #160 deleted from queue
+2016-10-05 13:37 CDT mail_recipient Issue = #30, add Reporter = @U1
+2016-10-05 13:37 CDT mail_recipient Issue = #30, add Handler = @U29
+2016-10-05 13:37 CDT mail_recipient Issue = #30, drop @U1 (own)
+2016-10-05 13:37 CDT mail Issue = #30, Type = new, Msg = 'email_notification_title_for_action_bug_submitted', User = @U29, Email = 'jose.leon@gifseguridad.com.mx'.
+2016-10-05 13:37 CDT mail message #161 queued
+2016-10-05 13:37 CDT mail Processing e-mail queue (1 messages)
+2016-10-05 13:37 CDT mail Sending message #161 queued on 2016-10-05 13:37 CDT
+2016-10-05 13:37 CDT mail message #161 deleted from queue
+2016-10-05 13:38 CDT mail_recipient Issue = #30, add Reporter = @U1
+2016-10-05 13:38 CDT mail_recipient Issue = #30, add Handler = @U1
+2016-10-05 13:38 CDT mail_recipient Issue = #30, drop @U1 (own)
+2016-10-05 13:38 CDT mail Processing e-mail queue (0 messages)
+2016-10-05 13:41 CDT mail message #162 queued
+2016-10-05 13:41 CDT mail Account update notification sent to lesliedelarosa (analista.asistencia@gifseguridad.com.mx)
+2016-10-05 13:41 CDT mail Processing e-mail queue (1 messages)
+2016-10-05 13:41 CDT mail Sending message #162 queued on 2016-10-05 13:41 CDT
+2016-10-05 13:41 CDT mail message #162 deleted from queue
+2016-10-05 13:41 CDT mail message #163 queued
+2016-10-05 13:41 CDT mail Password reset for user @U10 sent to analista.asistencia@gifseguridad.com.mx
+2016-10-05 13:41 CDT mail Processing e-mail queue (1 messages)
+2016-10-05 13:41 CDT mail Sending message #163 queued on 2016-10-05 13:41 CDT
+2016-10-05 13:41 CDT mail message #163 deleted from queue
+2016-10-05 13:42 CDT mail Relationship added: Issue #30, related issue 31, relationship type 4.
+2016-10-05 13:42 CDT mail_recipient Issue = #30, add Reporter = @U1
+2016-10-05 13:42 CDT mail_recipient Issue = #30, add Handler = @U1
+2016-10-05 13:42 CDT mail_recipient Issue = #30, drop @U1 (own)
+2016-10-05 13:42 CDT mail Processing e-mail queue (0 messages)
+2016-10-05 13:42 CDT mail_recipient Issue = #31, add Reporter = @U1
+2016-10-05 13:42 CDT mail_recipient Issue = #31, add Handler = @U10
+2016-10-05 13:42 CDT mail_recipient Issue = #31, drop @U1 (own)
+2016-10-05 13:42 CDT mail Issue = #31, Type = new, Msg = 'email_notification_title_for_action_bug_submitted', User = @U10, Email = 'analista.asistencia@gifseguridad.com.mx'.
+2016-10-05 13:42 CDT mail message #164 queued
+2016-10-05 13:42 CDT mail Processing e-mail queue (1 messages)
+2016-10-05 13:42 CDT mail Sending message #164 queued on 2016-10-05 13:42 CDT
+2016-10-05 13:42 CDT mail message #164 deleted from queue
+2016-10-05 13:53 CDT mail_recipient Issue = #30, add Reporter = @U1
+2016-10-05 13:53 CDT mail_recipient Issue = #30, add Handler = @U10
+2016-10-05 13:53 CDT mail_recipient Issue = #30, drop @U1 (own)
+2016-10-05 13:53 CDT mail Issue = #30, Type = owner, Msg = 'email_notification_title_for_action_bug_assigned', User = @U10, Email = 'analista.asistencia@gifseguridad.com.mx'.
+2016-10-05 13:53 CDT mail message #165 queued
+2016-10-05 13:53 CDT mail Processing e-mail queue (1 messages)
+2016-10-05 13:53 CDT mail Sending message #165 queued on 2016-10-05 13:53 CDT
+2016-10-05 13:53 CDT mail message #165 deleted from queue
+2016-10-05 13:56 CDT mail Issue #31 monitored by user @U1
+2016-10-05 13:56 CDT mail_recipient Issue = #31, add Reporter = @U1
+2016-10-05 13:56 CDT mail_recipient Issue = #31, add Handler = @U10
+2016-10-05 13:56 CDT mail_recipient Issue = #31, drop @U1 (own)
+2016-10-05 13:56 CDT mail Issue = #31, Type = monitor, Msg = 'email_notification_title_for_action_monitor', User = @U10, Email = 'analista.asistencia@gifseguridad.com.mx'.
+2016-10-05 13:56 CDT mail message #166 queued
+2016-10-05 13:56 CDT mail Processing e-mail queue (1 messages)
+2016-10-05 13:56 CDT mail Sending message #166 queued on 2016-10-05 13:56 CDT
+2016-10-05 13:56 CDT mail message #166 deleted from queue
+2016-10-05 15:28 CDT mail_recipient Issue = #32, add Reporter = @U6
+2016-10-05 15:28 CDT mail_recipient Issue = #32, add Handler = @U22
+2016-10-05 15:28 CDT mail_recipient Issue = #32, drop @U6 (own)
+2016-10-05 15:28 CDT mail Issue = #32, Type = new, Msg = 'email_notification_title_for_action_bug_submitted', User = @U22, Email = 'arturo.alvarez@gifseguridad.com.mx'.
+2016-10-05 15:28 CDT mail message #167 queued
+2016-10-05 15:28 CDT mail Processing e-mail queue (1 messages)
+2016-10-05 15:28 CDT mail Sending message #167 queued on 2016-10-05 15:28 CDT
+2016-10-05 15:28 CDT mail message #167 deleted from queue
+2016-10-05 17:23 CDT mail_recipient Issue = #31, add Reporter = @U1
+2016-10-05 17:23 CDT mail_recipient Issue = #31, add Handler = @U10
+2016-10-05 17:23 CDT mail_recipient Issue = #31, add Monitor = @U1
+2016-10-05 17:23 CDT mail_recipient Issue = #31, drop @U1 (own)
+2016-10-05 17:23 CDT mail Issue = #31, Type = deleted, Msg = 'email_notification_title_for_action_bug_deleted', User = @U10, Email = 'analista.asistencia@gifseguridad.com.mx'.
+2016-10-05 17:23 CDT mail message #168 queued
+2016-10-05 17:23 CDT mail Processing e-mail queue (1 messages)
+2016-10-05 17:23 CDT mail Sending message #168 queued on 2016-10-05 17:23 CDT
+2016-10-05 17:23 CDT mail message #168 deleted from queue
+2016-10-05 17:23 CDT mail_recipient Issue = #30, add Reporter = @U1
+2016-10-05 17:23 CDT mail_recipient Issue = #30, add Handler = @U10
+2016-10-05 17:23 CDT mail_recipient Issue = #30, drop @U1 (own)
+2016-10-05 17:23 CDT mail Issue = #30, Type = deleted, Msg = 'email_notification_title_for_action_bug_deleted', User = @U10, Email = 'analista.asistencia@gifseguridad.com.mx'.
+2016-10-05 17:23 CDT mail message #169 queued
+2016-10-05 17:23 CDT mail Processing e-mail queue (1 messages)
+2016-10-05 17:23 CDT mail Sending message #169 queued on 2016-10-05 17:23 CDT
+2016-10-05 17:23 CDT mail message #169 deleted from queue

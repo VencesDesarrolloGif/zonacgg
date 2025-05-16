@@ -1,0 +1,169 @@
+body{
+   
+    }
+
+#title{
+width:960px;
+    height:100px;
+    font-size:30pt;
+    padding:15px;
+    margin:15 auto;
+    color:#0B0B3B;
+    font-family:cursive;
+    
+}
+
+#logoGif{
+    background-image:url(GIF/cobertura.png);
+    background-size:contain;
+    width:700px;
+    height:380;
+    margin:5px;
+    padding:20px;
+
+}
+
+.float{
+float:left;
+}
+
+.allContainer{
+    max-height:1300px;
+    min-height:900px;
+	margin:0 auto;
+    /*background-color:white;*/
+  background-image:url(GIF/font.jpg);*/
+  
+ 
+}
+
+#login{
+	width:400px;
+    height:150px;
+    padding:25px;
+    background-image:url(GIF/font2.jpg);
+    
+}
+
+.textbox{
+height:50px;
+width:300px;    
+background-color:whith;
+border-style:outset;
+font-size:15pt;
+}
+
+
+.loginspace{
+padding:10;
+}
+
+#buttonLogin{
+margin-left:280px;
+}
+
+#divTable{
+/*background-color:white;*/
+background-image:url(GIF/tableBlue.jpg);
+width:600px;
+padding:15px;
+margin:5px;
+}
+
+#imagenDiv{
+width:230px;
+height:380px;
+/*margin-left:600px;
+margin-top:-150px;*/
+background-image:url(GIF/guardiaSmall.png);
+}
+
+#logoGifRegistro{
+width:300px;
+height:150px;
+background-image:url(GIF/logoGifWhite.jpg);
+}
+
+#imagefoto{
+width:130px;
+height:130px;
+margin:5px;
+padding:5px;
+background-color:BLUE;
+
+}
+
+#locationCerrarSesion{
+margin-left:935px;
+margin-top:-150px;
+
+}
+
+#divNumeroEmp{
+margin-top:-30;
+margin-left:170;
+
+
+}
+
+#divEncConsulta{
+
+height:100px;
+background-color:red;
+}
+
+#tableEmpleado{
+margin:10px auto;
+font-weight:normal;
+width:80%;
+}
+
+#tableEmpleado th{
+padding:2px;
+text-align:center;
+color:red;
+border:double;
+border-color:#0B0B3B;
+}
+
+#tableEmpleado td{
+padding-top:10px;
+//padding:2px;
+text-align:left;
+color:black;
+border:solid;
+border-color:#BDBDBD;
+
+}
+
+
+#divEncConsulta{
+background-image:url(GIF/tableBlue.jpg);
+width:1350px;
+height:500px;
+
+
+
+}
+
+#divNumEmpleadoSearch{
+position:absolute;
+left:70px;
+top:10px;
+}
+
+.txtNumeroEmpleadoSearch{
+height:50px;
+width:110px;    
+font-size:15pt;
+
+}
+
+
+#divTableEmpleados{
+position:relative;
+left:0px;
+top:70px;
+
+
+}

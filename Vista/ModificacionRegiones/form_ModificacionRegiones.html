@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link  href="css-Bootstrap-V4.1.3/css/bootstrap.min.css" >
+    </head>
+    <body>
+        <div id="MensajeRegionesEdicion"></div>
+        <center><h3 class="card-title">REGIONES</h3></center>
+        <br>
+        
+        <table>
+            <tr>
+                <td valign="top">
+                    <center><h4 class="card-title">AGREGAR/ELIMINAR REGIONES</h4></center><br>
+                    <div style="max-width: 100rem; border-style: groove; border-color: rgb(51,153,255); " align="center" ><br>
+                        <h4>Agregar Una Nueva Region<br><br>
+                        <div>
+                            <span>Ingresa la nueva region</span>
+                            <input id="inpNewRegion" name="inpNewRegion" style="width: 150px;height: 30px;border-radius: 10px;color: blue;">
+                        </div><br><br>
+                        <div align="center">
+                            <button id="btnGuardarRegion" style="width: 150px;height: 40px;border-radius: 20px;background-color: rgba(159, 209, 13,.8);color: blue;">Guardar</button>
+                        </div><br><br>
+                        <table>
+                            <tr>
+                                <td valign="top">
+                                    <div style="max-width: 50rem; border-style: groove; border-color: rgba(51,153,255,.3); " id="divListaRegionesGrl" align="center">
+                                        <br>
+                                        <div  id="divListRegiones">
+                                            <h4>Dar De Baja Una Region<br><br>
+                                            <div id="divLista3" name="divLista3">
+                                                <ul class='list' id='listaRegionesExistentes' name='listaRegionesExistentes'></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr><br><br>
+                            <tr>
+                                <td valign="top">
+                                    <div style="max-width: 50rem; border-style: groove; border-color: rgba(51,153,255,.3); " id="divListaRegionesGrlInactiva" align="center">
+                                        <br>
+                                        <div  id="divListRegionesInactivas">
+                                            <h4>Reactivar Una Region<br><br>
+                                            <div id="divLista4" name="divLista4">
+                                                <ul class='list' id='listaRegionesInactivas' name='listaRegionesInactivas'></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td valign="top">
+                    <center><h4 class="card-title">AGREGAR/ELIMINAR ENTIDADES DE REGIONES</h4></center><br>
+                    <div style="max-width: 100rem; border-style: groove; border-color: rgb(51,153,255); " align="center" ><br>
+                        <div>
+                            <span >Seleccione La Region</span>
+                            <select id="SelectRegiones" name="SelectRegiones"></select>
+           
+                            <span>Seleccione La Linea De Negocio</span>
+                            <select id="SelectLineaNegocioRegion" name="SelectLineaNegocioRegion"></select>
+            
+                        </div><br>
+                        <div align="center">
+                            <button id="btnObtenerREgionesYEntidades" style="width: 150px;height: 40px;border-radius: 20px;background-color: rgba(159, 209, 13,.8);color: blue;">Obtener</button>
+                        </div><br>
+                        <table>
+                            <tr>
+                                
+                                <td valign="top">
+                                    <div style="max-width: 50rem; border-style: groove; border-color: rgba(51,153,255,.5); " id="divListaentidadesAsignadasLineal" align="center" ><br>
+                                        <div  id="divListaentidadesAsignadas">
+                                            <h4>Eliminar Entidades Asiganadas</h4><br>
+                                            <div id="divLista1" name="divLista1">
+                                                <ul class='list' id='listaEntidadesAsignadas' name='listaEntidadesAsignadas'></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td valign="top">
+                                    <div style="max-width: 50rem; border-style: groove; border-color: rgba(51,153,255,.3); " id="divListaentidadesPorAsignadasLineal" align="center">
+                                        <br>
+                                        <div  id="divListaEntidadesPorAsignar">
+                                            <h4>Asiganar Entidades</h4><br>
+                                            <div id="divLista2" name="divLista2">
+                                                <ul class='list' id='listaEntidadesPorAsignar' name='listaEntidadesPorAsignar'></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>        
+        <script src="ModificacionRegiones/ModificacionRegiones.js"></script>
+        <link rel="stylesheet" href="css-Bootstrap-V4.1.3/js/bootstrap.min.js">
+    </body>
+</html>

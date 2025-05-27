@@ -14419,7 +14419,10 @@ public function obtenerUniformesByTransferencia($idTransfer)
 
     try {
 
-        $sql = "SELECT idUniformeTransfer,cantidadUniformeTransfer FROM detalle_transferencia WHERE idTransferenciaD='" . mysqli_real_escape_string($this->conn, $idTransfer) . "'";
+        $sql = "SELECT dt.idUniformeTransfer,dt.cantidadUniformeTransfer,tu.sucursalOrigen 
+                FROM detalle_transferencia dt
+                LEFT JOIN transferencias_uniformes tu on tu.idTransferencia=dt.idTransferenciaD
+                WHERE idTransferenciaD='" . mysqli_real_escape_string($this->conn, $idTransfer) . "'";
 
             //$this -> logger -> LogInfo ("ejecutando selectCompraFactura en persistencia ". $sql);
 

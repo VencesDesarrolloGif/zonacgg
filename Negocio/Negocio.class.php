@@ -7370,8 +7370,9 @@ public function obtenerListaDiasParaCierre($tipoPeriodo, $currentTimestamp = nul
         for ($i = 0; $i < count($listaDetalle); $i++) {
             $claveUniforme    = $listaDetalle[$i]["idUniformeTransfer"];
             $cantidadUniforme = $listaDetalle[$i]["cantidadUniformeTransfer"];
+            $sucursalOrigen = $listaDetalle[$i]["sucursalOrigen"];
 
-            $this->persistencia->insertarStockUniforme($claveUniforme, $entidadRecepcion, $cantidadUniforme);
+            $this->persistencia->insertarStockUniforme($claveUniforme, $entidadRecepcion, $cantidadUniforme,$sucursalOrigen);
         }
 
     }

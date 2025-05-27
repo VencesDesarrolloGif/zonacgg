@@ -228,8 +228,8 @@ function getEnviosTransfer(){
     }
 
     function recibirTransferencia(idTransfer,entidadDestino){                
-      var entidadRecepcion = $("#selEntidadesTrans").val();
 
+      var entidadRecepcion = $("#selEntidadesTrans").val();
       if(entidadRecepcion=="" ||entidadRecepcion=="null" || entidadRecepcion=="NULL" || entidadRecepcion==null || entidadRecepcion=="0"){
           alert("Selecciona La Entidad De Recepción Para Continuar ...");
       }else if (entidadRecepcion !=entidadDestino) {
@@ -247,7 +247,7 @@ function getEnviosTransfer(){
             {
               var mensaje=response.message;                    
               alert(mensaje);  
-              getStockUniforme(); 
+              // getStockUniforme(); 
               getEnviosTransfer();                                                       
             }  
             else if (response.status == "error")

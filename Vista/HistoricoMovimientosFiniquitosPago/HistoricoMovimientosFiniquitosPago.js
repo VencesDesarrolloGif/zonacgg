@@ -144,11 +144,33 @@ function ConsultaHistoricoMovimientosFiniquitoPago11(){
         });
  } 
 
-function abrirPdfcomprobanteFinanzas(nombreDoc){
-    window.open("uploads/comprobantesPagoFiniquitos/"+nombreDoc);
+function abrirPdfcomprobanteFinanzas(nombreDoc,numeroEmpleado){
+    // window.open("uploads/comprobantesPagoFiniquitos/"+numeroEmpleado+"/"+nombreDoc);
+    const rutaEmpleado = "uploads/comprobantesPagoFiniquitos/" + numeroEmpleado + "/" + nombreDoc;
+const rutaGeneral = "uploads/comprobantesPagoFiniquitos/" + nombreDoc;
+
+fetch(rutaEmpleado, { method: 'HEAD' }) // HEAD solo pide los encabezados, no el contenido
+  .then(response => {
+    if (response.ok) {
+      window.open(rutaEmpleado);
+    } else {
+      // Si no existe en la carpeta del empleado, prueba en la general
+      return fetch(rutaGeneral, { method: 'HEAD' });
+    }
+  })
+  .then(response => {
+    if (response && response.ok) {
+      window.open(rutaGeneral);
+    } else if (response) {
+      alert("El archivo no fue encontrado.");
+    }
+  })
+  .catch(error => {
+    console.error("Error al verificar el archivo:", error);
+    alert("Ocurrió un error al intentar abrir el documento.");
+  });
 
 }
-
 function abrirModalFirma(idFiniquito,nameDocComprobante,NumeroEmpleado,NombreEmpleado){
     $("#modalFirmaElectronicaEditHistorico").modal();
     $("#idFiniquitoEdit").val(idFiniquito);

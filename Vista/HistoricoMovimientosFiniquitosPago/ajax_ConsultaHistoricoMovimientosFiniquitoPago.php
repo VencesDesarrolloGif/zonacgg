@@ -83,7 +83,7 @@ try {
             $datos[$i]["EstatusAnterior"]="<span style='color: rgb(".$color1.");'>".$EstatusOrigen1."</span>";
             $datos[$i]["EstatusActual"]="<span style='color: rgb(".$color.");'>".$EstatusDestino1."</span>";
             if($idEstatusNuevo=="5"){
-                $datos[$i]["docComprovante"] = "<i  title='Abrir pdf' class='fa fa-file-pdf-o' style='font-size:40px;color:red' onclick='abrirPdfcomprobanteFinanzas(\"" . $nameDocComprobante . "\")'></i>";
+                $datos[$i]["docComprovante"] = "<i  title='Abrir pdf' class='fa fa-file-pdf-o' style='font-size:40px;color:red' onclick='abrirPdfcomprobanteFinanzas(\"" . $nameDocComprobante . "\",\"" . $NumeroEmpleado . "\")'></i>";
                 $datos[$i]["edicionDocComprovante"] = "<img src='../vista/img/editarHoja.png' width='45px' onclick='abrirModalFirma(" . json_encode($idFiniquito) . "," . json_encode($nameDocComprobante) . "," . json_encode($NumeroEmpleado) . "," . json_encode($NombreEmpleado) . ")'>";
 
                 if ($fechaEditDocComprobante==null || $fechaEditDocComprobante=="null" || $fechaEditDocComprobante==NULL) {

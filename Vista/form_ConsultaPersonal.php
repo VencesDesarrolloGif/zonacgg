@@ -4695,7 +4695,7 @@ function ActualizarDatosImssParaSalarioDiario(salarioDiari){
     var salarioDiari1 = salarioDiari;
   }
   var idpunt = $("#selectPuntoServicioEdited").val();
-  if(idpunt != "27"){
+  if(idpunt != "27" && idpunt != "19"){
     $.ajax({
     type: "POST",
     url: "ajax_ActualizaDatosImssParaSalarioDiario.php",
@@ -4805,7 +4805,7 @@ function LimpiarDatosTabuladorSalarioDiarioEdit(){
   var seleLineaNegocioEdi = $("#selectLineaNegocioEdited").val();
   var idpunt = $("#selectPuntoServicioEdited").val();
 
-  if(tipoPuestoEdited != "02" && tipoPuestoEdited != "TIPO PUESTO" && seleLineaNegocioEdi=="1" && idpunt != "27"){
+  if(tipoPuestoEdited != "02" && tipoPuestoEdited != "TIPO PUESTO" && seleLineaNegocioEdi=="1" && idpunt != "27" && idpunt != "19"){
     $("#SalarioDiarioEmpEdit").val("");
     $("#btnGenrarSalarioDiarioEdit").show();
     $("#btnConfirmarSalarioDiarioEdit").hide();

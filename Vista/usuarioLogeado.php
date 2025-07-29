@@ -243,7 +243,7 @@ if ($usuario["rol"] == "Contrataciones" || $usuario["rol"] == "Socioeconomico" |
     <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 
     <!-- <script type="text/javascript" language="javascript" src="js/jquery-ui-personalized-1.6rc6.min.js"></script> -->
-
+    <script src="AlertGif/customAlert.js"></script>
     <script type="application/dart" src="js/example.dart"></script>
 
 
@@ -5676,7 +5676,68 @@ $(document).ready (function ()
     <?php
 }
 ?>
+
+<?php
+        if ($usuario["rol"] == "Supervisor" || $usuario["rol"] == "Direccion De Operaciones" || $usuario["rol"] == "Direccion General" || $usuario["rol"] == "Analista Asistencia" || $usuario["rol"] == "Gerente Nacional" || $usuario["rol"] == "Gerente Regional" || $usuario["rol"] == "Contabilidad" || $usuario["rol"] == "Coordinador Imss" || $usuario["rol"] == "Lider Unidad" || $usuario["rol"] == "Contrataciones" || $usuario["rol"] == "Control Vehicular") {
+    ?>
+            setTimeout(() => {ObtenerCierreSemanalQuincenalDiario(1);}, 5000);
+            setTimeout(() => {ObtenerCierreSemanalQuincenalDiario(2);}, 15000);
+    <?php
+        }
+    ?>
+
 });//termina ready
+
+function ObtenerCierreSemanalQuincenalDiario(option){
+    // console.log("entre ObtenerCierreSemanalQuincenalDiario ");
+    $.ajax({
+        type: "POST",
+        url: "ajax_ObtenerCierreSemanalQuincenalDiario.php",
+        dataType: "json",
+        async: false,
+        success: function(response) {
+            if(response.status == "success") { 
+            // alert("entre al succes"); 
+                var FechaQuincenal = response.FechaQuincenal;
+                var HoraQuincenal = response.HoraQuincenal;
+                var FechaSemanal = response.FechaSemanal;
+                var HoraSemanal = response.HoraSemanal;
+                const fechaS = new Date(FechaSemanal + 'T12:00:00'); // medio día evita cambio de fecha
+                const fechaQ = new Date(FechaQuincenal + 'T12:00:00');
+
+                // const fechaS = new Date(FechaSemanal);
+                // const fechaQ = new Date(FechaQuincenal);
+                const diasSemana = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+                const diaS = diasSemana[fechaS.getDay()];
+                const diaQ = diasSemana[fechaQ.getDay()];
+                console.log(FechaQuincenal);
+                console.log(HoraQuincenal);
+                console.log(FechaSemanal);
+                console.log(HoraSemanal);
+                console.log(fechaS);
+                console.log(fechaQ);
+                console.log(diaS);
+                console.log(diaQ);
+                var mensajeSemanal = "El cierre de la asistencia SEMANAL se realizará el dia "+ diaS +" "+FechaSemanal+" a las "+HoraSemanal+" hrs ";
+                var mensajeQuincenal = "El cierre de la asistencia QUINCENAL se realizará el dia "+ diaQ +" "+FechaQuincenal+" a las "+HoraQuincenal+" hrs ";
+                console.log(mensajeSemanal);
+                console.log(mensajeQuincenal);
+                if(option == "1"){
+                    AlertGif.mostrar(mensajeSemanal, 'warning');
+                }else{
+                    AlertGif.mostrar(mensajeQuincenal, 'warning');
+
+                }
+            }else{
+                var mensaje = response.mensaje;
+                AlertGif.mostrar(mensaje, 'error');
+            }
+        },error: function(jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        }
+    });
+}
+
 
 function borrarRegistrodeIngreso1(IpABorrar){
     $.ajax({

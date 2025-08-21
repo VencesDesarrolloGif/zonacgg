@@ -26,14 +26,14 @@
 <section>
 <center>
 
-<select id="cuatrimestreDetalleContrato" name="cuatrimestreDetalleContrato">
+<select id="cuatrimestreDetalleContrato" name="cuatrimestreDetalleContrato" class="input-medium"  >
   <option value="0">Cuatrimestre</option>
   <option value="1">Enero-Abril</option>
   <option value="2">Mayo-Agosto</option>
   <option value="3">Septiembre-Diciembre</option>
 </select>
 
-    <select id="anioDetalleContrato" name="anioDetalleContrato">
+    <select id="anioDetalleContrato" name="anioDetalleContrato" class="input-medium">
       <option value="" selected>Año</option>
       <?php $year = date("Y");
       for($i=$year; $i>=2020; $i--){

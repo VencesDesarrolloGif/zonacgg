@@ -559,7 +559,7 @@ if ($usuario["rol"] == "Contrataciones" || $usuario["rol"] == "Socioeconomico" |
                                         </ul>
                                 </li>
                                 <li><a href="#reportePersonalPorFecha" data-toggle="tab">Consulta General Por Fechas</a></li>
-
+                                <li><a href="#detalleContratoVentas"   data-toggle="tab">Detalle Contrato</a></li>
                                     <?php
                                 }
                                 ?>
@@ -978,6 +978,7 @@ if ($usuario["rol"] == "Contrataciones" || $usuario["rol"] == "Socioeconomico" |
                                 </li>
                                 <li><a href="#catalogoPuntosServiciosFacturacion" data-toggle="tab">Puntos de servicios</a></li>
                                 <li><a href='#conteoincidenciasDia' data-toggle='tab'>Porcentaje Cobertura<img src="img/download.png"></a></li>
+                                <li><a href="#detalleContratoFacturacion"   data-toggle="tab">Detalle Contrato</a></li>
 
 
                                 <?php
@@ -2253,6 +2254,14 @@ if ($usuario["rol"] == "Lider Unidad" || $usuario["rol"] == "Contrataciones" ) {
             <div >
                 <?php
                     include "Jornadas/form_Jornadas.html";
+                ?>
+            </div>
+        </div>
+
+        <div class="tab-pane fade " id="detalleContratoVentas">
+            <div >
+                <?php
+                include "form_DetalleContrato.php";
                 ?>
             </div>
         </div>
@@ -3658,6 +3667,14 @@ if ($usuario["rol"] == "Lider Unidad" || $usuario["rol"] == "Contrataciones" ) {
                         <div >
                             <?php
                             include "form_PlantillaSupervisor.php";
+                            ?>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade " id="detalleContratoFacturacion">
+                        <div >
+                            <?php
+                            include "form_DetalleContrato.php";
                             ?>
                         </div>
                     </div>

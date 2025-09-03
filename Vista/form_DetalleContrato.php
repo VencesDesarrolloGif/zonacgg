@@ -110,7 +110,7 @@ function consultaDetalleContrato() {
                     var estatusValidacion= response.datosContrato[i]["estatusValidacion"];
                     var idContratoCliente= response.datosContrato[i]["idContratoCliente"];
 
-                    pdfcontrato="<img style='width: 90%' title='Insertar monto negociado' src='img/pdf.png' class='cursorImg'  id='btnRechazar' onclick=mostrarDocumento('"+claveClienteNominaCliente+"','"+NombreArchivo+"','"+usrActual+"','"+idContratoCliente+"')>";
+                    pdfcontrato="<img style='width: 90%' title='PDF' src='img/pdf.png' class='cursorImg'  id='btnRechazar' onclick=mostrarDocumento('"+claveClienteNominaCliente+"','"+NombreArchivo+"','"+usrActual+"','"+idContratoCliente+"')>";
 
                     response.datosContrato[i]["pdfcontrato"] = pdfcontrato;
                     objetoContratoValidado= validarTexto(response.datosContrato[i]["ObjetoContrato"]);
@@ -156,7 +156,7 @@ function consultaDetalleContrato() {
 
 function mostrarDocumento (claveClienteNominaCliente,nombreArchivo,usrActual,idContratoCliente){
 
-    if (usrActual=='mirandam'){
+    if (usrActual=='roal*ro25'){
         $.ajax({
               type: "POST",
               url: "ajax_insertRevisionContrato.php",

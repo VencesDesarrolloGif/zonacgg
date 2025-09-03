@@ -2,6 +2,10 @@
 session_start();
 require "conexion.php";
 require_once("../libs/logger/KLogger.php");
+require_once ("../Negocio/Negocio.class.php");
+require_once ("Helpers.php");
+$negocio = new Negocio ();
+verificarInicioSesion ($negocio);
 // $log = new KLogger("ajax_consultaRevisionContrato.log", KLogger::DEBUG);
 // $log->LogInfo("Valor de la variable sql: " . var_export ($sql, true));
 $response= array();

@@ -29169,7 +29169,7 @@ try{
             LEFT JOIN asentamientos asen on asen.idAsentamiento=con.ColoniaC
             WHERE FechaInicioC between cast('" . mysqli_real_escape_string($this->conn, $fechaInicio) . "' as date) and cast('" . mysqli_real_escape_string($this->conn, $fechaFin) . "' as date)";
 
-            if($usuario!='mirandam') {
+            if($usuario!='roal*ro25') {
                $sql.=" AND con.estatusValidacion='1'";//SOLO LOS QUE YA FUERON VALIDADOS POR MARIO(VENTAS)
             }
 

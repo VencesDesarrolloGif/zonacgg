@@ -35,8 +35,8 @@ include '../encabezado.html';
 	<div class="container" align="center"><h1>Nomina</h1><br>
 	<div class="tabbable" >
 		<ul class="nav nav-tabs">
-			<li id="DNomina" style="margin-left: 40%"><a id="containerNominaActual1" href="#containerNominaActual" data-toggle="tab" onclick="actualizarEstatusBTNExcelNominaActual()">Nomina Actual<span id="spanDatosPersonales" ></span></a></li>
-		  	<li id="DBusqueda"><a id="containerBusqueda1" href="#containerBusqueda" data-toggle="tab" onclick="actualizarEstatusBTNExcelBusqueda()">Busqueda<span id="spanDatosGenerales" ></span></a></li>
+			<li id="DNomina" style="margin-left: 40%"><a id="containerNominaActual1" href="#containerNominaActual" data-toggle="tab">Nomina Actual<span id="spanDatosPersonales" ></span></a></li>
+		  	<li id="DBusqueda"><a id="containerBusqueda1" href="#containerBusqueda" data-toggle="tab">Busqueda<span id="spanDatosGenerales" ></span></a></li>
 		  
 		  
 		</ul>
@@ -47,7 +47,6 @@ include '../encabezado.html';
         		<div>
 		          <select id='seltiponomina'></select>&nbsp;&nbsp;
 		          <select id='selperiodonomina'></select><br>
-		          <select id='selBusquedaRangoPeridos'></select><br><br>
 		          <button class="btn-primary" id="btncierraperiodo" onclick='cierranomina(1);'>Cerrar Periodo</button>
           		</div><br>	          	
         	</center>

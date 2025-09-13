@@ -26,8 +26,7 @@ if(($reg = mysqli_fetch_array($res, MYSQLI_ASSOC))) {
 }
 
 if($idAnio!=null){
-	$sql1="SELECT *
-		   FROM rangoperiodos WHERE IdAnio='$idAnio'";
+	$sql1="SELECT *FROM rangoperiodos WHERE IdAnio='$idAnio'";
 	$res = mysqli_query($conexion, $sql1);
 
 	while(($reg = mysqli_fetch_array($res, MYSQLI_ASSOC))) {

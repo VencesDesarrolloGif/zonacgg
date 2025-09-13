@@ -17,7 +17,7 @@ $msg      = "";
 try {
     // $sql.=" where  empleados.tipoPeriodo='$periodonomina'";
     $log = new KLogger("ajax_cierreNomina.log", KLogger::DEBUG);
-    $log->LogInfo("Valor de la variable _POST:  " . var_export($_POST, true));
+
     ////////////////////////////////////////////////////////////PARA TRAER EL BANCO ASIGNADO A  CADA EMPLEADO////////////////////////////////////////////////
     if ($accion == 1) {
         $qrycrnom = " Select * from cierresnomina
@@ -34,11 +34,8 @@ try {
     }
     if ($accion == 2) {
         $log->LogInfo("Valor de la variable nomina:  " . var_export($nomina, true));
-        $log->LogInfo("Valor de la variable conteo:  " . var_export(count($nomina), true));
 
-        for($i=0; $i < count($nomina);$i++){
-            $log->LogInfo("Valor de la variable i:  " . var_export($i, true));
-            $log->LogInfo("Valor de la variable nomina capi i:  " . var_export($nomina[$i], true));
+        for($i=0;$i< count($nomina);$i++){
             $entidadNomina=$nomina[$i]['entidadFederativaId'];
             $consecutivoNomina=$nomina[$i]['empleadoConsecutivoId'];
             $categoriaNomina=$nomina[$i]['empleadoCategoriaId'];
@@ -56,7 +53,7 @@ try {
 
         $qryinscrnom       = "insert into cierresnomina(fechaCierre, rangoPeriodo) 
                    values('$fechahoy','$idrango')";
-     $log->LogInfo("Valor de la qryinscrnom :  " . var_export($qryinscrnom, true));
+    $log->LogInfo("Valor de la qryinscrnom :  " . var_export($qryinscrnom, true));
         $resqryinsertcrnom = mysqli_query($conexion, $qryinscrnom);
         $msg               = "bien";
     }

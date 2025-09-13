@@ -6,15 +6,7 @@ function inicioNomina(){
 }
 
 var tablenominas = null;
-var datosNomina= null;
-
-function actualizarEstatusBTNExcelNominaActual(){
-    $("#hdnacciondownloadexcel").val(0);
-}
-
-function actualizarEstatusBTNExcelBusqueda(){
-    $("#hdnacciondownloadexcel").val(1);
-}
+var datosNomina=null;
 
 function loadDataInTablebajafiniquitos(data) {
     if (tablenominas != null) {
@@ -177,17 +169,7 @@ $('#seltiponomina').change(function() {
 });
 //////////////////////////////////////////////////////////////////////////////////////////
 $("#selperiodonomina").change(function() {
-    let periodo= $(this).val();
-        $("#seltipo").empty();
-        $("#selectDeducciones").empty();
-        $('#displayshowtable').css("display", "none");
-        $('#periodo').css("display", "none");
-        $("#selBusquedaRangoPeridos").empty();
 
-    if (periodo!=0) {
-            cargarPeriodos(periodo);
-    }
-/*
 $("#hdnacciondownloadexcel").val(0);
 
     var tiponomina = $('#seltiponomina').val();
@@ -201,57 +183,7 @@ $("#hdnacciondownloadexcel").val(0);
         $('#displayshowtable').css("display", "none");
         $('#periodo').css("display", "none");
     }
-    */
-
-
 });
-
-function cargarPeriodos(periodo){
-    
-    // var periodo=$("#selperiodonomina").val();  
-    $.ajax({
-        type: "POST",
-        url: "ajax_CargarListaPeriodos.php",
-        data: {
-            "periodo": periodo
-        },
-        dataType: "json",
-        success: function(response) {
-            console.log(response);
-            datos = response.datos;
-            //console.log(datos);
-            var largo = datos.length;
-            $('#selBusquedaRangoPeridos').empty().append('<option value="0" selected="selected">Seleccione Rango</option>');
-            $.each(datos, function(i) {             
-                    var texto="("+response.datos[i].numero+"): "+response.datos[i].FechaInicioP+"-►"+response.datos[i].FechaFinP;        
-                    $('#selBusquedaRangoPeridos').append('<option value="' +response.datos[i].IdRango + '">' + texto+ '</option>');
-            });
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert(jqXHR.responseText);
-        }
-    });
-};
-
-$("#selBusquedaRangoPeridos").change(function(){
-
-    $("#errorMsg").empty();
-    // $("#hdnacciondownloadexcel").val(0);
-    var tiponomina = $('#seltiponomina').val();
-    var periodonomina = $('#selperiodonomina').val();
-    let rangos = $("#selBusquedaRangoPeridos option:selected").text();
-    let separacionRangos=rangos.split("-►");
-    let fecha=separacionRangos[1];
-
-    if (periodonomina != 0 && rangos != 'Seleccione Rango') {
-        consultaNomina(tiponomina, periodonomina,fecha);
-    }else {
-        $("#seltipo").empty();
-        $("#selectDeducciones").empty();
-        $('#displayshowtable').css("display", "none");
-        $('#periodo').css("display", "none");
-    }
-})
 
 function myFunction(deduccion, i) {
     var table = $("#tablanomina").DataTable();
@@ -269,17 +201,15 @@ function quitarDeduccion() {
     $("#selectDeducciones option[value='" + numDeduccion + "']").remove();
 }
 
-function consultaNomina(tiponomina, periodonomina, fecha) {
-    // alert(periodonomina);
+function consultaNomina(tiponomina, periodonomina) {
     tablenomina = [];
     waitingDialog.show();
     $.ajax({
         type: "POST",
-        url: "../nomina/ajax_consultaNominaConRango.php",
+        url: "../nomina/ajax_consultaNomina.php",
         data: {
             "tiponomina": tiponomina,
-            "periodonomina": periodonomina,
-            "fechahoy": fecha
+            "periodonomina": periodonomina
         },
         dataType: "json",
         success: function(response) {
@@ -290,7 +220,6 @@ function consultaNomina(tiponomina, periodonomina, fecha) {
             var fechafinrangonomina = response.fechafin;
             var idrango = response.idrango;
             var numsemanaoquincena = response.numsemanaoquincena;
-            console.log(idrango+"rango");
             //var mes=fechainiciorangonomina
             $("#idrango").val(idrango);
             $("#fechainicio").empty();
@@ -379,7 +308,7 @@ function cierranomina(accion) {
         }
     }
     if (bandera == true) {
-        console.log(datosNomina);
+        //console.log(datosNomina);
         if(accion==2){
             $('#modalconfirmacion').modal('hide');
             waitingDialog.show();        
@@ -433,22 +362,14 @@ function downloadexcel() {
 
     if($("#hdnacciondownloadexcel").val()==="0"){
     var tiponomina = $('#seltiponomina').val();
-    var periodonomina = $('#selperiodonomina').val();//15na semana
-    let rangos = $("#selBusquedaRangoPeridos option:selected").text();
-    let separacionRangos=rangos.split("-►");
-    let fechahoy=separacionRangos[1];
+    var periodonomina = $('#selperiodonomina').val();
     // window.open("../nomina/downloadexcelnomina.php?tiponomina=" + tiponomina + "&" + "periodonomina=" + periodonomina, '_self');
-    window.open("../nomina/downloadexcelnomina.php?tiponomina=" + tiponomina + "&" + "periodonomina=" + periodonomina + "&" + "fechahoy=" + fechahoy, 'width=600,height=600,scrollbars=no');
+    window.open("../nomina/downloadexcelnomina.php?tiponomina=" + tiponomina + "&" + "periodonomina=" + periodonomina, 'width=600,height=600,scrollbars=no');
     }else if($("#hdnacciondownloadexcel").val()==="1"){
-    //alert("descargar excel historico");
-    var tiponomina = 1;
-    var periodonomina = $('#selBusquedaPer').val();    
-    // var idRango = $('#selBusquedaRango').val(); 
-    let rangos = $("#selBusquedaRango option:selected").text();
-    let separacionRangos=rangos.split("-►");
-    let fechahoy=separacionRangos[1];
-    window.open("../nomina/downloadexcelnomina.php?tiponomina=" + tiponomina + "&" + "periodonomina=" + periodonomina + "&" + "fechahoy=" + fechahoy, 'width=600,height=600,scrollbars=no');
-    // window.open("../nomina/downloadexcelnominahistorico.php?periodo=" + periodo + "&" + "rango=" + idRango, 'width=600,height=600,scrollbars=no');
+//alert("descargar excel historico");
+    var periodo = $('#selBusquedaPer').val();    
+    var idRango = $('#selBusquedaRango').val(); 
+    window.open("../nomina/downloadexcelnominahistorico.php?periodo=" + periodo + "&" + "rango=" + idRango, 'width=600,height=600,scrollbars=no');
     }
 }
 function cargaranios() {
@@ -463,6 +384,8 @@ function cargaranios() {
          }
     }
  }
+
+
 
 $("#selBusquedaAnio").change(function() {
     var anio = $('#selBusquedaAnio').val();  
@@ -535,9 +458,9 @@ function buscarNomina(rango,periodo){
 }
 
 $('#selBusquedaRango').change(function() {
-    var periodo = $('#selBusquedaPer').val();//15NA,SEMANA    
-    var idRango = $('#selBusquedaRango').val();//RANGO ID 
-    // $("#hdnacciondownloadexcel").val(1);
+    var periodo = $('#selBusquedaPer').val();    
+    var idRango = $('#selBusquedaRango').val();
+    $("#hdnacciondownloadexcel").val(1);
     buscarNomina(idRango,periodo);    
 });
 

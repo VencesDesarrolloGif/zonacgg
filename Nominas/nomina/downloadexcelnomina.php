@@ -34,9 +34,10 @@ header('Cache-Control: max-age=0');
 <?php
 if (!empty($_GET)) {
     $datos                    = array();
-    $tiponomina               = $_GET["tiponomina"];
-    $periodonomina            = $_GET["periodonomina"];
-    $fechahoy                 = date("Y-m-d");
+    $tiponomina               = $_GET["tiponomina"];//general ,activos,bajas
+    $periodonomina            = $_GET["periodonomina"];//15na,semana
+    $fechahoy                 = $_GET['fechahoy'];    
+    // $fechahoy                 = date("Y-m-d");
     $qryrangodediastrabajados = "SELECT * from periodos
                                             left join aniosperiodos on periodos.IdPeriodo=aniosperiodos.IdPeriodo
                                             left join rangoperiodos on rangoperiodos.IdAnio=aniosperiodos.IdAnio

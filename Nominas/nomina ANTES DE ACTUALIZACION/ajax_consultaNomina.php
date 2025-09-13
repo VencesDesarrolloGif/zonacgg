@@ -73,11 +73,10 @@ try {
     if ($tiponomina == 3) {$sql .= " where (empleados.empleadoEstatusId=0 and fechaBajaEmpleado between '$rangoFechaInicioP' and  '$rangoFechaFinP' or( finiquitos.estatusFiniquito='0'))
                  and empleados.tipoPeriodo='$periodonomina'
                  ";}
-                 $log->LogInfo("Valor de la variable sql:  " . var_export($sql, true));
     $res = mysqli_query($conexion, $sql);
     while (($reg = mysqli_fetch_array($res, MYSQLI_ASSOC))) {
         $datos[] = $reg;}
-        $log->LogInfo("Valor de la variable datos:  " . var_export($datos, true));
+$log->LogInfo("Valor de la variable datos:  " . var_export($datos, true));
     for ($i = 0; $i < count($datos); $i++) {
         $tipodeperiodo       = $datos[$i]["tipoPeriodo"]; //para hacer el calculo conforme a su tipo de periodo
         $entidadFederativa   = $datos[$i]["entidadFederativaId"];
@@ -105,7 +104,7 @@ try {
         while (($resqryasistencioperativa = mysqli_fetch_array($resqryasistenciaoper, MYSQLI_ASSOC))) {
             $datosasistencia[] = $resqryasistencioperativa;}
         $datoasistencia = $datosasistencia[0]["turnos"];
-        $log->LogInfo("Valor de la variable qry:  " . var_export($sqlasistoperativa, true));
+        //$log->LogInfo("Valor de la variable qry:  " . var_export($sqlasistoperativa, true));
         ////////////////////////////////////////////////////////////PARA TRAER EL BANCO ASIGNADO A  CADA EMPLEADO////////////////////////////////////////////////
         $qrybanco = "SELECT  * FROM bancos_empresa
                     where idCuentaBanco=$idbanco";
@@ -227,7 +226,7 @@ try {
     //$response["sabados y domingos hasta el dia de hoy"] = $aux;
 
     $response["datos"] = $datos;
-$log->LogInfo("Valor de la variable response:  " . var_export($response, true));
+
 } catch (Exception $e) {
     $response["mensaje"] = "Error al iniciar sesion";}
 echo json_encode($response);

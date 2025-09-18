@@ -6,10 +6,8 @@ require_once("../Negocio/Negocio.class.php");
 require_once("Helpers.php");
 require_once ("../libs/logger/KLogger.php");
 require('../libs/fpdf/fpdf.php');
-// require('../libs/fpdi/fpdi.php');
 
 define ("BOTTOM_MARGIN", 180);
-
 
 $negocio = new Negocio();
 $response = array ();
@@ -31,8 +29,6 @@ $fecha1=$_GET["fecha1"];
 $fecha2=$_GET["fecha2"];
 $entidadId=$_GET["entidadId"];
 
-
-
 if($rolUsuario=="Facturacion"){
 
     if($idPuntoServicio=="TODOS" && $idSupervisor!="SUPERVISOR"){
@@ -43,7 +39,6 @@ if($rolUsuario=="Facturacion"){
         $supervisorTipo=$idSupervisorid[2];
 
         $listaPuntos= $negocio ->getPuntosServiciosForFatigaForSupervisor($supervisorEntidad, $supervisorConsecutivo, $supervisorTipo, $fecha1, $fecha2);
-
         //print_r ($listaPuntos);
     }elseif($idPuntoServicio=="TODOS" && $entidadId!="ENTIDAD FEDERATIVA"){
 
@@ -54,27 +49,19 @@ if($rolUsuario=="Facturacion"){
     }elseif($idPuntoServicio!="TODOS"){
 
          $listaPuntos = array (array ( "puntoServicioId" => $idPuntoServicio));
-
     }
 
-
 }elseif($rolUsuario=="Supervisor" || $rolUsuario=="Consulta Supervisor"){
-
     if($idPuntoServicio=="TODOS"){
-        
         $idSupervisor=$_SESSION ["userLog"]["empleadoId"];
         $idSupervisoris = explode("-", $idSupervisor);
         $supervisorEntidad=$idSupervisoris[0];
         $supervisorConsecutivo=$idSupervisoris[1];
         $supervisorTipo=$idSupervisoris[2];
-
         $listaPuntos= $negocio -> getPuntosServiciosForFatigaForSupervisor($supervisorEntidad, $supervisorConsecutivo, $supervisorTipo, $fecha1, $fecha2);
     }else{
-
         $listaPuntos = array (array ( "puntoServicioId" => $idPuntoServicio));
     }
-
-    
 }elseif($rolUsuario=="Analista Asistencia"){
     if($idPuntoServicio=="TODOS"){
         $listaPuntos= $negocio ->getPuntosServicios($fecha1, $fecha2);
@@ -82,29 +69,20 @@ if($rolUsuario=="Facturacion"){
         
         $listaPuntos = array (array ( "puntoServicioId" => $idPuntoServicio));
     }
-
-
-
-
 }
-
-
-
-
 class PDF extends FPDI
 {
 // Page footer
 function Footer()
 {
     // Position at 1.5 cm from bottom
-    $this->SetY(-15);
+   // $this->SetY(-15);
     // Arial italic 8
-    $this->SetFont('Arial','I',8);
+    //$this->SetFont('Arial','I',8);
     // Page number
-    $this->Cell(0,10,utf8_decode('Página '.$this->PageNo()),0,0,'C');
+    //$this->Cell(0,10,utf8_decode('Página '.$this->PageNo()),0,0,'C');
 }
 }
-
 
 $pdf = new PDF();
 
@@ -125,7 +103,6 @@ foreach ($listaPuntos as $item)
 }
 
 $pdf->Output();
-
 function generarPdf (
     $pdf
     , $idPuntoServicio
@@ -139,8 +116,6 @@ function generarPdf (
     {
         $nombreMes1=utf8_decode(strtoupper(strftime("%B", strtotime($fecha1)) )); // Guardamos el Nombre del día de la semana.
         $nombreMes2=utf8_decode(strtoupper(strftime("%B", strtotime($fecha2)) )); // Guardamos el Nombre del día de la semana.
-
-
         $pageCount = $pdf->setSourceFile("../archivos/formatoFatiga.pdf");
         $tplIdx = $pdf->importPage(1);
 
@@ -166,8 +141,6 @@ function generarPdf (
         $totalTurnosExtras = $Y2explode[1];
         $totalTurnos = $turnosTotales + $totalTurnosExtras;
 
-
-
         $y= drawFirmas ($pdf, $y, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $nombreMes1, $nombreMes2, $requisicion, $totalTurnos,$cobraDescansos, $cobraDiaFestivo, $cobra31);
 
         drawObservaciones ($pdf, $y, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $nombreMes1, $nombreMes2, $requisicion, $totalTurnos,$cobraDescansos, $cobraDiaFestivo, $cobra31);
@@ -180,20 +153,13 @@ function generarPdf (
 function drawEncabezado ($pdf, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $nombreMes1, $nombreMes2, $requisicion,$cobraDescansos, $cobraDiaFestivo, $cobra31)
 {
 
-    global $negocio;    
-    $pdf->addPage('L', 'Letter');
-    $pdf->useTemplate($tplIdx, 5, null, 210);
-
-    //$pdf->SetFont("Arial", 'B',14);
-    //$pdf->Text(65, 20, "FORMATO ENTRAGA DE DOCUMENTOS" );
+    global $negocio;  
+    $size = $pdf->getTemplateSize($tplIdx);  
+    $pdf->AddPage($size['orientation'], [$size['width'], $size['height']]);
+    $pdf->useTemplate($tplIdx);
     $pdf->SetFont("Arial", 'B',10);
-     //$pdf->Text(33, 72, utf8_decode($nombreCompleto) );
-     //$pdf->Text(165, 37, $empleadoEntidad."-".$empleadoConsecutivo."-". $empleadoTipo );
-     //$pdf->SetFont("Arial", 'B',9);
-     //$fecha=date('d-m-Y');
     $datosPuntoServicio= $negocio->selectDatosPuntoServicio($idPuntoServicio);
     $responseDatosPuntoServicio["datosPuntoServicio"]= $datosPuntoServicio;
-
 
     $cliente=$datosPuntoServicio[0]["razonSocial"];
     $direccionFiscal=$datosPuntoServicio[0]["direccionFiscalCliente"];
@@ -214,10 +180,7 @@ function drawEncabezado ($pdf, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $nom
     $cobraDiaFestivo=$datosPuntoServicio[0]["cobraDiaFestivo"];
     $cobra31=$datosPuntoServicio[0]["cobra31"];
 
-
     $pdf->SetFont("Arial", 'B',9);
-
-    //$pdf->MultiCell(165, 3.5, utf8_decode(strtoupper($usuarioCapturaNombre." ".$usuarioCapturaApellidoPaterno." ".$usuarioCapturApellidoMaterno)), 0, 'C');
 
     $largoPuntoServicio=strlen($puntoServicio);
     $largoCliente=strlen($cliente);
@@ -225,39 +188,36 @@ function drawEncabezado ($pdf, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $nom
     if($largoPuntoServicio < 30)
     {
 
-        $pdf->SetXY(28, 20);
+        $pdf->SetXY(26, 41);
         $pdf->MultiCell(55, 3, utf8_decode(strtoupper($puntoServicio)), 0, 'L');
     }else{
         $pdf->SetFont("Arial", 'B',7);
-        $pdf->SetXY(28, 18);
+        $pdf->SetXY(26, 39);
         $pdf->MultiCell(55, 3, utf8_decode(strtoupper($puntoServicio)), 0, 'L');
     }
 
     if($largoCliente < 30)
     {
 
-        $pdf->SetXY(28, 25);
-        $pdf->MultiCell(55, 3, utf8_decode(strtoupper($cliente)), 0, 'L');
+        $pdf->SetXY(26, 47.5);
+        $pdf->MultiCell(55, 4, utf8_decode(strtoupper($cliente)), 0, 'L');
     }else{
         $pdf->SetFont("Arial", 'B',7);
-        $pdf->SetXY(28, 25);
-        $pdf->MultiCell(55, 2, utf8_decode(strtoupper($cliente)), 0, 'L');
+        $pdf->SetXY(26, 47.5);
+        $pdf->MultiCell(55, 3, utf8_decode(strtoupper($cliente)), 0, 'L');
     }
 
-    $pdf->SetXY(90, 20);
+    $pdf->SetXY(113, 40.2);
     $pdf->MultiCell(35, 3.5, utf8_decode(strtoupper($numeroCentroCosto)), 0, 'L');
 
-    $pdf->SetXY(28, 30);
+    $pdf->SetXY(26, 56);
     $pdf->MultiCell(50, 3.5, utf8_decode(strtoupper("Del ".$fecha1." al ".$fecha2)), 0, 'L');
 
-    //$pdf->SetXY(28, 35);
-    //$pdf->MultiCell(50, 3.5, utf8_decode(strtoupper($cobraDescansos)), 0, 'L');
-
     if($nombreMes1!=$nombreMes2){
-        $pdf->SetXY(90, 25);
+        $pdf->SetXY(113, 48.5);
         $pdf->MultiCell(50, 3.5, $nombreMes1."-".$nombreMes2, 0, 'L');
     }else{
-        $pdf->SetXY(90, 25);
+        $pdf->SetXY(113, 48.5);
         $pdf->MultiCell(50, 3.5, $nombreMes1, 0, 'L');
     }
 
@@ -265,10 +225,9 @@ function drawEncabezado ($pdf, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $nom
 
     for($j=$fecha1;$j<=$fecha2;$j = date("Y-m-d", strtotime($j ."+ 1 days"))){
         $dias=$dias+1;
-
     }
 
-    $pdf->SetXY(90, 30);
+    $pdf->SetXY(113, 56);
     $pdf->MultiCell(50, 3.5, $dias, 0, 'L');
 
     return drawPlantilla ($pdf, $requisicion,$cobraDescansos);
@@ -277,7 +236,6 @@ function drawEncabezado ($pdf, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $nom
 function drawPlantilla ($pdf, $requisicion, $cobraDescansos)
 {
     global $negocio;
-
     $totalFacturar=0;
     $turnosXMes=0;
     $totalElementos=0;
@@ -301,16 +259,9 @@ function drawPlantilla ($pdf, $requisicion, $cobraDescansos)
         $pdf->MultiCell(30, 7, "NO HAY ELEMENTOS SOLICITADOS", 0, 1);
         $y=$y+7;
         $pdf->SetXY(145, $y);
-        //$pdf->MultiCell(30, 7, "TURNOS X MES: ".$turnosTotalesDiarios*30, 0, 1);
-
-        //$y=$y+7;
-        //$pdf->SetXY(145, $y);
-        //$pdf->MultiCell(30, 7, "Cobra descansos".$cobraDescansos, 0, 1);
 
         $pdf->SetFont("Arial", '',8);
     }
-
-
     // Dibuja la tabla de puestos que corresponde a la plantilla
     for ($i=0; $i< count($response["requisicion"]); $i++)
     {
@@ -360,46 +311,17 @@ function drawPlantilla ($pdf, $requisicion, $cobraDescansos)
 
         $comentarioRequisicion=$response["requisicion"][$i]["comentarioRequisicion"];
 
-
         $perfiles=$perfiles." ".$response["requisicion"][$i]["comentarioRequisicion"].",";
-
-        /*
-        $pdf->SetFont("Arial", '',4);
-        $pdf->SetXY(233, $y);
-        $pdf->MultiCell(12, 7, $cobraDescanso, 0, 1);
-
-        $pdf->SetXY(245, $y);
-        $pdf->MultiCell(12.4, 7, $cobraFestivos, 0, 1);
-
-        $pdf->SetFont("Arial", '',3);
-        $pdf->SetXY(257.5, $y);
-        $pdf->MultiCell(9.5, 7, $cobraDia31, 0, 1);
-        */
-
-        //$pdf->SetFont("Arial", '',6);
-        //$pdf->SetXY(165.4, $y);
-        //$pdf->MultiCell(14.6, 7, "$".number_format((float)$costoPorMes, 2, '.', ','), 1, 1);
-
-        //$pdf->SetXY(180, $y);
-        //$pdf->MultiCell(12, 7, "$".number_format((float)$iva, 2, '.', ','), 1, 1);
-
-        //$pdf->SetXY(192.2, $y);
-        //$pdf->MultiCell(15.8, 7, "$".number_format((float)$total, 2, '.', ','), 1, 1);
     }
 
-        $y=$y+7;
+        $y=$y+20.5;
 
         $pdf->SetFont("Arial", 'B',7);
-        $pdf->SetXY(145, $y);
+        $pdf->SetXY(202, $y);
         $pdf->MultiCell(30, 7, $totalElementos. " ELEMENTO(S)", 0, 1);
-        $y=$y+7;
+        $y=$y+15;
         $pdf->SetXY(145, $y);
-        //$pdf->MultiCell(30, 7, "TURNOS X MES: ".$turnosTotalesDiarios*30, 0, 1);
-
-        //$y=$y+7;
-        //$pdf->SetXY(145, $y);
-        //$pdf->MultiCell(30, 7, "Cobra descansos".$cobraDescansos, 0, 1);
-
+    
     $pdf->SetFont("Arial", '',8);
 
     return $y;
@@ -410,10 +332,6 @@ function drawTablaFatiga ($pdf, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $no
     global $initialY;
 
     global $negocio;
-
-
-
-
     $y = $initialY;
 
     //ENCABEZADO DE TABLA
@@ -432,23 +350,17 @@ function drawTablaFatiga ($pdf, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $no
 
     for($j=$fecha1;$j<=$fecha2;$j = date("Y-m-d", strtotime($j ."+ 1 days"))){
 
-       // echo $i . "<br/>";
-
-
         $pdf->SetFont("Arial", 'B',7);
         $pdf->SetXY($x, $y);
         $pdf->SetFillColor(201,194,194);
         $pdf->MultiCell(9, 2.4,$j, 1, 'L', TRUE);
         $x= $x+9;
-
     }
-
         $pdf->SetFont("Arial", 'B',7);
         $pdf->SetXY($x, $y);
         $pdf->SetFillColor(201,194,194);
         $pdf->MultiCell(9, 4.8,"Sub", 1, 'L', TRUE);
         $x= $x+9;
-
 
         $pdf->SetFont("Arial", 'B',7);
         $pdf->SetXY($x, $y);
@@ -461,10 +373,8 @@ function drawTablaFatiga ($pdf, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $no
         $pdf->SetFillColor(201,194,194);
         $pdf->MultiCell(9, 4.8,"Total", 1, 'L', TRUE);
         $x= $x+9;
-    //FIN DE ENCABEZADO
     // GENERACION DE TABLA DE EMPLEADOS EN FATIGA
     $y += 5;
-
 
     $listaEmpleados= $negocio -> getEmpleadoForFatiga($fecha1, $fecha2,$idPuntoServicio);
 
@@ -473,12 +383,10 @@ function drawTablaFatiga ($pdf, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $no
 
     $totalTurnosFestivos=0;
 
-
     for ($k = 0; $k < count($listaEmpleados); $k++)
     {
         $turnos31=0;
         $totalTurnosFestivos=0;
-
         // Verifica que no hayamos excedido el margen inferior
         // Si lo excedimos, creamos una nuava página
         if ($y > BOTTOM_MARGIN)
@@ -514,11 +422,9 @@ function drawTablaFatiga ($pdf, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $no
         $pdf->MultiCell(40,6,utf8_decode($nombreEmpleado), 1, 'L');
         }
 
-
          $x1=68.3;
 
         $listaEmpleados [$k]["asistencia"] = $negocio -> getAsistenciaByEmpleadoPuntoServicioFatiga($fecha1,$fecha2, $empleadoEntidadId, $empleadoConsecutivoId,$empleadoTipoId, $idPuntoServicio);
-
 
         $turnosPeriodo=0;
         $descansos=0;
@@ -526,11 +432,9 @@ function drawTablaFatiga ($pdf, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $no
 
         for($l=$fecha1;$l<=$fecha2;$l = date("Y-m-d", strtotime($l ."+ 1 days"))){
 
-
             if(array_key_exists($l,$listaEmpleados[$k]["asistencia"]))
             {
             $incidencia= $listaEmpleados [$k]["asistencia"][$l]["nomenclaturaIncidencia"];
-
 
             if($incidencia=="ING" || $incidencia=="B" || $incidencia=="V/D" || $incidencia=="INC" || $incidencia=="PER" || $incidencia=="F" || $incidencia=="V/D2"){
 
@@ -763,21 +667,21 @@ function drawIncidencias ($pdf, $y, $fecha1, $fecha2, $idPuntoServicio,$tplIdx, 
         $incidenciaComentario=$lista[$z]["incidenciaComentario"];
 
         $pdf->SetXY(10, $y);
-        $pdf->MultiCell(18, 6,$numeroEmpleado, 1, 'L');
+        $pdf->MultiCell(20, 6,$numeroEmpleado, 1, 'L');
 
 
-        $pdf->SetXY(28, $y);
+        $pdf->SetXY(30, $y);
         $pdf->MultiCell(50, 3, utf8_decode($nombreEmpleado), 1, 'B');
         //$pdf->Cell(40,6, utf8_decode($nombreEmpleado),1,1,'L');
 
-        $pdf->SetXY(78, $y);
+        $pdf->SetXY(80, $y);
         $pdf->MultiCell(18, 6,$incidenciaFecha, 1, 'L');
 
         if($incidenciaComentario==""){
             $incidenciaComentario="SIN COMENTARIO";
 
         }
-        $pdf->SetXY(96, $y);
+        $pdf->SetXY(98, $y);
         $pdf->MultiCell(90, 3,$incidenciaComentario, 1, 'C');
 
 
@@ -785,7 +689,7 @@ function drawIncidencias ($pdf, $y, $fecha1, $fecha2, $idPuntoServicio,$tplIdx, 
 
     }
 
-        $pdf->SetXY(96, $y);
+        $pdf->SetXY(96, $y+2);
         $pdf->MultiCell(90, 6,"TOTAL TURNOS EXTRAS: ". $totalTurnosExtras, 1, 'C');
 
     }
@@ -814,12 +718,12 @@ function drawFirmas ($pdf, $y, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $nom
     // Dibuja el espacio para la firmas
     // Supervisor Gif y Jefe de seguridad.
 
-
+    $y =$y-8;
     $pdf->SetFont("Arial", '',8);
-    $pdf->SetXY(110, $y);
-    $pdf->MultiCell(60, 4, utf8_decode("TOTAL DE TURNOS:" . $totalTurnos), 1, 'C');
+    $pdf->SetXY(20, $y);
+    $pdf->MultiCell(60, 6, utf8_decode("TOTAL DE TURNOS:" . $totalTurnos), 1, 'C');
 
-    $y=$y+10;
+    $y=$y+8;
 
     if ($y > BOTTOM_MARGIN)
     {
@@ -829,15 +733,15 @@ function drawFirmas ($pdf, $y, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $nom
     }
 
     $pdf->SetFont("Arial", '',8);
-    $pdf->SetXY(50, $y);
-    $pdf->MultiCell(60, 4, utf8_decode("SUPERVISOR GIF:"), 1, 'C');
+    $pdf->SetXY(20, $y);
+    $pdf->MultiCell(60, 4, utf8_decode("SUPERVISOR:"), 1, 'C');
 
     $pdf->SetFont("Arial", '',8);
-    $pdf->SetXY(170, $y);
+    $pdf->SetXY(160, $y);
     $pdf->MultiCell(60, 4, utf8_decode("JEFE DE SEGURIDAD:"), 1, 'C');
          
     $pdf->SetFont("Arial", '',8);
-    $pdf->SetXY(110,$y+18);
+    $pdf->SetXY(90,$y);
     $pdf->MultiCell(60, 4, utf8_decode("GERENTE REGIONAL:"), 1, 'C');
 
     $y=$y+4;
@@ -850,16 +754,16 @@ function drawFirmas ($pdf, $y, $tplIdx, $idPuntoServicio, $fecha1, $fecha2, $nom
     }
 
     $pdf->SetFont("Arial", '',8);
-    $pdf->SetXY(50, $y);
+    $pdf->SetXY(20, $y);
     $pdf->MultiCell(60, 10, "", 1, 1);
 
     $pdf->SetFont("Arial", '',8);
-    $pdf->SetXY(170, $y);
+    $pdf->SetXY(160, $y);
     $pdf->MultiCell(60, 10, "", 1, 1);
 
     $pdf->SetFont("Arial", '',8);
-    $pdf->SetXY(110, $y+18);
-    $pdf->MultiCell(60, 20, "", 1, 1);
+    $pdf->SetXY(90, $y);
+    $pdf->MultiCell(60, 10, "", 1, 1);
     $y=$y+4;
 
     return $y;

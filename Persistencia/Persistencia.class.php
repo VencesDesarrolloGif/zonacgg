@@ -31270,9 +31270,9 @@ public function UpdateReplicacionPlantilla($txtTotalFacturaReplicacionplantilla,
     $this -> logger -> LogInfo ("valor del array de la Elementosplantillas ".var_export ($Elementosplantillas, true));
 // Se realiza el for dependiendo de el la cantidad de elementos que tenian asignados en la plantilla anterior para sustituirlos a la nueva plantilla tomando unicamente a los elementos activos y reingresos
     for ($i=0; $i < count($Elementosplantillas) ; $i++) { 
-        $empleadoEntidadPlantilla = $Elementosplantillas[0]["empleadoEntidadPlantilla"];
-        $empleadoConsecutivoPlantilla = $Elementosplantillas[0]["empleadoConsecutivoPlantilla"];
-        $empleadoCategoriaPlantilla = $Elementosplantillas[0]["empleadoCategoriaPlantilla"];
+        $empleadoEntidadPlantilla = $Elementosplantillas[$i]["empleadoEntidadPlantilla"];
+        $empleadoConsecutivoPlantilla = $Elementosplantillas[$i]["empleadoConsecutivoPlantilla"];
+        $empleadoCategoriaPlantilla = $Elementosplantillas[$i]["empleadoCategoriaPlantilla"];
 
 // se cambian de plantilla a la nueva plantilla replicada
         $sql3 = "UPDATE plantilla set requisicionId='$IdPlantillaActualI'

@@ -2085,6 +2085,7 @@ function ReplicarPlantillaActiva(){
     var idPuntoServicio = $("#txtPuntoServicioIdEdited").val();
     var txtCostoTurnoReplicacionplantilla2 = txtCostoTurnoReplicacionplantilla1.split("$");
     var txtCostoTurnoReplicacionplantilla = txtCostoTurnoReplicacionplantilla2[1];
+    txtCostoTurnoReplicacionplantilla = parseFloat(txtCostoTurnoReplicacionplantilla.replace(/,/g, ''));
     $.ajax({
       type: "POST",
       url: "ajax_UpdateReplicacionPlantilla.php",

@@ -1,3 +1,29 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const selectAnio = document.getElementById('ejerrcicioSemaforoImss');
+    const anioActual = new Date().getFullYear();
+    const anioAnterior = anioActual - 1;
+
+    // Array con los años a mostrar
+    const anios = [anioActual, anioAnterior];
+
+    // Limpiar opciones previas por si acaso
+    selectAnio.innerHTML = '';
+
+    // Crear y agregar las opciones
+    anios.forEach(anio => {
+        let option = document.createElement('option');
+        option.value = anio;
+        option.text = anio;
+        
+        // Seleccionar el año actual por defecto
+        if (anio === anioActual) {
+            option.selected = true;
+        }
+        
+        selectAnio.appendChild(option);
+    });
+});
+
 // Función principal para consultar por mes y año
 async function consultaPorMesyAnio() {
     waitingDialog.show();
@@ -14,7 +40,7 @@ async function consultaPorMesyAnio() {
     arregloXmes = [];
     arregloRegPat = [];
 
-    const anio = $("#selectAnioSemaforo").val();
+    const anio = $("#ejerrcicioSemaforoImss").val();
     const mes = document.getElementById('selectMesSemaforo').value;
     
 //!se puede usar de esta manera para enviar mas documentos
@@ -29,7 +55,7 @@ async function consultaPorMesyAnio() {
             headers: {
                 "Content-Type": "application/json"
               },
-              body: JSON.stringify({ mes })
+              body: JSON.stringify({ mes , anio })
               
         });
 

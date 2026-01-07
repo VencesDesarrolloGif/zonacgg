@@ -9,9 +9,9 @@ $response["status"] = "error";
 $log = new KLogger ( "ajax_ConsultaSemaforo.log" , KLogger::DEBUG );
 
 $data = json_decode(file_get_contents('php://input'), true);
-// $anio = $data['anio'];
+$anio = $data['anio'];
 // $anio=date("Y");
-$anio='2025';
+// $anio='2025';
 
 try{
     // $anio=$_POST['anio'];

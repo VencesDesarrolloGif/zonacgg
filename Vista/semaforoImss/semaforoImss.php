@@ -116,6 +116,9 @@
 <div class="centered-container">
     <h4>SEMAFORO</h4>  
 
+    <label>EJERCICIO</label> 
+    <select id='ejerrcicioSemaforoImss'></select>
+
     <label class="control-label" for="selectMesSemaforo">MES:</label>
     <select id="selectMesSemaforo" name="selectMesSemaforo">
         <option value="01">Enero</option>

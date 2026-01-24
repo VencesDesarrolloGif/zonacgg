@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- CSS exclusivo del módulo -->
+    <link rel="stylesheet" href="EdicionRhParaImss/estilos-RhParaImss.css" />
+  </head>
+
+  <body class="p-4 imss-container">
+    <center>
+      <h2 class="mb-4">Listado de Empleados</h2>
+
+      <img
+        title="Consultar / Recargar"
+        src="img/ActualizarEjecutar.jpg"
+        class="imss-refresh"
+        id="btnguardar"
+        width="55"
+        onclick="ConsultarEmpleadosDeRhParaImss();"
+      />
+      <br /><br />
+
+      <table
+        id="tablaEmpleadosParaImss"
+        class="table table-striped table-bordered dt-responsive nowrap imss-table"
+        style="display: none"
+        cellspacing="0"
+        width="100%"
+      >
+        <thead>
+          <tr>
+            <th>Foto</th>
+            <th># Empleado</th>
+            <th>Nombre</th>
+            <th>NSS</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <!-- ================= MODAL ================== -->
+      <div
+        class="modal fade imss-modal"
+        id="modalEditarEmpleadosRhParaImss"
+        tabindex="-1"
+        role="dialog"
+        data-backdrop="static"
+        style="display: none"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="form-group">
+                <h3 class="modal-title">Editar Empleado</h3>
+                <button type="button" class="btn-close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="modal-body">
+              <form id="formEdicionEmpleadoRh">
+                <!-- FOTO CIRCULAR -->
+                <div class="form-group">
+                  <img
+                    id="editFotoPreview"
+                    class="foto-preview"
+                    src="https://via.placeholder.com/150"
+                    alt="Foto del empleado"
+                  />
+                  <div class="form-group custom-file-upload-container">
+                    <label
+                      for="fileFotoEmpleadoNuevaRh"
+                      class="custom-file-label"
+                    >
+                      <i class="fas fa-upload"></i> Subir/Cambiar Foto
+                    </label>
+
+                    <input
+                      type="file"
+                      id="fileFotoEmpleadoNuevaRh"
+                      name="fileFotoEmpleadoNuevaRh"
+                      class="custom-file-input"
+                      accept="image/*"
+                      onchange="mostrarVistaPrevia(this)"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Numero</label>
+                  <input
+                    type="text"
+                    id="editNumeroEmpleadoRh"
+                    class="form-control"
+                    readonly
+                  />
+                  <input
+                    type="hidden"
+                    id="editNumeroEmpleadoRhhidden"
+                    class="form-control"
+                    readonly
+                  />
+                  <input
+                    type="hidden"
+                    id="FechaIngresoEmpleadoRh"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input
+                    type="text"
+                    id="editNombre"
+                    class="form-control"
+                    required
+                  />
+                  <input
+                    type="hidden"
+                    id="editNombrehidden"
+                    class="form-control"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Apellido Paterno</label>
+                  <input
+                    type="text"
+                    id="editApellidoP"
+                    class="form-control"
+                    required
+                  />
+                  <input
+                    type="hidden"
+                    id="editApellidoPhidden"
+                    class="form-control"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Apellido Materno</label>
+                  <input
+                    type="text"
+                    id="editApellidoM"
+                    class="form-control"
+                    required
+                  />
+                  <input
+                    type="hidden"
+                    id="editApellidoMhidden"
+                    class="form-control"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>NSS</label>
+                  <input
+                    type="text"
+                    id="editNss"
+                    class="form-control"
+                    maxlength="11"
+                    required
+                  />
+                  <input
+                    type="hidden"
+                    id="editNsshidden"
+                    class="form-control"
+                    maxlength="11"
+                    required
+                  />
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                id="btnGuardarEdicionEmpleadosRh"
+                class="boton verdeTransparente"
+              >
+                Guardar Cambios
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ================= FIN MODAL ================== -->
+    </center>
+
+    <div
+      class="modalEdit hide fade"
+      tabindex="-1"
+      role="dialog"
+      name="modalFirmaEdicionEmpleadoRh"
+      id="modalFirmaEdicionEmpleadoRh"
+      data-backdrop="static"
+      style="display: none"
+    >
+      <div id="errormodalFirmaEdicionEmpleadoRh"></div>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h3 class="modal-title" align="center">
+              <img src="img/alert.png" />Escribe tu numero de empleado y la
+              contraseña que generaste !!
+            </h3>
+          </div>
+          <div class="modal-body" align="center">
+            <span class="add-on"># Empleado</span>
+            <input
+              type="text"
+              id="NumEmpModalFirmaEdicionEmpleadoRh"
+              class="input-medium"
+              name="NumEmpModalFirmaEdicionEmpleadoRh"
+              placeholder="00-0000-00 Ó 00-00000-00"
+            />
+            <input
+              type="hidden"
+              id="NumEmpModalFirmaEdicionEmpleadoRhhidden"
+              class="input-medium"
+              name="NumEmpModalFirmaEdicionEmpleadoRhhidden"
+            />
+            <span class="add-on">Contraseña</span>
+            <input
+              type="password"
+              id="constraseniaFirmaEdicionEmpleadoRh"
+              class="input-xlarge"
+              name="constraseniaFirmaEdicionEmpleadoRh"
+              title="El campo identifica entre mayusculas y minusculas favor de considerarlo"
+            />
+            <input
+              type="hidden"
+              id="constraseniaFirmaEdicionEmpleadoRhHidden"
+              class="input-xlarge"
+              name="constraseniaFirmaEdicionEmpleadoRhHidden"
+            />
+          </div>
+          <div class="modal-body" align="center">
+            <button
+              type="button"
+              id="btnFirmaEdicionEmpleadoRh"
+              name="btnFirmaEdicionEmpleadoRh"
+              onclick="RevisarFirmaEdicionEmpleadoRhParaImss();"
+              style="display: block"
+              class="btn btn-primary"
+            >
+              Firmar</button
+            ><br />
+            <button
+              type="button"
+              id="btnCancelarFirmaEdicionEmpleadoRh"
+              name="btnCancelarFirmaEdicionEmpleadoRh"
+              onclick="cancelarFirmaEdicionEmpleadoRh();"
+              class="btn btn-danger"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <script src="EdicionRhParaImss/EdicionEmpleadoRh.js"></script>
+  </body>
+</html>

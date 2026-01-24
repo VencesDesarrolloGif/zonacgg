@@ -6,7 +6,7 @@ require_once("../libs/logger/KLogger.php");
 $negocio = new Negocio();
 verificarInicioSesion ($negocio); 
 $response = array("status" => "success");
-// $log = new KLogger ( "ajaxObtenerPuntosServiciosTable.log" , KLogger::DEBUG );	
+// $log = new KLogger ( "ajaxObtenerPuntosServiciosTable.log" , KLogger::DEBUG );   
 
 // $log->LogInfo("Valor de variable _POST" . var_export ($_POST, true));  
 
@@ -15,7 +15,7 @@ try{
       if($banderaBusquedaPuntos != "" && $banderaBusquedaPuntos != null && $banderaBusquedaPuntos != "null" && $banderaBusquedaPuntos != "undefined" && $banderaBusquedaPuntos != "NULL" && $banderaBusquedaPuntos != NULL){
             $listaPuntos= $negocio -> traerCatalogoPuntosServiciosConOpciones($banderaBusquedaPuntos);
       }else{
-	     $listaPuntos= $negocio -> traerCatalogoPuntosServicios();
+           $listaPuntos= $negocio -> traerCatalogoPuntosServicios();
       }
             // $log->LogInfo("Valor de variable lista1" . var_export ($listaPuntos, true));  
       for ($i = 0; $i < count($listaPuntos); $i++)
@@ -84,6 +84,14 @@ try{
             $PrimerCallePuntoS = $listaPuntos[$i]["PrimerCallePuntoS"]; 
             $SegundaCallePuntoS = $listaPuntos[$i]["SegundaCallePuntoS"];
             $RangoAsistencia = $listaPuntos[$i]["RangoAsistencia"];
+            $SupLunes = $listaPuntos[$i]["SupLunes"];
+            $SupMartes = $listaPuntos[$i]["SupMartes"];
+            $SupMiercoles = $listaPuntos[$i]["SupMiercoles"];
+            $SupJueves = $listaPuntos[$i]["SupJueves"];
+            $SupViernes = $listaPuntos[$i]["SupViernes"];
+            $SupSabado = $listaPuntos[$i]["SupSabado"];
+            $SupDomingo = $listaPuntos[$i]["SupDomingo"];
+            
 
 
             if($CodigoPostalPuntoS == "NULL" || $CodigoPostalPuntoS == "null" || $CodigoPostalPuntoS == NULL || $CodigoPostalPuntoS == null || $CodigoPostalPuntoS == ""){
@@ -102,31 +110,31 @@ try{
             if($listaPuntos[$i]["DescripcionI"]==null){
                   $DescripcionI="";
             }else{$DescripcionI=$listaPuntos[$i]["DescripcionI"];}
-			
+                  
             if($esatusPunto==1){
-			$listaPuntos[$i]["accion_baja_punto"] ="<a href='javascript:mostrarModalTerminoServicio(\"" . $idPuntoServicio . "\",\"".$puntoServicio."\");'>ACTIVO/DAR BAJA<img src='img/Ok-icon1.png'></a>";
+                  $listaPuntos[$i]["accion_baja_punto"] ="<a href='javascript:mostrarModalTerminoServicio(\"" . $idPuntoServicio . "\",\"".$puntoServicio."\");'>ACTIVO/DAR BAJA<img src='img/Ok-icon1.png'></a>";
             }else{
-			$listaPuntos[$i]["accion_baja_punto"] ="<a href='javascript:mostrarModalReactivacionPuntoServicio(\"" . $idPuntoServicio . "\",\"".$puntoServicio."\");'>INACTIVO/REACTIVAR<img src='img/cancel.png'></a>";
+                  $listaPuntos[$i]["accion_baja_punto"] ="<a href='javascript:mostrarModalReactivacionPuntoServicio(\"" . $idPuntoServicio . "\",\"".$puntoServicio."\");'>INACTIVO/REACTIVAR<img src='img/cancel.png'></a>";
             }
-		$listaPuntos[$i]["accion_ver_plantilla"] = "<a href='javascript:mostrarModalPlantilla(\"" . $idPuntoServicio . "\",\"".$razonSocial."\",\"".$puntoServicio."\",\"".$cobraDescansos."\",\"".$cobraDiaFestivo."\",\"".$cobra31."\",\"".$fechaInicioServicio."\",\"".$fechaTerminoServicio."\",\"".$descripcionLineaNegocio."\",\"".$idLineanNegocio."\",\"".$idClientePunto."\");'>Ver Plantilla</a>";
-			
-            $listaPuntos[$i] ["accion_edita_punto"] ="<a href='javascript:modalEditarPunto( ". $RangoAsistencia .",". $idPuntoServicio .",".$idClientePunto.",\"".$numeroCentroCosto."\" ,\"".$puntoServicio."\" ,\"".$idEntidadPunto
-            	."\" ,\"".$direccionPuntoServicio."\",\"".$fechaInicioServicio."\",\"".$fechaTerminoServicio."\",\"".$contactoFacturacion."\" ,\"".$telefonoFijoFacturacion."\" ,\"".$telefonoMovilFacturacion
-            	."\",\"".$correoFacturacion."\"  ,\"".$terminoFacturacion."\" ,\"".$contactoTesoreria."\" ,\"".$correoTesoreria."\" ,\"".$telefonoFijoTesoreria."\",\"".$telefonoMovilTesoreria
-            	."\",\"".$contactoOperativo."\",\"".$correoOperativo."\",\"".$telefonoFijoOperativo."\",\"".$telefonoMovilOperativo."\",\"".$cobraDescansos."\",\"".$cobraDiaFestivo."\",\"".$cobra31."\",\"".$latitudPunto."\",\"".$longitudPunto."\",\"".$turnoFlat."\",\"".$idLineanNegocio."\", \"".$idIncrementRegionPuntoServ."\",\"".$idRegionI."\",\"".$DescripcionI."\", \"".$nombreEntidadFederativa."\", \"".$visiblerh."\",\"".$cubredescanso."\",\"".$municipiodelegacion."\",\"".$unidad."\",\"".$CodigoPostalPuntoS."\",\"".$AsentamientoPuntoS."\",\"".$EntidadPuntoS."\",\"".$MunicipioPuntoS."\",\"".$ColoniaPuntoS."\",\"".$CallePrincipaPuntoS."\",\"".$NumeroExteriorPuntoS."\",\"".$NumeroInterirPuntoS."\",\"".$PrimerCallePuntoS."\",\"".$SegundaCallePuntoS."\");'><img src='img/edit.png'></a>";
+            $listaPuntos[$i]["accion_ver_plantilla"] = "<a href='javascript:mostrarModalPlantilla(\"" . $idPuntoServicio . "\",\"".$razonSocial."\",\"".$puntoServicio."\",\"".$cobraDescansos."\",\"".$cobraDiaFestivo."\",\"".$cobra31."\",\"".$fechaInicioServicio."\",\"".$fechaTerminoServicio."\",\"".$descripcionLineaNegocio."\",\"".$idLineanNegocio."\",\"".$idClientePunto."\");'>Ver Plantilla</a>";
+                  
+            $listaPuntos[$i] ["accion_edita_punto"] ="<a href='javascript:modalEditarPunto( ". $RangoAsistencia .",  \"". $SupLunes ."\",  \"". $SupMartes ."\",  \"". $SupMiercoles ."\",  \"". $SupJueves ."\",  \"". $SupViernes ."\",  \"". $SupSabado ."\",  \"". $SupDomingo ."\",". $idPuntoServicio .",".$idClientePunto.",\"".$numeroCentroCosto."\" ,\"".$puntoServicio."\" ,\"".$idEntidadPunto
+                  ."\" ,\"".$direccionPuntoServicio."\",\"".$fechaInicioServicio."\",\"".$fechaTerminoServicio."\",\"".$contactoFacturacion."\" ,\"".$telefonoFijoFacturacion."\" ,\"".$telefonoMovilFacturacion
+                  ."\",\"".$correoFacturacion."\"  ,\"".$terminoFacturacion."\" ,\"".$contactoTesoreria."\" ,\"".$correoTesoreria."\" ,\"".$telefonoFijoTesoreria."\",\"".$telefonoMovilTesoreria
+                  ."\",\"".$contactoOperativo."\",\"".$correoOperativo."\",\"".$telefonoFijoOperativo."\",\"".$telefonoMovilOperativo."\",\"".$cobraDescansos."\",\"".$cobraDiaFestivo."\",\"".$cobra31."\",\"".$latitudPunto."\",\"".$longitudPunto."\",\"".$turnoFlat."\",\"".$idLineanNegocio."\", \"".$idIncrementRegionPuntoServ."\",\"".$idRegionI."\",\"".$DescripcionI."\", \"".$nombreEntidadFederativa."\", \"".$visiblerh."\",\"".$cubredescanso."\",\"".$municipiodelegacion."\",\"".$unidad."\",\"".$CodigoPostalPuntoS."\",\"".$AsentamientoPuntoS."\",\"".$EntidadPuntoS."\",\"".$MunicipioPuntoS."\",\"".$ColoniaPuntoS."\",\"".$CallePrincipaPuntoS."\",\"".$NumeroExteriorPuntoS."\",\"".$NumeroInterirPuntoS."\",\"".$PrimerCallePuntoS."\",\"".$SegundaCallePuntoS."\");'><img src='img/edit.png'></a>";
             
             $listaPuntos[$i] ["accion_edita_punto_facturacion"]="<a href='javascript:modalEditarPuntoFacturacion( ". $idPuntoServicio .",".$idClientePunto.",\"".$numeroCentroCosto."\" ,\"".$puntoServicio."\" ,\"".$idEntidadPunto
-                  ."\",\"".$fechaInicioServicio."\",\"".$fechaTerminoServicio."\",\"".$razonSocial."\",\"".$nombrePuntoFacturacion."\",\"".$centroCostoFacturacion."\");'><img src='img/edit.png'></a>";	
+                  ."\",\"".$fechaInicioServicio."\",\"".$fechaTerminoServicio."\",\"".$razonSocial."\",\"".$nombrePuntoFacturacion."\",\"".$centroCostoFacturacion."\");'><img src='img/edit.png'></a>";    
       }
      // $log->LogInfo("Valor de listaPuntos" . var_export ($listaPuntos, true));
-	$response["data"]= $listaPuntos;
-	//$log->LogInfo("Valor de variable de response" . var_export ($response, true));	
-		//$log->LogInfo("Valor de la variable \$response punto: " . var_export ($response, true));
+      $response["data"]= $listaPuntos;
+      //$log->LogInfo("Valor de variable de response" . var_export ($response, true));    
+            //$log->LogInfo("Valor de la variable \$response punto: " . var_export ($response, true));
 } 
 catch( Exception $e )
 {
-	$response["status"]="error";
-	$response["error"]="No se pudo obtener lista de puntos de servicio";
+      $response["status"]="error";
+      $response["error"]="No se pudo obtener lista de puntos de servicio";
 }
 
 echo json_encode($response);

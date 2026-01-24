@@ -56,7 +56,6 @@
           <span class="add-on">FECHA INGRESO</span>
           <input id="txtFechaImssModal" name="txtFechaIngresoModalImss" type="date" class="input-medium" readonly>
         </div>
-
     </div>
       <div class="modal-footer">
 
@@ -68,7 +67,7 @@
 
   <!-- modal confirmacion imss -->
 
-  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="myModalConfirmacionAltaImss" name="myModalConfirmacionAltaImss" >
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="myModalConfirmacionAltaImss" name="myModalConfirmacionAltaImss" style="display:none;">
     <div id="alertMsgconfirm">
     </div>
 
@@ -113,7 +112,6 @@ function inicioConsultaEmpSinImss(){
 
 function confirmar_imss_rechazo(empleadoId, nombreEmpleado, fechaImss)
 {
-   // alert (empleadoId);
     $('#myModalRechazado').modal();
     $("#txtNumeroEmpleadoModalImss").val(empleadoId);
     $("#txtNombreEmpleadoModalImss").val(nombreEmpleado);
@@ -217,7 +215,6 @@ function insertarActualizarDatosImss(){
                   alert('error handing here');
             }
         });
-
       }
 
 

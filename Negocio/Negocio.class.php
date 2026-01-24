@@ -1662,6 +1662,28 @@ public function negocio_registrarPuntoServicio($puntoServicio)
 
     }
 
+    if($puntoServicio["SupervisionesLunes"] < 0 || $puntoServicio["SupervisionesLunes"] == ""){
+        throw new Exception("El numero de supervisiones para el dia lunes no puede ser negativo ni estar vacio");
+    }
+    if($puntoServicio["SupervisionesMartes"] < 0 || $puntoServicio["SupervisionesMartes"] == ""){
+        throw new Exception("El numero de supervisiones para el dia martes no puede ser negativo ni estar vacio");
+    }
+    if($puntoServicio["SupervisionesMiercoles"] < 0 || $puntoServicio["SupervisionesMiercoles"] == ""){
+        throw new Exception("El numero de supervisiones para el dia miercoles no puede ser negativo ni estar vacio");
+    }
+    if($puntoServicio["SupervisionesJueves"] < 0 || $puntoServicio["SupervisionesJueves"] == ""){
+        throw new Exception("El numero de supervisiones para el dia jueves no puede ser negativo ni estar vacio");
+    }
+    if($puntoServicio["SupervisionesViernes"] < 0 || $puntoServicio["SupervisionesViernes"] == ""){
+        throw new Exception("El numero de supervisiones para el dia viernes no puede ser negativo ni estar vacio");
+    }
+    if($puntoServicio["SupervisionesSabado"] < 0 || $puntoServicio["SupervisionesSabado"] == ""){
+        throw new Exception("El numero de supervisiones para el dia sabado no puede ser negativo ni estar vacio");
+    }
+    if($puntoServicio["SupervisionesDomingo"] < 0 || $puntoServicio["SupervisionesDomingo"] == ""){
+        throw new Exception("El numero de supervisiones para el dia domingo no puede ser negativo ni estar vacio"); 
+    }
+
     if ($this->persistencia->existeNumeroCentroCostoCliente($puntoServicio["idClientePunto"], $puntoServicio["numeroCentroCosto"])) {
         throw new Exception("El numero de centro de costo para el cliente seleccionado ya se encuentra registrado en la base");
     }

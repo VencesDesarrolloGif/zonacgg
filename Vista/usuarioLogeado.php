@@ -240,6 +240,7 @@ if ($usuario["rol"] == "Contrataciones" || $usuario["rol"] == "Socioeconomico" |
     <script type="text/javascript" language="javascript" src="js/moment-with-locales.js" ></script>
     <!--------------------------------- Llamadas al nuevo boostrap 4 que se utilizaran en las carpetas separadas  --------------------------------------------->
     <script type="text/javascript" language="javascript" src="css-Bootstrap-V4.1.3/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="css-Bootstrap-V4.1.3/js/sweetalet2021.js"></script>
     <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 
     <!-- <script type="text/javascript" language="javascript" src="js/jquery-ui-personalized-1.6rc6.min.js"></script> -->
@@ -278,7 +279,16 @@ if ($usuario["rol"] == "Contrataciones" || $usuario["rol"] == "Socioeconomico" |
                 ?>
                 <li ><a href="#contenedor" data-toggle="tab">Registro<img src="img/addVisitante.png"> </a></li>
             <!--    <li ><a href="#contenedorCurp" data-toggle="tab">Comparación Curp<img src="img/addVisitante.png"> </a></li>  -->
-                <li ><a href="#contenedorConsultaEmpleado" data-toggle="tab">Consulta Empleado <img src="img/searchEmpleado.png"> </a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Empleados  <img src="img/searchEmpleado.png">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#contenedorConsultaEmpleado" data-toggle="tab">Consulta</a></li>
+                        <li><a href="#contenedorConfirmacionAlta" data-toggle="tab">Confirmacion De Movimiento</a></li>
+                        <li><a href="#contenedorEdicionesParaImss" data-toggle="tab">Rechazo Imss</a></li>
+                    </ul>
+                </li>
                 <li ><a href="#contenedorhistoricoedicion" data-toggle="tab">Historico ediciones<img src="img/icon-cv.png" style="width: 14%" > </a></li>
                 <li ><a href="#contenedorSolicitudBaja" data-toggle="tab">Solicitud de bajas <img src="img/bajaEmpleado.png"> </a></li>
 
@@ -2875,6 +2885,22 @@ if ($usuario["rol"] == "Lider Unidad" || $usuario["rol"] == "Contrataciones" ) {
                 <div >
                     <?php
                         include "form_consultaAsistencia.php";
+                    ?>
+                </div>
+            </div>
+
+             <div class="tab-pane fade " id="contenedorEdicionesParaImss">
+                <div >
+                    <?php
+                        include "EdicionRhParaImss/form_EdicionEmpleadoRh.html";
+                    ?>
+                </div>
+            </div>
+
+            <div class="tab-pane fade " id="contenedorConfirmacionAlta">
+                <div >
+                    <?php
+                        include "ConfirmacionDeAlta/form_ConfirmacionAltaEmpleadoRh.html";
                     ?>
                 </div>
             </div>

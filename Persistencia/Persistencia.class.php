@@ -427,14 +427,13 @@ public function throwExceptionFromErrNo($errno)
 
     public function traeCatalogoEntidadesFederativas()
     {
-        //$this -> logger -> LogInfo ("traeCatalogoEntidadesFederativas en persistencia");
         $listaEnditadesFederativas = array();
 
         try {
 
-            $sql = "Select idEntidadFederativa, nombreEntidadFederativa, claveEntidadF from entidadesfederativas where idEntidadFederativa!='50'";
-            //$this -> logger -> LogInfo ("ejecutando traeCatalogoEntidadesFederativas en persistencia". $sql);
-
+            $sql = "SELECT idEntidadFederativa, nombreEntidadFederativa, claveEntidadF 
+                    FROM entidadesfederativas 
+                    WHERE idEntidadFederativa NOT IN(33,50)";
             $res = mysqli_query($this->conn, $sql);
 
             while (($reg = mysqli_fetch_array($res, MYSQLI_ASSOC))) {
@@ -447,6 +446,7 @@ public function throwExceptionFromErrNo($errno)
             //$this -> logger -> LogInfo ("ERROR:" . $e->getMessage() );
         }
     }
+
     public function traeCatalogoEntidadesFederativasLU($entidades)
     {
         //$this -> logger -> LogInfo ("traeCatalogoEntidadesFederativas en persistencia");
@@ -1791,15 +1791,17 @@ public function throwExceptionFromErrNo($errno)
             $this->logger->LogInfo("ERROR:" . $e->getMessage());
         }
     }
-     public function insertarPuntoServicio($puntoServicio)
+    
+    public function insertarPuntoServicio($puntoServicio)
     {
+        $supervisionesTotales = $puntoServicio["SupervisionesLunes"] + $puntoServicio["SupervisionesMartes"] + $puntoServicio["SupervisionesMiercoles"] + $puntoServicio["SupervisionesJueves"] + $puntoServicio["SupervisionesViernes"] + $puntoServicio["SupervisionesSabado"] + $puntoServicio["SupervisionesDomingo"];
 
-        //$this -> logger -> LogInfo ("Ejecutando. insertarPuntoServicio en persistencia");
+        $this -> logger -> LogInfo ("Ejecutando. insertarPuntoServicio en persistencia");
         $sql = "insert into catalogopuntosservicios(puntoServicio,numeroCentroCosto, idEntidadPunto, esatusPunto, numeroOrden,
         usuarioCapturaPunto, idClientePunto, contactoFacturacion, telefonoFijoFacturacion, telefonoMovilFacturacion, correoFacturacion,
         contactoTesoreria, telefonoFijoTesoreria, telefonoMovilTesoreria, correoTesoreria,
         contactoOperativo, telefonoFijoOperativo, telefonoMovilOperativo, correoOperativo,fechaInicioServicio,terminoFacturacion,
-        fechaTerminoServicio,cobraDescansos, cobraDiaFestivo, cobra31,latitudPunto,longitudPunto,nombrePuntoFacturacion,centroCostoFacturacion,turnosFlat,fechaCapturaPunto,idIncrementRegionPuntoServ,idLineaNegocioPunto,visiblerh,CodigoPostalPuntoS, AsentamientoPuntoS, EntidadPuntoS, MunicipioPuntoS, ColoniaPuntoS, CallePrincipaPuntoS, NumeroInterirPuntoS, NumeroExteriorPuntoS, PrimerCallePuntoS, SegundaCallePuntoS,cubredescanso,municipiodelegacion,unidad) 
+        fechaTerminoServicio,cobraDescansos, cobraDiaFestivo, cobra31,latitudPunto,longitudPunto,nombrePuntoFacturacion,centroCostoFacturacion,turnosFlat,fechaCapturaPunto,idIncrementRegionPuntoServ,idLineaNegocioPunto,visiblerh,CodigoPostalPuntoS, AsentamientoPuntoS, EntidadPuntoS, MunicipioPuntoS, ColoniaPuntoS, CallePrincipaPuntoS, NumeroInterirPuntoS, NumeroExteriorPuntoS, PrimerCallePuntoS, SegundaCallePuntoS,idPeriodo,Supervisiones,SupLunes,SupMartes,SupMiercoles,SupJueves,SupViernes,SupSabado,SupDomingo,cubredescanso,municipiodelegacion,unidad) 
         values ('" . mysqli_real_escape_string($this->conn, $puntoServicio["puntoServicio"]) . "', 
         '" . mysqli_real_escape_string($this->conn, $puntoServicio["numeroCentroCosto"]) . "', 
         '" . mysqli_real_escape_string($this->conn, $puntoServicio["idEntidadPunto"]) . "', 
@@ -1807,7 +1809,6 @@ public function throwExceptionFromErrNo($errno)
         '" . mysqli_real_escape_string($this->conn, $puntoServicio["numeroOrden"]) . "', 
         '" . mysqli_real_escape_string($this->conn, $puntoServicio["usuarioCapturaPunto"]) . "', 
         " . mysqli_real_escape_string($this->conn, $puntoServicio["idClientePunto"]) . ", 
-       
         '" . mysqli_real_escape_string($this->conn, $puntoServicio["contactoFacturacion"]) . "', 
         '" . mysqli_real_escape_string($this->conn, $puntoServicio["telefonoFijoFacturacion"]) . "', 
         '" . mysqli_real_escape_string($this->conn, $puntoServicio["telefonoMovilFacturacion"]) . "',
@@ -1845,6 +1846,15 @@ public function throwExceptionFromErrNo($errno)
         '" . mysqli_real_escape_string($this->conn, $puntoServicio["NumeroExterior"]) . "', 
         '" . mysqli_real_escape_string($this->conn, $puntoServicio["Calle1"]) . "', 
         '" . mysqli_real_escape_string($this->conn, $puntoServicio["Calle2"]) . "', 
+        '" . mysqli_real_escape_string($this->conn, $puntoServicio["idPeriodo"]) . "', 
+        '" . mysqli_real_escape_string($this->conn, $supervisionesTotales) . "',
+        '" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesLunes"]) . "',
+        '" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesMartes"]) . "',
+        '" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesMiercoles"]) . "',
+        '" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesJueves"]) . "',
+        '" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesViernes"]) . "',
+        '" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesSabado"]) . "',
+        '" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesDomingo"]) . "',
         " . mysqli_real_escape_string($this->conn, $puntoServicio["cubredescanso"])    . " "; 
         if($puntoServicio["idClientePunto"]==43){
             $sql.=" ,'" . mysqli_real_escape_string($this->conn, $puntoServicio["selmunicipiowalmrt"]) . "',
@@ -1856,7 +1866,7 @@ public function throwExceptionFromErrNo($errno)
 
         $sql.= ")";// '" . mysqli_real_escape_string($this->conn, $puntoServicio["direccionPuntoServicio"]) . "',  // se ingresa colonia ya que el asentamiento es una concatenacion de la entidad municipio y colonia
 
-        //$this -> logger -> LogInfo ("Se ejecuto consulta  insertarPuntoServicio como" . $sql);
+        $this -> logger -> LogInfo ("Se ejecuto consulta  insertarPuntoServicio como" . $sql);
 
         $res = mysqli_query($this->conn, $sql);
 
@@ -2420,7 +2430,7 @@ public function obtenerEmpleadoPorId($empleadoEntidad, $empleadoConsecutivo, $em
         ,e.numlicencia
         ,e.fechavigencialicencia
         ,e.licenciaconducirpermanente,eft.nombreEntidadFederativa as nombreEntidadFederativa1, def.DeudaEmp,p.requisicionId,spp.rolOperativoPlantilla,spp.IdRolOperativoPlantilla,e.IdRolOperativoPlantillaEmp,Des.idIutTarjeta,
-        Des.FechaASignacionEmpleado,f.apellidoPaterno as ApellidoPSup,f.apellidoMaterno as ApellidoMSup, f.nombreEmpleado as NombreSup,Des.idEntidadAsignada as EntidadTarjeta,Des.idEntidadAsignada as idEntidadTarjeta,e.empleadoLocalizacion, efContrata.nombreEntidadFederativa as entidadContratacion,dp.edadEmp,be.idCuentaBanco,be.nombreBanco,e.claveINE,e.contactoGif,e.correoGif,di.registroPatronal,spp.servicioPlantillaId,cln.descripcionLineaNegocio,e.idHoario,e.noGerenteRegAsignado
+        Des.FechaASignacionEmpleado,f.apellidoPaterno as ApellidoPSup,f.apellidoMaterno as ApellidoMSup, f.nombreEmpleado as NombreSup,Des.idEntidadAsignada as EntidadTarjeta,Des.idEntidadAsignada as idEntidadTarjeta,e.empleadoLocalizacion, efContrata.nombreEntidadFederativa as entidadContratacion,dp.edadEmp,be.idCuentaBanco,be.nombreBanco,e.claveINE,e.contactoGif,e.correoGif,di.registroPatronal,spp.servicioPlantillaId,cln.descripcionLineaNegocio,e.idHoario,e.noGerenteRegAsignado,di.idRechazado
         from empleados e
         left join catalogopuestos cp on (cp.idPuesto=e.empleadoIdPuesto)
         left join catalogocategoriastipopuestos ctp on (ctp.idCategoria=cp.puestoIdCategoria)
@@ -2488,7 +2498,7 @@ public function obtenerEmpleadoPorId($empleadoEntidad, $empleadoConsecutivo, $em
             }  
         }
     $sql.=") group by entidadFederativaId, empleadoConsecutivoId , empleadoCategoriaId";
-        $this -> logger -> LogInfo ("Ejecutando obtenerEmpleadoPorId aaaa: " . $sql);
+        // $this -> logger -> LogInfo ("Ejecutando obtenerEmpleadoPorId aaaa: " . $sql);
 
     $res = mysqli_query($this->conn, $sql);
     while (($reg = mysqli_fetch_array($res, MYSQLI_ASSOC))) {
@@ -2496,6 +2506,7 @@ public function obtenerEmpleadoPorId($empleadoEntidad, $empleadoConsecutivo, $em
     }
     return $empleado;
 }
+
 
 public function obtenerEmpleadoPorNombre($nombre,$usuario)
 {
@@ -2520,7 +2531,7 @@ public function obtenerEmpleadoPorNombre($nombre,$usuario)
     dir.calle, dir.numeroExterior, dir.numeroInterior, dir.telefonoFijoEmpleado, dir.telefonoMovilEmpleado, dir.correoEmpleado, dir.idUnidadMedicaAsignada,
     cum.idMunicipioUnidad, cum.nombreUnidad, cum.domicilioUnidad, cum.codigoPostalUnidad,
     count(nombreFamiliar) datoFamiliar,
-    e.tipoPeriodo,e.roloperativo,e.foliopreseleccion,eft.nombreEntidadFederativa as nombreEntidadFederativa1, def.DeudaEmp,p.requisicionId
+    e.tipoPeriodo,e.roloperativo,e.foliopreseleccion,eft.nombreEntidadFederativa as nombreEntidadFederativa1, def.DeudaEmp,p.requisicionId,di.idRechazado
     from empleados e
     left join catalogopuestos cp on (cp.idPuesto=e.empleadoIdPuesto)
     left join catalogocategoriastipopuestos ctp on (ctp.idCategoria=cp.puestoIdCategoria)
@@ -3929,6 +3940,7 @@ public function actualizarDatosImssCuadro($datosImss)
         "idTxtImssDatosImss," .
         "empleadoEstatusImss," .
         "origenSalarioDiario," .
+        "idRechazado," .
         "fechaCapturaImss" .
         ") VALUES (" .
         "'" . mysqli_real_escape_string($this->conn, $datosImss["empladoEntidadImss"]) . "', " .
@@ -3938,9 +3950,10 @@ public function actualizarDatosImssCuadro($datosImss)
         "'" . mysqli_real_escape_string($this->conn, $datosImss["salarioDiario"]) . "'," .
         "'" . mysqli_real_escape_string($this->conn, $datosImss["registroPatronal"]) . "'," .
         "" . mysqli_real_escape_string($this->conn, $datosImss["tipoTrabajador"]) . ", " .
-        "" . mysqli_real_escape_string($this->conn, $datosImss["Origen"]) . ", " .
+        "" . mysqli_real_escape_string($this->conn, $datosImss["idTxtImss"]) . ", " .
         "" . mysqli_real_escape_string($this->conn, $datosImss["empleadoEstatusImss"]) . ", " .
         "" . mysqli_real_escape_string($this->conn, $datosImss["Origen"]) . ", " .
+        "" . mysqli_real_escape_string($this->conn, $datosImss["idRechazado"]) . ", " .
         "now())";
 
         // $this -> logger -> LogInfo ("Se ejecuto consulta  insertaDatosImss como" . $sql);
@@ -3957,11 +3970,11 @@ public function actualizarDatosImssCuadro($datosImss)
 
     public function obtenerListaEmpleadosSinImss()
     {
-       // $this-> logger -> LogInfo("obtenerListaEmpleadosSinImss");
+       // $this-> logger -> LogInfo("obtenerListaEmpleadosSinImss"); tipoPeriodo
 
         $listaEmpleados = array();
 
-        $sql = "SELECT concat_ws('-',di.empladoEntidadImss, di.empleadoConsecutivoImss, di.empleadoCategoriaImss) as numeroEmpleado,e.apellidoPaterno, e.apellidoMaterno, e.nombreEmpleado,di.fechaImss, di.salarioDiario ,datediff(now(), di.fechaImss) as diasTranscurridos, e.empleadoNumeroSeguroSocial,ifnull(dp.curpEmpleado,'SIN INFO') as curpEmpleado,di.salarioDiario, di.registroPatronal, cee.descripcionEstatusEmpleado, di.tipoTrabajador,ctti.descripcionTipoTrabajadorImss, datediff(now(), di.fechaImss) as diasTranscurridos,ef.nombreEntidadFederativa as EntidadALaborar,ctp.descripcionCategoria,ifnull(cp.idPuntoServicio,'SIN ID PUNTO') AS idPinto,ifnull(cp.puntoServicio,'SIN PUNTO SERVICIO') as PuntoServ,ifnull(cos.DescripcionSDImss,'SIN ORIGEN') as Origen
+        $sql = "SELECT concat_ws('-',di.empladoEntidadImss, di.empleadoConsecutivoImss, di.empleadoCategoriaImss) as numeroEmpleado,e.apellidoPaterno, e.apellidoMaterno, e.nombreEmpleado,di.fechaImss, di.salarioDiario ,datediff(now(), di.fechaImss) as diasTranscurridos, e.empleadoNumeroSeguroSocial,ifnull(dp.curpEmpleado,'SIN INFO') as curpEmpleado,di.salarioDiario, di.registroPatronal, cee.descripcionEstatusEmpleado, di.tipoTrabajador,ctti.descripcionTipoTrabajadorImss, datediff(now(), di.fechaImss) as diasTranscurridos,ef.nombreEntidadFederativa as EntidadALaborar,ctp.descripcionCategoria,ifnull(cp.idPuntoServicio,'SIN ID PUNTO') AS idPinto,ifnull(cp.puntoServicio,'SIN PUNTO SERVICIO') as PuntoServ,ifnull(cos.DescripcionSDImss,'SIN ORIGEN') as Origen,di.FechaConfirmacion as confirmacion, di.FechaRevision as revision,di.idTxtImssDatosImss,di.idRechazado,e.tipoPeriodo
             from datosimss di
             left join empleados e on (di.empladoEntidadImss=e.entidadFederativaId and di.empleadoConsecutivoImss=e.empleadoConsecutivoId and di.empleadoCategoriaImss=e.empleadoCategoriaId)
             left join datospersonales dp on (dp.empleadoEntidadPersonal=di.empladoEntidadImss and dp.empleadoConsecutivoPersonal=di.empleadoConsecutivoImss and dp.empleadoCategoriaPersonal=di.empleadoCategoriaImss)
@@ -3973,7 +3986,7 @@ public function actualizarDatosImssCuadro($datosImss)
             left join servicios_plantillas sp on (p.requisicionId=sp.servicioPlantillaId)
             left join catalogopuntosservicios cp on (cp.idPuntoServicio=sp.puntoServicioPlantillaId)
             left join CatalogoOrigenSalarioDiarioImss cos on (cos.idOrigenSDImss=di.origenSalarioDiario)
-            where (e.empleadoEstatusId=1 or e.empleadoEstatusId=2) and di.empleadoEstatusImss=1";
+            where (e.empleadoEstatusId=1 or e.empleadoEstatusId=2) and di.empleadoEstatusImss=1 and ((di.idRechazado = 2 or di.idRechazado = 4) or idMotivoBajaImss ='B')";
         //$this -> logger -> LogInfo ("Ejecutando obtenerListaEmpleadosSinImss: " . $sql);
         $res = mysqli_query($this->conn, $sql);
         while (($reg = mysqli_fetch_array($res, MYSQLI_ASSOC))) {
@@ -3991,7 +4004,7 @@ public function actualizarDatosImssCuadro($datosImss)
 
         $sql = "SELECT concat_ws('-',di.empladoEntidadImss, di.empleadoConsecutivoImss, di.empleadoCategoriaImss) as numeroEmpleado,  e.apellidoPaterno, e.apellidoMaterno, e.nombreEmpleado,
         di.fechaImss, di.salarioDiario ,datediff(now(), di.fechaImss) as diasTranscurridos, e.empleadoNumeroSeguroSocial, ifnull(dp.curpEmpleado,'SIN INFO') as curpEmpleado,
-        di.salarioDiario, di.registroPatronal, cee.descripcionEstatusEmpleado, di.tipoTrabajador, ctti.descripcionTipoTrabajadorImss, datediff(now(), di.fechaImss) as diasTranscurridos,emisionAltaImssConfirmada,ef.nombreEntidadFederativa as EntidadALaborar,ctp.descripcionCategoria,ifnull(cp.idPuntoServicio,'SIN ID PUNTO') AS idPinto,ifnull(cp.puntoServicio,'SIN PUNTO SERVICIO') as PuntoServ ,ifnull(cos.DescripcionSDImss,'SIN ORIGEN') as Origen,di.idTxtImssDatosImss
+        di.salarioDiario, di.registroPatronal, cee.descripcionEstatusEmpleado, di.tipoTrabajador, ctti.descripcionTipoTrabajadorImss, datediff(now(), di.fechaImss) as diasTranscurridos,emisionAltaImssConfirmada,ef.nombreEntidadFederativa as EntidadALaborar,ctp.descripcionCategoria,ifnull(cp.idPuntoServicio,'SIN ID PUNTO') AS idPinto,ifnull(cp.puntoServicio,'SIN PUNTO SERVICIO') as PuntoServ ,ifnull(cos.DescripcionSDImss,'SIN ORIGEN') as Origen,di.FechaConfirmacion as confirmacion, di.FechaRevision as revision,di.idTxtImssDatosImss,di.idRechazado ,e.tipoPeriodo
         from datosimss di
         left join empleados e on (di.empladoEntidadImss=e.entidadFederativaId and
         di.empleadoConsecutivoImss=e.empleadoConsecutivoId
@@ -4006,7 +4019,7 @@ public function actualizarDatosImssCuadro($datosImss)
         left join servicios_plantillas sp on (p.requisicionId=sp.servicioPlantillaId)
         left join catalogopuntosservicios cp on (cp.idPuntoServicio=sp.puntoServicioPlantillaId)
         left join CatalogoOrigenSalarioDiarioImss cos on (cos.idOrigenSDImss=di.origenSalarioDiario)
-            where (e.empleadoEstatusId=1 or e.empleadoEstatusId=2) and di.empleadoEstatusImss=1 and di.registroPatronal='" . mysqli_real_escape_string($this->conn, $registroPatronal) . "' ";
+            where (e.empleadoEstatusId=1 or e.empleadoEstatusId=2) and di.empleadoEstatusImss=1 and ((di.idRechazado = 2 or di.idRechazado = 4) or idMotivoBajaImss ='B') and di.registroPatronal='" . mysqli_real_escape_string($this->conn, $registroPatronal) . "' ";
 
         //$this -> logger -> LogInfo ("Ejecutando obtenerListaEmpleadosSinImss: " . $sql);
 
@@ -4082,15 +4095,18 @@ public function actualizarDatosImssCuadro($datosImss)
 
     public function rechazarEmpleadoImss($datosImss)
     {
-
-        //$this -> logger -> LogInfo ("Ejecutando. rechazarEmpleadoImss en persistencia");
+        $estatusRechazado = "3"; // RECHAZO POR IMSS  
+        // $this -> logger -> LogInfo ("Ejecutando. rechazarEmpleadoImss en persistencia");
 
         $sql = "update datosimss " .
         "set empleadoEstatusImss=" . mysqli_real_escape_string($this->conn, $datosImss["empleadoEstatusImss"]) . ", " .
-        "folioTxt='" . mysqli_real_escape_string($this->conn, $datosImss["folioTxt"]) . "' " .
+        "folioTxt='" . mysqli_real_escape_string($this->conn, $datosImss["folioTxt"]) . "', " .
+        "idRechazado='" . mysqli_real_escape_string($this->conn, $estatusRechazado) . "' , " .
+        "UsuarioRechazoImss='" . mysqli_real_escape_string($this->conn, $datosImss["usuario"]) . "' , " .
+        "FechaRechazoImss = now() " .
         " where empladoEntidadImss='" . mysqli_real_escape_string($this->conn, $datosImss["empladoEntidadImss"]) . "' and empleadoConsecutivoImss='" . mysqli_real_escape_string($this->conn, $datosImss["empleadoConsecutivoImss"]) . "' and empleadoCategoriaImss='" . mysqli_real_escape_string($this->conn, $datosImss["empleadoCategoriaImss"]) . "' ";
 
-        //$this -> logger -> LogInfo ("Se ejecuto consulta  rechazarEmpleadoImss como" . $sql);
+        // $this -> logger -> LogInfo ("Se ejecuto consulta  rechazarEmpleadoImss como" . $sql);
 
         $res = mysqli_query($this->conn, $sql);
 
@@ -4158,12 +4174,12 @@ public function actualizarDatosImssCuadro($datosImss)
         }
     }
 
-    public function confirmaAltaImss($datosImss)
+  public function confirmaAltaImss($datosImss)
     {
         // $this -> logger -> LogInfo ("Ejecutando. confirmarLoteImss en persistencia");
         $totalnumempleados= array();
         $sql2 = "select * from datosimss
-                where folioTxt='" . mysqli_real_escape_string($this->conn, $datosImss["folioTxt"]) . "'";
+                WHERE folioTxt='" . mysqli_real_escape_string($this->conn, $datosImss["folioTxt"]) . "'";
         $res2 = mysqli_query($this->conn, $sql2);
         while (($reg2 = mysqli_fetch_array($res2, MYSQLI_ASSOC))) {
             $totalnumempleados[] = $reg2;
@@ -4191,8 +4207,8 @@ public function actualizarDatosImssCuadro($datosImss)
             if($EstatusFechaAltaTemp=='1' || $EstatusFechaAltaTemp==1){
                 $sql4 = "update datosimss set FechaAltaTemp = NULL, EstatusFechaAltaTemp = '0', fechaImss = '$FechaAltaTemp' where
                 empladoEntidadImss='" . mysqli_real_escape_string($this->conn, $empladoEntidadImss) . "' and empleadoConsecutivoImss='" . mysqli_real_escape_string($this->conn, $empleadoConsecutivoImss) . "' and empleadoCategoriaImss='" . mysqli_real_escape_string($this->conn, $empleadoCategoriaImss) . "'  ";// se coloca el estatus en 0 indicando que ya se ha cambiado la fecha al terminar le proceso de cambo de MSD
-                $this -> logger -> LogInfo ("valor del array de la totalnumempleados ".var_export ($totalnumempleados, true));
-                $this -> logger -> LogInfo ("Se ejecuto consulta  Cambio de fecha Temporal como" . $sql4);
+                // $this -> logger -> LogInfo ("valor del array de la totalnumempleados ".var_export ($totalnumempleados, true));
+                // $this -> logger -> LogInfo ("Se ejecuto consulta  Cambio de fecha Temporal como" . $sql4);
                 $res4 = mysqli_query($this->conn, $sql4);
                 $errno4 = mysqli_errno($this->conn);
                 if ($errno4 != 0) {
@@ -4205,7 +4221,7 @@ public function actualizarDatosImssCuadro($datosImss)
         $sql = "update datosimss " .
         "set numeroLote='" . mysqli_real_escape_string($this->conn, $datosImss["numeroLote"]) . "',
         fechaBajaImss=NULL,empleadoEstatusImss=" . mysqli_real_escape_string($this->conn, $datosImss["empleadoEstatusImss"]) . "" .
-        " where folioTxt='" . mysqli_real_escape_string($this->conn, $datosImss["folioTxt"]) . "' ";
+        " WHERE folioTxt='" . mysqli_real_escape_string($this->conn, $datosImss["folioTxt"]) . "' ";
 
         // $this -> logger -> LogInfo ("Se ejecuto consulta  confirmaAltaImss como" . $sql);
 
@@ -4217,11 +4233,10 @@ public function actualizarDatosImssCuadro($datosImss)
             $this->throwExceptionFromErrNo(mysqli_errno($this->conn));
         }
     }
-
     public function reingresarEmpleadoImss($datosImss)
     {
  
-        $sql = " update datosimss set empleadoEstatusImss=" . mysqli_real_escape_string($this->conn, $datosImss["empleadoEstatusImss"]) . ", fechaImss='" . mysqli_real_escape_string($this->conn, $datosImss["fechaImss"]) . "', numeroLote='" . mysqli_real_escape_string($this->conn, $datosImss["numeroLote"]) . "',origenSalarioDiario='2', salarioDiario='" . mysqli_real_escape_string($this->conn, $datosImss["salario"]) . "', folioTxt='" . mysqli_real_escape_string($this->conn, $datosImss["folioTxt"]) . "' where empladoEntidadImss='" . mysqli_real_escape_string($this->conn, $datosImss["empladoEntidadImss"]) . "' and empleadoConsecutivoImss='" . mysqli_real_escape_string($this->conn, $datosImss["empleadoConsecutivoImss"]) . "' and empleadoCategoriaImss='" . mysqli_real_escape_string($this->conn, $datosImss["empleadoCategoriaImss"]) . "' ";
+        $sql = " update datosimss set empleadoEstatusImss=" . mysqli_real_escape_string($this->conn, $datosImss["empleadoEstatusImss"]) . ", fechaImss='" . mysqli_real_escape_string($this->conn, $datosImss["fechaImss"]) . "', numeroLote='" . mysqli_real_escape_string($this->conn, $datosImss["numeroLote"]) . "',origenSalarioDiario='2', salarioDiario='" . mysqli_real_escape_string($this->conn, $datosImss["SalarioDiario"]) . "', folioTxt='" . mysqli_real_escape_string($this->conn, $datosImss["folioTxt"]) . "' , idRechazado='" . mysqli_real_escape_string($this->conn, $datosImss["idRechazado"]) . "' ,idTxtImssDatosImss='1' WHERE empladoEntidadImss='" . mysqli_real_escape_string($this->conn, $datosImss["empladoEntidadImss"]) . "' and empleadoConsecutivoImss='" . mysqli_real_escape_string($this->conn, $datosImss["empleadoConsecutivoImss"]) . "' and empleadoCategoriaImss='" . mysqli_real_escape_string($this->conn, $datosImss["empleadoCategoriaImss"]) . "' ";
     // $this -> logger -> LogInfo ("Se ejecuto consulta  reingresarEmpleadoImss como" . $sql);
         $res = mysqli_query($this->conn, $sql);
         if ($res !== true) {
@@ -12471,12 +12486,17 @@ public function actualizarEstatusEmisionAltaImss($datosImss)
 }
 public function actualizarEstatusDefinitivoImss($datosImss)
 {
+
     //$this -> logger -> LogInfo ("Ejecutando. rechazarEmpleadoImss en persistencia");
     $sql = "update datosimss " .
     "set empleadoEstatusImss=" . mysqli_real_escape_string($this->conn, $datosImss["empleadoEstatusImss"]) . "," .
     "comentario='" . mysqli_real_escape_string($this->conn, $datosImss["comentario"]) . "'," .
     "emisionAltaImssConfirmada=0," .
     "lastUserEdited='" . mysqli_real_escape_string($this->conn, $datosImss["usuario"]) . "'," .
+    "ContraseniaFirmaConfirmacion='" . mysqli_real_escape_string($this->conn, $datosImss["contraseniaInsertadaCifrada"]) . "'," .
+    "NumeroFirmaConfirmacion='" . mysqli_real_escape_string($this->conn, $datosImss["NumEmpModal"]) . "'," .
+    "UsuarioConfirmacion='" . mysqli_real_escape_string($this->conn, $datosImss["usuario"]) . "'," .
+    "FechaConfirmacion=NOW()," .
     "lastEditedImss=NOW()" .
     " where empladoEntidadImss='" . mysqli_real_escape_string($this->conn, $datosImss["empladoEntidadImss"]) . "' and empleadoConsecutivoImss='" . mysqli_real_escape_string($this->conn, $datosImss["empleadoConsecutivoImss"]) . "' and empleadoCategoriaImss='" . mysqli_real_escape_string($this->conn, $datosImss["empleadoCategoriaImss"]) . "' ";
         //$this -> logger -> LogInfo ("Se ejecuto consulta  actualizarEstatusDefinitivoImss como" . $sql);
@@ -31765,7 +31785,14 @@ public function getCatalogoPuntosServiciosConOpciones($banderaBusquedaPuntos)
             cps.RangoAsistencia,
             efe.nombreEntidadFederativa,
             cm.nombreMunicipio,
-            ca.nombreAsentamiento
+            ca.nombreAsentamiento,
+            cps.SupLunes,
+            cps.SupMartes,
+            cps.SupMiercoles,
+            cps.SupJueves,
+            cps.SupViernes,
+            cps.SupSabado,
+            cps.SupDomingo
             from catalogopuntosservicios cps
             left join catalogoclientes cc ON (cc.idCliente = cps.idClientePunto)
             left join entidadesfederativas ef ON (ef.idEntidadFederativa = cps.idEntidadPunto)

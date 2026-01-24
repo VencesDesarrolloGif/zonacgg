@@ -33,6 +33,7 @@ if (!empty($_POST)) {
         "empleadoCategoriaImss"   => $empleadoCategoriaId,
         "empleadoEstatusImss"     => getValueFromPost("empleadoEstatusImss"),
         "folioTxt"                => getValueFromPost("folioTxt"),
+        "usuario"                => $usuario,
     );
 
     // $log->LogInfo("Valor de la variable \$datosImss: " . var_export ($datosImss, true));

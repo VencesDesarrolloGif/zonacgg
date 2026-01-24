@@ -4,7 +4,7 @@
 ?>
 
 <label for="txtBuscarPreseleccion" class=" control-label label ">FOLIO PRESELECCIÓN:</label>
-<input type="text" id="txtBuscarPreseleccion" name="txtBuscarPreseleccion" class="input-small" placeholder="0000000">
+<input type="text" id="txtBuscarPreseleccion" name="txtBuscarPreseleccion" class="input-small" placeholder="0000000"> 
 <input type="hidden" id="inpbanderafoliopreseleccion" name="inpbanderafoliopreseleccion" >
 <div class="container" align="center">
   <div id="listaConsultaPreseleccion" ></div>
@@ -149,6 +149,7 @@
               </select>
             </td>
           </tr>
+         
           <tr id="trDeptoIngreso">
             <td><label class="control-label label" for="DeptoIngreso">Departamento</label></td>
             <td><select id="DeptoIngreso" name="DeptoIngreso" class="input-large"></select></td>
@@ -157,14 +158,19 @@
             <td><label class="control-label label" for="puesto">Puesto</label></td>
             <td><select id="puesto" name="puesto" class="input-large"></select></td>
           </tr>
-          <tr>
-            <td><label class="control-label2 label" for="Dirigente">Supervisor(Resp Asis)</label></td>
-            <td><select id="dirigente" name="dirigente" class="input-large"></select></td>
-            <td><div id="divdirigentes" ></div></td>
+           <tr>
+            <td><label class="control-label2 label" for="lblPeriodo">Periodo</label></td>
+            <td>
+              <?php
+                for ($i = 0; $i < count($catalogoPeriodos); $i++) {
+                  echo "<input type='radio' name='periodo' id='" . $catalogoPeriodos[$i]["tipoPeriodoId"] . "' value='" . $catalogoPeriodos[$i]["tipoPeriodoId"] . "' >" . $catalogoPeriodos[$i]["descripcionTipoPeriodo"] . "<br>";
+                }
+              ?>
+            </td>
           </tr>
           <tr>
             <td><label class="control-label label" for="entidadFederativa" >Entidad Federativa</label><br><label class="control-label label" for="entidadFederativa" >para laborar</label></td>
-            <td><select id="selectEndidadFederativaLabor" name="selectEndidadFederativaLabor" class="input-large ">
+            <td><select id="selectEndidadFederativaLabor" name="selectEndidadFederativaLabor" class="input-large " onChange="obtenerSupervisoresOperativos();">
               <option>ENTIDAD FEDERATIVA</option>
               <?php
                 for ($i = 0; $i < count($catalogoEntidadesFederativasALaborar); $i++) {
@@ -174,6 +180,11 @@
             </td>
           </tr>
           <tr>
+            <td><label class="control-label2 label" for="Dirigente">Supervisor(Resp Asis)</label></td>
+            <td><select id="dirigente" name="dirigente" class="input-large"></select></td>
+            <td><div id="divdirigentes" ></div></td>
+          </tr>
+          <tr>
             <td><label class="control-label label" for="gerenteReg">Gerente Regional</label></td>
             <td>
               <select id="gerenteReg" name="gerenteReg" class="input-large">
@@ -181,10 +192,11 @@
               </select>
             </td>
           </tr>
+          
           <tr>
             <td><label class="control-label2 label" for="PuntodeServicio">Punto de Servicio</label></td>
             <td>
-              <select id='selectPuntoServicio' name='selectPuntoServicio' class='input-large' onchange="obtenerClienteByPuntoServicioId();LimpiarDatosTabuladorSalarioDiario();"><option>PUNTO DE SERVICIO</option></select>
+              <select id='selectPuntoServicio' name='selectPuntoServicio' class='input-large' onchange="obtenerClienteByPuntoServicioId();"><option>PUNTO DE SERVICIO</option></select>
               <input id="txtClienteId" name="txtClienteId" type="hidden" class="input-large" maxlength="14">
             </td>
             <tr>
@@ -215,19 +227,7 @@
               <select id='selHorarioAlta' name='selHorarioAlta' class='input-xlarge'></select>
             </td>
           </tr>
-          <tr >
-            <td><label class="control-label label" for="SueldoEmp">Salario Diario</label></td>
-            <td>
-                <input id="SalarioDiarioEmp" name="SalarioDiarioEmp" type="text" class="input-small" placeholder="S.D" readonly>
-                <input id="SalarioDiarioEmpImss" name="SalarioDiarioEmpImss" type="text" class="input-small" placeholder="S.D" readonly style="display: none;">
-                <input id="SueldoSalarioDiarioEmp" name="SueldoSalarioDiarioEmp" type="hidden" class="input-small">
-                <button id="btnGenrarSalarioDiario" name="btnGenrarSalarioDiario" class="btn btn-primary" type="button">Generar</button>
-                <button id="btnConfirmadoSalarioDiario" name="btnConfirmadoSalarioDiario" class="btn btn-success"style="display: none;"  type="button">Confirmado</button>
-                <button id="btnConfirmarSalarioDiario" name="btnConfirmarSalarioDiario" class="btn btn-warning" type="button" style="display: none;"> <span class="glyphicon glyphicon-floppy-save"></span>Confirmar</button> 
-                <img src="img/rechazarImss.png" width="4%" id="imgMalSalarioDiario">
-                <img src="img/ok.png" width="4%" id="imgBienSalarioDiario" style="display: none;">
-            </td>
-          </tr>
+          
           <tr>
             <td><label class="control-label2 label" for="licencia">Licencia de conducir</label></td>
             <td>
@@ -303,16 +303,7 @@
             
           </tr>
 
-          <tr>
-            <td><label class="control-label2 label" for="lblPeriodo">Periodo</label></td>
-            <td>
-              <?php
-                for ($i = 0; $i < count($catalogoPeriodos); $i++) {
-                  echo "<input type='radio' name='periodo' id='" . $catalogoPeriodos[$i]["tipoPeriodoId"] . "' value='" . $catalogoPeriodos[$i]["tipoPeriodoId"] . "' >" . $catalogoPeriodos[$i]["descripcionTipoPeriodo"] . "<br>";
-                }
-              ?>
-            </td>
-          </tr>
+          
           <tr>
             <td><label class="control-label2 label" for="Antiguedad">Conserva Antiguedad</label></td>
             <td>
@@ -1057,29 +1048,6 @@ for ($i = 0; $i < count($catalogoDocumentos); $i++) {
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div class="modalEdit hide fade" tabindex="-1" role="dialog" name="modalFirmaConfirmacionSalarioDiario" id="modalFirmaConfirmacionSalarioDiario" data-backdrop="static">
-  <div id="errormodalConfirmacionSalarioDiario"></div>
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">  
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title" align="center"><img src="img/alert.png">Escribe tu numero de empleado y la contraseña que generaste !!</h3>
-      </div>
-      <div class="modal-body" align="center">
-        <span class="add-on"># Empleado</span>
-        <input type="text" id="NumEmpModalFirmaParaConfirmacionSalarioDiario" class="input-medium" name="NumEmpModalFirmaParaConfirmacionSalarioDiario" placeholder="00-0000-00 Ó 00-00000-00">
-        <input type="hidden" id="NumEmpModalFirmaParaConfirmacionSalarioDiariohidden" class="input-medium" name="NumEmpModalFirmaParaConfirmacionSalarioDiariohidden">
-        <span class="add-on">Contraseña</span>
-        <input type="password" id="constraseniaFirmaParaConfirmacionSalarioDiarioEmpleado" class="input-xlarge"name="constraseniaFirmaParaConfirmacionSalarioDiarioEmpleado" title="El campo identifica entre mayusculas y minusculas favor de considerarlo">
-        <input type="hidden" id="constraseniaFirmaParaConfirmacionSalarioDiarioEmpleadoHidden" class="input-xlarge"name="constraseniaFirmaParaConfirmacionSalarioDiarioEmpleadoHidden">
-      </div>
-      <div class="modal-body" align="center">
-        <button type="button" id="btnFirmarConfirmacionSalarioDiario" name="btnFirmarConfirmacionSalarioDiario" onclick="RevisarFirmaInternaParaConfirmacionSalarioDiario();" style="display: block;" class="btn btn-primary" >Firmar</button><br>
-        <button type="button" id="btnCancelarFirmaConfirmacionSalarioDiario" name="btnCancelarFirmaConfirmacionSalarioDiario"onclick="cancelarFirmaParaConfirmacionSalarioDiario();" class="btn btn-danger" >Cancelar</button>
-      </div>      
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 <script type="text/javascript">
 
 jQuery('.soloLetras').keypress(function (tecla) {
@@ -1497,8 +1465,6 @@ function guardarSubmit (){
     $("#apellidoPaternoEmpleado").val(apellidoPaternoEmpleado1);
     $("#apellidoMaternoEmpleado").val(apellidoMaternoEmpleado1);
     $("#nombreEmpleado").val(nombreEmpleado1);
-    var constraseniaValidacion = $("#constraseniaFirmaParaConfirmacionSalarioDiarioEmpleadoHidden").val();
-    var numeroAdminValidacion = $("#NumEmpModalFirmaParaConfirmacionSalarioDiariohidden").val();
     var tipoPuestoBandera = $("#tipoPuesto").val();
 
     var txtClaveINET1 = $("#txtClaveINET1").val();
@@ -1507,8 +1473,34 @@ function guardarSubmit (){
     var generoClaveINE= $("#IdGeneroClaveINERE").val();
     var txtClaveINET3 = $("#txtClaveINET3").val();
     var gerenteReg = $("#gerenteReg").val();
-
     var selLineaNegocio = $("#selectLineaNegocio").val();
+    var linea = $("#selectLineaNegocio").val();
+    var LicenciaSiC = document.getElementById('licenciaConducirsiEMp').checked;
+    var LicenciaPermanente = document.getElementById('licenciaConducirnopermanente').checked;
+    var NumeroLicencia = $("#numerolicencia").val();
+    var FechaLicencia = $("#inpfehavigencialicencia").val();
+
+    if(linea == 3 && LicenciaSiC == false){
+        alertMsg1="<div id='msgAlert' class='alert alert-error'>El empleado debe tener licencia de conducir para poder darse de alta<a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+        $("#alertMsg").html(alertMsg1);
+        $(document).scrollTop(0);
+        $('#msgAlert').delay(3000).fadeOut('slow');
+        return;
+    }
+    if(linea == 3 && LicenciaSiC == true && NumeroLicencia == ""){
+      alertMsg1="<div id='msgAlert' class='alert alert-error'>Ingrese el número de licencia<a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+        $("#alertMsg").html(alertMsg1);
+        $(document).scrollTop(0);
+        $('#msgAlert').delay(3000).fadeOut('slow');
+        return;
+    }
+    if(linea == 3 && LicenciaSiC == true && LicenciaPermanente == true && FechaLicencia == ""){
+      alertMsg1="<div id='msgAlert' class='alert alert-error'>Ingrese la fecha de vencimiento de la licencia<a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+        $("#alertMsg").html(alertMsg1);
+        $(document).scrollTop(0);
+        $('#msgAlert').delay(3000).fadeOut('slow');
+        return;
+    }
 
     if(txtClaveINET1!="" || txtClaveINET2!="" || txtClaveINET3!=""){
       if(txtClaveINET1.length!=6){
@@ -1552,7 +1544,7 @@ function guardarSubmit (){
     var selplantillaserviciorei=$("#selplantillaservicio").val();
     var combo = document.getElementById("selplantillaservicio");
     if(selplantillaserviciorei =="0" || selplantillaserviciorei=="null" || selplantillaserviciorei== null){
-      swal("Alto", "Seleccione La Plantilla Para Continuar","error");
+      swal.fire({ icon: 'error', title: 'Alto', text: "Seleccione La Plantilla Para Continuar" });
     }else{
       var plantillaText1 = combo.options[combo.selectedIndex].text;
       var plantillaText2  = plantillaText1.split("_");
@@ -1565,9 +1557,6 @@ function guardarSubmit (){
     datastring += "&txtCorreoGifR=" + txtCorreoGif;
     datastring += "&gerenteRegSup=" + gerenteReg;
 
-    if((constraseniaValidacion == "" || numeroAdminValidacion == "") && tipoPuestoBandera == "03" && selLineaNegocio=="1"){
-      swal("Alto", "Confima EL Salario Diario Del Empleado Para Continuar","error"); 
-    }else{
       $.ajax({
         type: "POST",
         url: "ajax_registrarEmpleado.php",
@@ -1576,10 +1565,10 @@ function guardarSubmit (){
         success: function(response) {
           var mensaje=response.message;
           if (response.status=="success") {   
-            //var cuota = response.datos;       
+            var cuota = response.datos;       
             var numeroVisitante = $("#numeroVisitante").val();
             $("#NumeroEmpleadoModa").val($("#numeroEmpleadoEntidad").val()+"-"+$("#numeroEmpleadoConsecutivo").val()+"-"+$("#numeroEmpleadoTipo").val());
-            insertarDatosImssAuto();
+            insertarDatosImssAuto(cuota);
             alertMsg1="<div id='msgAlert' class='alert alert-success'><strong>Datos Gegerales</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
             $("#alertMsg").html(alertMsg1);
             $(document).scrollTop(0);
@@ -1629,7 +1618,6 @@ function guardarSubmit (){
             $( "#2").prop("disabled",true);
             var elemento = document.getElementById("spanDatosGenerales");
             elemento.className = "glyphicon glyphicon-ok";
-            GuardarHistoricoMovimientosSalarioDiarioImss(plantillaservicioingreso);
             $('#myModal').modal(); 
           }else if (response.status=="error")
           {
@@ -1638,41 +1626,15 @@ function guardarSubmit (){
             $(document).scrollTop(0);
             $('#msgAlert').delay(3000).fadeOut('slow');
           }
-        },error: function(jqXHR, textStatus, errorThrown)
-        {
+        },error: function(jqXHR, textStatus, errorThrown) {
           alert(jqXHR.responseText);
-        }
+      }
       });
-    }
+    
    }
   }
 }
 
-function GuardarHistoricoMovimientosSalarioDiarioImss(idPlantilla){
-  var sueldo = $("#SueldoSalarioDiarioEmp").val();
-  var salarioDiari = $("#SalarioDiarioEmp").val();
-  var constrasenia = $("#constraseniaFirmaParaConfirmacionSalarioDiarioEmpleadoHidden").val();
-  var numeroAdmin = $("#NumEmpModalFirmaParaConfirmacionSalarioDiariohidden").val();
-  var numeroEmpleadoEntidad = $("#numeroEmpleadoEntidad").val();
-  var numeroEmpleadoConsecutivo = $("#numeroEmpleadoConsecutivo").val();
-  var numeroEmpleadoTipo = $("#numeroEmpleadoTipo").val();
-  var numeroEmpleado = numeroEmpleadoEntidad+"-"+numeroEmpleadoConsecutivo+"-"+numeroEmpleadoTipo;
-  var origen = "Registro";
-  $.ajax({
-    type: "POST",
-    url: "ajax_RegistrarHistoricoMovSDImss.php",
-    data: {"sueldo":sueldo,"salarioDiari":salarioDiari,"constrasenia":constrasenia,"numeroAdmin":numeroAdmin,"numeroEmpleado":numeroEmpleado,"origen":origen,"idPlantilla":idPlantilla},
-    dataType: "json",
-    success: function(response) {
-      if (response.status != "success")
-      {
-        alert(response.message);
-      }
-    },error: function(jqXHR, textStatus, errorThrown){
-      alert(jqXHR.responseText);
-    }
-  });
-}
 
 function documentoschecados(){
   $("#checkOriginales7").prop("checked","checked");
@@ -1704,40 +1666,20 @@ function enviarPdfreingressoo() {
           alert(jqXHR.responseText);
       }
   });
-}
+} 
 
-function insertarDatosImssAuto(){
+function insertarDatosImssAuto(cuota){
   var numeroEmpleadoEntidad=$("#numeroEmpleadoEntidad").val();
   var numeroEmpleadoConsecutivo=$("#numeroEmpleadoConsecutivo").val();
   var numeroEmpleadoTipo=$("#numeroEmpleadoTipo").val();
   var fechaImss=$("#fechaIngreso").val();
   var tipoTrabajador=1;
-  // var registroPatronal='Y6055712100';
+  var salarioDiario=cuota;
   var registroPatronal=consulraRegistroPatronal();
   var empleadoEstatusImss=1;
   var Origen=1; // se utiliza el orien ya que siempre sera 1 y el estatus del txt de alta es 1 var movimientoTXT = '1';
   var selectLineaNegocioImss=$("#selectLineaNegocio").val();
   var tipoPuestoImss=$("#tipoPuesto").val();
-  if(selectLineaNegocioImss == "1" && tipoPuestoImss == "03"){
-    var salarioDiario=$("#SalarioDiarioEmp").val();
-  }else{
-    $.ajax({
-      type: "POST",
-      url: "ajax_obtenerTabuladoActual.php",
-      dataType: "json",
-      async:false,
-      success: function(response) {
-        if (response.status == "success")
-        {
-          var salarioDiario2 = response.datos1[0].SalarioDiarioDescuento;
-          $("#SalarioDiarioEmpImss").val(salarioDiario2);
-        }
-      },error: function(jqXHR, textStatus, errorThrown){
-        alert(jqXHR.responseText);
-      }
-    });
-    var salarioDiario = $("#SalarioDiarioEmpImss").val();
-  }
   var idTxtImss='1';
   $.ajax({
     type: "POST",
@@ -1796,7 +1738,10 @@ function seleccionarDepartamentoIngreso(){
 
   var lineaNegocio = $("#selectLineaNegocio").val();
   var tipoPuesto = $("#tipoPuesto").val();
-  if(lineaNegocio !="LiNEA NEGOCIO" && lineaNegocio !="" && lineaNegocio !="0" && tipoPuesto !="TIPO PUESTO" && tipoPuesto !="" && tipoPuesto !="0"){
+  // alert("aaaaa");
+  // alert(lineaNegocio);
+  if(lineaNegocio !="LINEA NEGOCIO" && lineaNegocio !="" && lineaNegocio !="0" && tipoPuesto !="TIPO PUESTO" && tipoPuesto !="" && tipoPuesto !="0"){
+  // alert("bbbbbb");
     if(tipoPuesto =="02"){
       $.ajax({
         type: "POST",
@@ -1828,6 +1773,8 @@ function seleccionarDepartamentoIngreso(){
       seleccionarTipoPuesto();
     }
   }else{
+  // alert("ccccccccccc");
+
     $("#puesto").empty();
     $("#DeptoIngreso").empty();
   }
@@ -1845,19 +1792,6 @@ function seleccionarTipoPuesto()
   var valorTipo = $("#tipoPuesto").val();
   var lineaNegocio = $("#selectLineaNegocio").val();
   var idDepartamentoPuesto = $("#DeptoIngreso").val();
-  if(valorTipo=="02" || lineaNegocio !="1"){
-     $("#imgMalSalarioDiario").hide();
-     $("#imgBienSalarioDiario").show();
-     $("#btnConfirmadoSalarioDiario").show();
-     $("#btnConfirmarSalarioDiario").hide();
-     $("#btnGenrarSalarioDiario").hide();
-  }else{
-     $("#imgMalSalarioDiario").show();
-     $("#imgBienSalarioDiario").hide();
-     $("#btnConfirmadoSalarioDiario").hide();
-     $("#btnConfirmarSalarioDiario").hide();
-     $("#btnGenrarSalarioDiario").show();
-  }
   $("#selplantillaservicio").empty();
   $("#tipoTurno").val("TURNO");
   //$("#numeroEmpleadoTipo").val(valorTipo);
@@ -2614,7 +2548,7 @@ function RevisionDelCurpIngresadoConElInternoRegistro(curpEdited1){
     if($('#checkCurpRegistro').is(":checked")){
       if($('#checkRfcRegistro').is(":checked")){
         $("#modalCurpInternoRegistro").modal("show");
-        $("#MensajeCurpRegistro").html("Movimiento registrado. La información de la no deducibilidad es responsabilidad de la confirmación con los datos y firma de usuario(zona Gif). Al tener  discrepancia con información de RENAPO e imss y sat con padrón activo y declaraciones de la persona físico como de la moral.");
+        $("#MensajeCurpRegistro").html("Movimiento registrado. La información de la no deducibilidad es responsabilidad de la confirmación con los datos y firma de usuario(Grupo Gif). Al tener  discrepancia con información de RENAPO e imss y sat con padrón activo y declaraciones de la persona físico como de la moral.");
         RevisonUltimosDosDigitosDelCurpRegistro();
       }else{
         if(curpEditedDivididoRfc != rfcAño){
@@ -2622,7 +2556,7 @@ function RevisionDelCurpIngresadoConElInternoRegistro(curpEdited1){
           $("#MensajeCurpRegistro").html("El RFC Ingresado : " + rfcAño +" No Coincide Con El Curp Ingresado : " + curpEditedDivididoRfc + " Favor De Revisar, Para Continuar Marque El Campo De '¿Continuar Con EL RFC?' ");
         }else{
           $("#modalCurpInternoRegistro").modal("show");
-        $("#MensajeCurpRegistro").html("Movimiento registrado. La información de la no deducibilidad es responsabilidad de la confirmación con los datos y firma de usuario(zona Gif). Al tener  discrepancia con información de RENAPO e imss y sat con padrón activo y declaraciones de la persona físico como de la moral.");
+        $("#MensajeCurpRegistro").html("Movimiento registrado. La información de la no deducibilidad es responsabilidad de la confirmación con los datos y firma de usuario(Grupo Gif). Al tener  discrepancia con información de RENAPO e imss y sat con padrón activo y declaraciones de la persona físico como de la moral.");
           RevisonUltimosDosDigitosDelCurpRegistro();
         }
       }
@@ -2640,7 +2574,7 @@ function RevisionDelCurpIngresadoConElInternoRegistro(curpEdited1){
     if($('#checkCurpRegistro').is(":checked")){
       if($('#checkRfcRegistro').is(":checked")){
         $("#modalCurpInternoRegistro").modal("show");
-        $("#MensajeCurpRegistro").html("Movimiento registrado. La información de la no deducibilidad es responsabilidad de la confirmación con los datos y firma de usuario(zona Gif). Al tener  discrepancia con información de RENAPO e imss y sat con padrón activo y declaraciones de la persona físico como de la moral.");
+        $("#MensajeCurpRegistro").html("Movimiento registrado. La información de la no deducibilidad es responsabilidad de la confirmación con los datos y firma de usuario(Grupo Gif). Al tener  discrepancia con información de RENAPO e imss y sat con padrón activo y declaraciones de la persona físico como de la moral.");
         RevisonUltimosDosDigitosDelCurpRegistro();
       }else{
         if(curpEditedDivididoRfc != rfcAño){
@@ -2648,7 +2582,7 @@ function RevisionDelCurpIngresadoConElInternoRegistro(curpEdited1){
           $("#MensajeCurpRegistro").html("El RFC Ingresado : " + rfcAño +" No Coincide Con El Curp Ingresado : " + curpEditedDivididoRfc + " Favor De Revisar, Para Continuar Marque El Campo De '¿Continuar Con EL RFC?' ");
         }else{
           $("#modalCurpInternoRegistro").modal("show");
-        $("#MensajeCurpRegistro").html("Movimiento registrado. La información de la no deducibilidad es responsabilidad de la confirmación con los datos y firma de usuario(zona Gif). Al tener  discrepancia con información de RENAPO e imss y sat con padrón activo y declaraciones de la persona físico como de la moral.");
+        $("#MensajeCurpRegistro").html("Movimiento registrado. La información de la no deducibilidad es responsabilidad de la confirmación con los datos y firma de usuario(Grupo Gif). Al tener  discrepancia con información de RENAPO e imss y sat con padrón activo y declaraciones de la persona físico como de la moral.");
           RevisonUltimosDosDigitosDelCurpRegistro();
         }
       }
@@ -3230,35 +3164,48 @@ function setUmfData (idUnidadMedica,nombreUnidad, domicilioUnidad ){
     $("#txtDireccionUmf").val(domicilioUnidad);
 }
 
+document.querySelectorAll('input[name="periodo"]').forEach((radio)=>{
+      radio.addEventListener('change',function(){
+          var idEntidad  = $("#selectEndidadFederativaLabor").val();
+          if (idEntidad!='ENTIDAD FEDERATIVA') {
+            obtenerListaPuntosServiciosPorEntidad();
+          }
+      })
+})
+
 function obtenerListaPuntosServiciosPorEntidad(){
 
-       var idEntidad  = $("#selectEndidadFederativaLabor").val();
-       var estatusPunto=1;
+  var idEntidad  = $("#selectEndidadFederativaLabor").val();
+  var estatusPunto=1;
 
-       $.ajax({
-            type: "POST",
-            url: "ajax_obtenerPuntoServicioPorEntidad.php",
-            data: {"idEntidad": idEntidad, "estatusPunto":estatusPunto},
-            dataType: "json",
-            success: function(response) {
-                if (response.status == "success")
-                {
-                    var puntosServicios = response.puntoServicio;
+  let periodoCheck = document.querySelector('input[name="periodo"]:checked');
+  if (periodoCheck ===null) {
+      swal.fire({ icon: 'warning', title: 'ALTO', text: "Seleccione el periodo para poder visualizar los puntos de servicio" });
+      return;
+  }
+  let periodoId= periodoCheck.value;
+  
 
-                    puntosServiciosOptions = "<option>PUNTOS SERVICIOS</option>";
-                    for (var i = 0; i < puntosServicios.length; i++)
-                    {
-                        puntosServiciosOptions += "<option value='" + puntosServicios[i].idPuntoServicio + "'>" + puntosServicios[i].puntoServicio + "</option>";
-                    }
-
-                    $("#selectPuntoServicio").html (puntosServiciosOptions);
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-      alert(jqXHR.responseText);
-    }
-        });
-    }
+  $.ajax({
+          type: "POST",
+          url: "ajax_obtenerPSxPeriodoyEnt.php",
+          data: {"idEntidad": idEntidad, "estatusPunto":estatusPunto, "periodo":periodoId},
+          dataType: "json",
+          success: function(response) {
+            if(response.status == "success"){
+              var puntosServicios = response.puntoServicio;
+              puntosServiciosOptions = "<option>PUNTO DE SERVICIO</option>";
+              for(var i = 0; i < puntosServicios.length; i++){
+                  puntosServiciosOptions += "<option value='" + puntosServicios[i].idPuntoServicio + "'>" + puntosServicios[i].puntoServicio + "</option>";
+              }
+              $("#selectPuntoServicio").html (puntosServiciosOptions);
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+          }
+  });
+}
 
 
 
@@ -3399,98 +3346,108 @@ function generadorFormatoDocumentosRecibidos()
       window.open("generadorCartaResponsiva.php?entidadEmpleado="+entidadEmpleado+"&consecutivoEmpleado="+consecutivoEmpleado+"&tipoEmpleado="+tipoEmpleado+"&nombreCompleto="+nombreCompleto+"",'_blank','fullscreen=no');
     }
 
-    function obtenerSupervisoresOperativos(){
+function obtenerSupervisoresOperativos(){
 
-       var puestoId = $("#tipoPuesto").val();
-       var lineaNegocio = $("#selectLineaNegocio").val();
-       if( puestoId=='03' && lineaNegocio==3){
+  var puestoId = $("#tipoPuesto").val();
+  var lineaNegocio = $("#selectLineaNegocio").val();
+  var entidadLaborar = $("#selectEndidadFederativaLabor").val();
+       // alert(puestoId);
+       // alert(lineaNegocio);
+       // alert(entidadLaborar);
+  if (puestoId!='TIPO PUESTO' && lineaNegocio!="LINEA NEGOCIO" && entidadLaborar!='ENTIDAD FEDERATIVA'){
 
-      $.ajax({
-            type: "POST",
-            url: "ajax_obtenerListaSupervisoresOperativosTransporte.php",
-
-            dataType: "json",
-            success: function(response) {
-                if (response.status == "success")
-                {
-                    var listaSupervisoresOperativos = response.listaSupervisoresOperativos;
-
-                    responsableAsistencia = "<option>RESPONSABLE ASISTENCIA</option>";
-                    for (var i = 0; i < listaSupervisoresOperativos.length; i++)
-                    {
-                      var numeroEmpleado=listaSupervisoresOperativos[i].entidadFederativaId+"-"+listaSupervisoresOperativos[i].empleadoConsecutivoId+"-"+listaSupervisoresOperativos[i].empleadoCategoriaId;
-                        responsableAsistencia += "<option value='" + numeroEmpleado + "'>" + listaSupervisoresOperativos[i].nombre + "</option>";
-                    }
-                    $("#dirigente").html (responsableAsistencia);
-                }
-            },
-            error: function (response)
-            {
-                console.log (response);
-            }
-        });
-      }//fin if
-     else if( puestoId=='03' && lineaNegocio==2){
+    if( puestoId=='03' && lineaNegocio==3){
+      // agregar ajax
 
       $.ajax({
             type: "POST",
-            url: "ajax_obtenerListaSupervisoresOperativoselectronica.php",
-
+            url: "ajax_obtenerSupOpTransporteXentidad.php",
+            data:{entidadLaborar},
             dataType: "json",
             success: function(response) {
-                if (response.status == "success")
-                {
-                    var listaSupervisoresOperativos = response.listaSupervisoresOperativos;
+              if (response.status == "success"){
+                      var listaSupervisoresOperativos = response.listaSupervisoresOperativos;
 
-                    responsableAsistencia = "<option>RESPONSABLE ASISTENCIA</option>";
-                    for (var i = 0; i < listaSupervisoresOperativos.length; i++)
-                    {
-                      var numeroEmpleado=listaSupervisoresOperativos[i].entidadFederativaId+"-"+listaSupervisoresOperativos[i].empleadoConsecutivoId+"-"+listaSupervisoresOperativos[i].empleadoCategoriaId;
-                        responsableAsistencia += "<option value='" + numeroEmpleado + "'>" + listaSupervisoresOperativos[i].nombre + "</option>";
-                    }
-                    $("#dirigente").html (responsableAsistencia);
-                }
-            },
-            error: function (response)
-            {
-                console.log (response);
-            }
-        });
-      }//fin if
+                      responsableAsistencia = "<option>RESPONSABLE ASISTENCIA</option>";
+                      for (var i = 0; i < listaSupervisoresOperativos.length; i++)
+                      {
+                        var numeroEmpleado=listaSupervisoresOperativos[i].entidadFederativaId+"-"+listaSupervisoresOperativos[i].empleadoConsecutivoId+"-"+listaSupervisoresOperativos[i].empleadoCategoriaId;
+                          responsableAsistencia += "<option value='" + numeroEmpleado + "'>" + listaSupervisoresOperativos[i].nombre + "</option>";
+                      }
+                      $("#dirigente").html (responsableAsistencia);
+                  }
+              },
+              error: function (response)
+              {
+                  console.log (response);
+              }
+      });
+    }//fin if
+    else if( puestoId=='03' && lineaNegocio==2){
+      $.ajax({
+            type: "POST",
+            url: "ajax_obtenerSupOpelectronicaXentidad.php",
+            data:{entidadLaborar},
+            dataType: "json",
+            success: function(response) {
+              if (response.status == "success"){
+                      var listaSupervisoresOperativos = response.listaSupervisoresOperativos;
+
+                      responsableAsistencia = "<option>RESPONSABLE ASISTENCIA</option>";
+                      for (var i = 0; i < listaSupervisoresOperativos.length; i++)
+                      {
+                        var numeroEmpleado=listaSupervisoresOperativos[i].entidadFederativaId+"-"+listaSupervisoresOperativos[i].empleadoConsecutivoId+"-"+listaSupervisoresOperativos[i].empleadoCategoriaId;
+                          responsableAsistencia += "<option value='" + numeroEmpleado + "'>" + listaSupervisoresOperativos[i].nombre + "</option>";
+                      }
+                      $("#dirigente").html (responsableAsistencia);
+                  }
+              },
+              error: function (response)
+              {
+                  console.log (response);
+              }
+          });
+    }//fin if
     else if( puestoId=='03' && lineaNegocio==1){
+         // alert("3");
 
-      $.ajax({
-            type: "POST",
-            url: "ajax_obtenerListaSupervisoresOperativos.php",
+        $.ajax({
+              type: "POST",
+              url: "ajax_obtenerSupOpFisicaXentidad.php",
+              data:{entidadLaborar},
+              dataType: "json",
+              success: function(response) {
+                  if (response.status == "success")
+                  {
+                      var listaSupervisoresOperativos = response.listaSupervisoresOperativos;
 
-            dataType: "json",
-            success: function(response) {
-                if (response.status == "success")
-                {
-                    var listaSupervisoresOperativos = response.listaSupervisoresOperativos;
+                      responsableAsistencia = "<option>RESPONSABLE ASISTENCIA</option>";
+                      for (var i = 0; i < listaSupervisoresOperativos.length; i++)
+                      {
+                        var numeroEmpleado=listaSupervisoresOperativos[i].entidadFederativaId+"-"+listaSupervisoresOperativos[i].empleadoConsecutivoId+"-"+listaSupervisoresOperativos[i].empleadoCategoriaId;
+                          responsableAsistencia += "<option value='" + numeroEmpleado + "'>" + listaSupervisoresOperativos[i].nombre + "</option>";
+                      }
 
-                    responsableAsistencia = "<option>RESPONSABLE ASISTENCIA</option>";
-                    for (var i = 0; i < listaSupervisoresOperativos.length; i++)
-                    {
-                      var numeroEmpleado=listaSupervisoresOperativos[i].entidadFederativaId+"-"+listaSupervisoresOperativos[i].empleadoConsecutivoId+"-"+listaSupervisoresOperativos[i].empleadoCategoriaId;
-                        responsableAsistencia += "<option value='" + numeroEmpleado + "'>" + listaSupervisoresOperativos[i].nombre + "</option>";
-                    }
-
-                    $("#dirigente").html (responsableAsistencia);
-                }
-            },
-            error: function (response)
-            {
-                console.log (response);
-            }
-        });
-      }//fin if
-      else{
-        responsableAsistencia = "<option>NO APLICA</option>";
-        $("#dirigente").html (responsableAsistencia);
-
-      }
+                      $("#dirigente").html (responsableAsistencia);
+                  }
+              },
+              error: function (response)
+              {
+                  console.log (response);
+              }
+          });
+    }//fin if
+    else{
+      // alert("4");
+      responsableAsistencia = "<option>NO APLICA</option>";
+      $("#dirigente").html (responsableAsistencia);
     }
+  }else{
+      // alert("5");
+      responsableAsistencia = "<option>NO APLICA</option>";
+      $("#dirigente").html (responsableAsistencia);
+  }//else que esten vllenos los 3 campos para poder consultar
+}//function
 
 
 function verificarTipoEmpleado(){
@@ -3501,7 +3458,7 @@ function verificarTipoEmpleado(){
 
     //PUESTOS DE LOGISTICA Y OPERACION (VER EN NOMIGIF)
     if((puesto==6 || puesto==126 || puesto==93 || puesto==31 || puesto==144 || puesto==133 || puesto==44 || puesto==122 || puesto==117) && gerente==0){
-      swal("ALTO","Seleccione el gerente regional","warning");
+      swal.fire({ icon: 'warning', title: 'ALTO', text: "Seleccione el gerente regional" });
       return;
     }
     /*var tipoPuesto = $("#tipoPuesto").val();
@@ -3614,144 +3571,7 @@ function obtenerClienteByPuntoServicioId()
   });
 }
 
-/////////////////////////////////////// Validacion Firma Salario Diario Empleado ///////////////////////////////////
-$('#btnGenrarSalarioDiario').click(function(){
-  var idtipoTurnoSD = $("#tipoTurno").val();
-  var idPuestoSD = $("#puesto").val();
-  var idPuntoServicioTabulador = $("#selectPuntoServicio").val();
-  if(idPuestoSD == "PUESTO" || idPuestoSD == "" || idPuestoSD == null || idPuestoSD == "null" || idPuestoSD == "0"){
-    swal("ALTO","Seleccione El PUESTO Para generar El Salario Diario","error");
-  }else if(idPuntoServicioTabulador == "PUNTOS SERVICIOS" || idPuntoServicioTabulador =="" || idPuntoServicioTabulador == null || idPuntoServicioTabulador == "null" || idPuntoServicioTabulador == "0"){
-    swal("ALTO","Seleccione El PUNTOS DE SERVICIO Para generar El Salario Diario","error");
-  }else if(idtipoTurnoSD == "TURNO" || idtipoTurnoSD == "" || idtipoTurnoSD == null || idtipoTurnoSD == "null" || idtipoTurnoSD == "0"){
-    swal("ALTO","Seleccione El TURNO Para generar El Salario Diario","error");
-  }else{
-    $.ajax({
-      type: "POST",
-      url: "ajax_obtenerTabuladorPorPuntos.php",
-      data: {"idtipoTurnoSD":idtipoTurnoSD,"idPuestoSD":idPuestoSD,"idPuntoServicioTabulador":idPuntoServicioTabulador},
-      dataType: "json",
-      success: function(response) {
-        if (response.status == "success")
-        {
-          if(response.datos.length > '0' ) {
-            var sueldo = response.datos[0].sueldo;
-            var PorcentajeDescuento = response.datos1[0].PorcentajeDescuento;
-            var SueldoBaseDescuento = response.datos1[0].SueldoBaseDescuento;
-            var SalarioDiarioDescuento = response.datos1[0].SalarioDiarioDescuento;
-            $("#SueldoSalarioDiarioEmp").val(sueldo);
-            var resta = sueldo- SueldoBaseDescuento;
-            if(resta > 0){
-              var MontoADescontar = sueldo*("."+PorcentajeDescuento);
-              var  salarioDiario1 = sueldo-MontoADescontar; 
-              var salarioDiario = salarioDiario1/30;
-              $("#SalarioDiarioEmp").val(salarioDiario); 
-            }else{
-              $("#SalarioDiarioEmp").val(SalarioDiarioDescuento); 
-            }
-            var salarioDiarioBefore = $("#SalarioDiarioEmp").val(); 
-            var salarioDiarioSplit =salarioDiarioBefore.split(".");
-            var salarioDiariolength = salarioDiarioSplit.length;
-            if(salarioDiariolength=="1"){$("#SalarioDiarioEmp").val(salarioDiarioBefore+".00");}
-
-
-            $("#btnConfirmadoSalarioDiario").hide();
-            $("#btnGenrarSalarioDiario").hide();
-            $("#btnConfirmarSalarioDiario").show();
-          }else{
-            swal("ALTO","Este punto de servicio con este puesto no tiene un tabular ingresado, ingresele el tabular","error");
-          }
-        }
-      },error: function(jqXHR, textStatus, errorThrown){
-        alert(jqXHR.responseText);
-      }
-    });
-  }
-});
-
-function LimpiarDatosTabuladorSalarioDiario(){
-  $("#SalarioDiarioEmp").val("");
-  $("#btnGenrarSalarioDiario").show();
-  $("#btnConfirmarSalarioDiario").hide();
-  $("#btnConfirmadoSalarioDiario").hide();
-  $("#imgMalSalarioDiario").show();
-  $("#imgBienSalarioDiario").hide();
-  $("#NumEmpModalFirmaParaConfirmacionSalarioDiario").val("");
-  $("#constraseniaFirmaParaConfirmacionSalarioDiarioEmpleado").val("");
-  $("#constraseniaFirmaParaConfirmacionSalarioDiarioEmpleadoHidden").val("");
-  $("#NumEmpModalFirmaParaConfirmacionSalarioDiariohidden").val("");
-  var tipoPuestoBanderalimpia = $("#tipoPuesto").val();
-  var LineaNegocio = $("#selectLineaNegocio").val();
-  if(tipoPuestoBanderalimpia == "02" || LineaNegocio != "1"){
-    $("#imgMalSalarioDiario").hide();
-    $("#imgBienSalarioDiario").show();
-    $("#btnConfirmadoSalarioDiario").show();
-    $("#btnConfirmarSalarioDiario").hide();
-    $("#btnGenrarSalarioDiario").hide();
-  }
-}
-
-$('#btnConfirmarSalarioDiario').click(function(){
-  $("#modalFirmaConfirmacionSalarioDiario").modal();
-});
-
-function RevisarFirmaInternaParaConfirmacionSalarioDiario(){
-  var NumEmpModalBaja = $("#NumEmpModalFirmaParaConfirmacionSalarioDiario").val();
-  var constraseniaFirma = $("#constraseniaFirmaParaConfirmacionSalarioDiarioEmpleado").val();
-  if(NumEmpModalBaja==""){
-    cargaerroresFirmaInternaParaCOnfirmaciosDeSD("El numero de empleado no puede estar vacio");
-  }else if(constraseniaFirma==""){
-    cargaerroresFirmaInternaParaCOnfirmaciosDeSD("Escriba la contraseña para continuar");
-  }else{
-    $.ajax({
-      type: "POST",
-      url: "ajax_getFirmaSolicitada.php",
-      data: {"NumEmpModalBaja":NumEmpModalBaja,"constraseniaFirma":constraseniaFirma},
-      dataType: "json",
-      success: function(response) {
-        if (response.status == "success")
-        {
-          var RespuestaLargo = response["datos"].length;
-          if(RespuestaLargo == "0"){
-            cargaerroresFirmaInternaParaCOnfirmaciosDeSD("La Contraseña ingresada es incorrecta favor de escribirla exactamente como la ingreso en el registro");
-          }else{
-            var contraseniaInsertadaCifrada =response.datos["0"].ContraseniaFirma;
-            $("#constraseniaFirmaParaConfirmacionSalarioDiarioEmpleadoHidden").val(contraseniaInsertadaCifrada);
-            $("#NumEmpModalFirmaParaConfirmacionSalarioDiariohidden").val(NumEmpModalBaja);
-            $("#modalFirmaConfirmacionSalarioDiario").modal("hide");
-            $("#NumEmpModalFirmaParaConfirmacionSalarioDiario").val("");
-            $("#constraseniaFirmaParaConfirmacionSalarioDiarioEmpleado").val("");
-            $("#imgMalSalarioDiario").hide();
-            $("#imgBienSalarioDiario").show();
-            $("#btnConfirmadoSalarioDiario").show();
-            $("#btnConfirmarSalarioDiario").hide();
-          }
-        }
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        alert(jqXHR.responseText);
-      }
-    });
-  }
-}
-function cargaerroresFirmaInternaParaCOnfirmaciosDeSD(mensaje){
-  $('#errormodalConfirmacionSalarioDiario').fadeIn();
-  msjerrorbaja="<div id='errormodalConfirmacionSalarioDiario1' class='alert alert-error'><strong>ALERTA:</strong> "+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";                   
-  $("#errormodalConfirmacionSalarioDiario").html(msjerrorbaja);
-  $(document).scrollTop(0);
-  $('#errormodalConfirmacionSalarioDiario').delay(4000).fadeOut('slow'); 
-}
-
-function cancelarFirmaParaConfirmacionSalarioDiario(){
-
-  $("#modalFirmaConfirmacionSalarioDiario").modal("hide");
-  $("#NumEmpModalFirmaParaConfirmacionSalarioDiario").val("");
-  $("#constraseniaFirmaParaConfirmacionSalarioDiarioEmpleado").val("");
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-
- function saveImageR(){
+function saveImageR(){
 
         var empleadoEntidad=$("#numeroEmpleadoEntidad").val();
         var empleadoConsecutivo=$("#numeroEmpleadoConsecutivo").val();
@@ -4337,6 +4157,7 @@ function inicioRegEmp(){
       window.open("generadorCartaCompromisoMS.php?folioAspirante="+folioAs+"",'Informe3','fullscreen=no');
     }
 
+
     function actualizaDatosGeneralesPreseleccion(datos){
 
         $.ajax({
@@ -4423,7 +4244,6 @@ function inicioRegEmp(){
     var tipoTurnoPlantillaId=$("#tipoTurno").val(); 
     var puntoServicioPlantillaId=$("#selectPuntoServicio").val();
     var tipoPuesto =  $("#tipoPuesto").val(); 
-    LimpiarDatosTabuladorSalarioDiario();
     if(tipoTurnoPlantillaId==="TURNO" ){$("#selplantillaservicio").empty();}
     if( tipoTurnoPlantillaId == 4 && tipoPuesto=="02"){
       $.ajax({
@@ -4525,7 +4345,6 @@ function obtenerHorariosPorPlantilla(idPlantilla){
 $("#puesto").change(function(){
   $("#selplantillaservicio").val("PLANTILLA");
   $("#tipoTurno").val("TURNO");
-  LimpiarDatosTabuladorSalarioDiario();
   var lineaNeg = $("#selectLineaNegocio").val();
   var entLaborar = $("#selectEndidadFederativaLabor").val();
   var puesto = $("#puesto").val();
@@ -4534,7 +4353,7 @@ $("#puesto").change(function(){
     $('#gerenteReg').empty().append('<option value="0" selected="selected">GERENTE REGIONAL</option>');
   }
 
-  if((puesto==6 || puesto==126 || puesto==93 || puesto==31 || puesto==144 || puesto==133 || puesto==44 || puesto==122 || puesto==117) && lineaNeg !="LiNEA NEGOCIO" && entLaborar!="ENTIDAD FEDERATIVA"){
+  if((puesto==6 || puesto==126 || puesto==93 || puesto==31 || puesto==144 || puesto==133 || puesto==44 || puesto==122 || puesto==117) && lineaNeg !="LINEA NEGOCIO" && entLaborar!="ENTIDAD FEDERATIVA"){
         cargarSelectorGerenteRegional(entLaborar,lineaNeg);
   }
 });  

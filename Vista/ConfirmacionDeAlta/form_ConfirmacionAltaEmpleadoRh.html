@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- CSS exclusivo del módulo -->
+    <link rel="stylesheet" href="ConfirmacionDeAlta/estilos-RhParaAlta.css" />
+  </head>
+  <body class="p-4 rh-container">
+    <center>
+      <h2 class="mb-4">Listado de Empleados Para Alta</h2>
+
+      <img
+        title="Consultar / Recargar"
+        src="img/ActualizarEjecutar.jpg"
+        class="rh-refresh"
+        id="btnguardarAltaEmpleados"
+        width="55"
+        onclick="ConsultarEmpleadosDeRhParaAlta();"
+      />
+      <br /><br />
+
+      <table
+        id="tablaEmpleadosParaAlta"
+        class="table table-striped table-bordered dt-responsive nowrap rh-table"
+        style="display: none"
+        cellspacing="0"
+        width="100%"
+      >
+        <thead>
+          <tr>
+            <th>Foto</th>
+            <th># Empleado</th>
+            <th>Nombre</th>
+            <th>Entidad</th>
+            <th>Puesto</th>
+            <th>Turno</th>
+            <th>Punto Servicio</th>
+            <th>Plantilla</th>
+            <th>Fecha</th>
+            <th>Confirmar</th>
+            <th>Declinar</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </center>
+
+    <div
+      class="modalEdit hide fade"
+      tabindex="-1"
+      role="dialog"
+      name="modalFirmaAltaEmpleadoRh"
+      id="modalFirmaAltaEmpleadoRh"
+      data-backdrop="static"
+      style="display: none"
+    >
+      <div id="errormodalFirmaAltaEmpleadoRh"></div>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h3 class="modal-title" align="center">
+              <img src="img/alert.png" />Escribe tu numero de empleado y la
+              contraseña que generaste !!
+            </h3>
+          </div>
+          <div class="modal-body" align="center">
+            <span class="add-on"># Empleado</span>
+            <input
+              type="text"
+              id="NumEmpModalFirmaAltaEmpleadoRh"
+              class="input-medium"
+              name="NumEmpModalFirmaAltaEmpleadoRh"
+              placeholder="00-0000-00 Ó 00-00000-00"
+            />
+            <input
+              type="hidden"
+              id="NumEmpModalFirmaAltaEmpleadoRhhidden"
+              class="input-medium"
+              name="NumEmpModalFirmaAltaEmpleadoRhhidden"
+            />
+            <span class="add-on">Contraseña</span>
+            <input
+              type="password"
+              id="constraseniaFirmaAltaEmpleadoRh"
+              class="input-xlarge"
+              name="constraseniaFirmaAltaEmpleadoRh"
+              title="El campo identifica entre mayusculas y minusculas favor de considerarlo"
+            />
+            <input
+              type="hidden"
+              id="constraseniaFirmaAltaEmpleadoRhHidden"
+              class="input-xlarge"
+              name="constraseniaFirmaAltaEmpleadoRhHidden"
+            />
+            <input
+              type="hidden"
+              id="NumEmpAltaEmpleadoRhHidden"
+              class="input-xlarge"
+              name="NumEmpAltaEmpleadoRhHidden"
+            />
+            <input
+              type="hidden"
+              id="txtNombrEmpleadoDefinitivoAlta"
+              name="txtNombrEmpleadoDefinitivoAlta"
+            />
+            <input type="hidden" id="txtcaso" name="txtcaso" />
+          </div>
+          <div class="modal-body" align="center">
+            <button
+              type="button"
+              id="btnFirmaAltaEmpleadoRh"
+              name="btnFirmaAltaEmpleadoRh"
+              onclick="RevisarFirmaAltaEmpleadoRh();"
+              style="display: block"
+              class="btn btn-primary"
+            >
+              Firmar</button
+            ><br />
+            <button
+              type="button"
+              id="btnCancelarFirmaAltaEmpleadoRh"
+              name="btnCancelarFirmaAltaEmpleadoRh"
+              onclick="cancelarFirmaAltaEmpleadoRh();"
+              class="btn btn-danger"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <div
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      name="modalCancelacionEnvioAlta"
+      id="modalCancelacionEnvioAlta"
+      data-backdrop="static"
+      style="display: none"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div
+              id="alertMsgDefinitivoAlta"
+              name="alertMsgDefinitivoAlta"
+            ></div>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">
+              <img src="img/alert.png" />NO PROCESAR ALTA IMSS
+            </h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              <strong
+                >¿Desea indicar que el empleado
+                <input
+                  type="text"
+                  class="input-long"
+                  name="txtEmpleadoSinImssDefinitivoAlta"
+                  id="txtEmpleadoSinImssDefinitivoAlta"
+                  readonly
+                />
+                no será procesado definitivamente para alta de Imss?</strong
+              >
+            </p>
+            <br />
+            <label class="control-label label" for="selMotivoNoAlta"
+              >Motivo</label
+            >
+            <select
+              class="span3"
+              id="selMotivoNoAlta"
+              name="selMotivoNoAlta"
+            ></select
+            ><br />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onClick="actualizarEstatusImssDefinitivoEnAlta();"
+            >
+              Sí
+            </button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <script src="ConfirmacionDeAlta/ConfirmacionAltaEmpleadoRh.js"></script>
+  </body>
+</html>

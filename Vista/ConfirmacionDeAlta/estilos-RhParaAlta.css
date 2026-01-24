@@ -1,0 +1,28 @@
+/* ======= ESTILOS EXCLUSIVOS DEL MÓDULO rh ======== */
+
+/* --- Botón de recarga --- */
+.rh-refresh {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.rh-refresh:hover {
+  transform: rotate(20deg) scale(1.1);
+}
+
+/* --- Tabla moderna --- */
+.rh-table th {
+  background: linear-gradient(
+    to bottom,
+    #c2ff96,
+    /* Azul más claro para el brillo superior */ #9bff54,
+    /* Tu azul base */ #49b000 /* Azul más oscuro para la sombra inferior */
+  ) !important;
+  color: #1b1b1b;
+  text-align: center;
+  font-weight: 600;
+}
+
+.rh-table td {
+  vertical-align: middle !important;
+  text-align: center;
+}

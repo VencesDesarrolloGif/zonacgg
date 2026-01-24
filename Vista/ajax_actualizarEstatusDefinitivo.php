@@ -15,6 +15,8 @@ verificarInicioSesion ($negocio);
 if (!empty ($_POST))
 {
 // $log = new KLogger ( "ajax_actualizarEstatusDefinitivo.log" , KLogger::DEBUG );
+// $log->LogInfo("Valor de la variable post: " . var_export ($_POST, true));
+
 
 
     $usuario = $_SESSION ["userLog"]["usuario"];
@@ -31,9 +33,10 @@ if (!empty ($_POST))
     "empleadoConsecutivoImss" => $empleadoConsecutivoId,
     "empleadoCategoriaImss" => $empleadoCategoriaId,
     "empleadoEstatusImss" => getValueFromPost("estatusImss"),
-    "comentario" =>strtoupper(getValueFromPost("comentario")),
+    "comentario" => getValueFromPost("comentario"),
+    "contraseniaInsertadaCifrada" => getValueFromPost("contraseniaInsertadaCifrada"),
+    "NumEmpModal" => getValueFromPost("NumEmpModal"),
     "usuario" => $usuario,
-    
     );
 
      // $log->LogInfo("Valor de la variable \$datosImss: " . var_export ($datosImss, true));

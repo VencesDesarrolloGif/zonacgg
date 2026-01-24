@@ -31,20 +31,20 @@ if (!empty ($_POST))
     $idTipoPuesto = getValueFromPost("idTipoPuesto");
 
     if($supervisorId=="NO APLICA" || $supervisorId =="RESPONSABLE ASISTENCIA"){
-    	$supervisorEntidad=null;
-    	$supervisorConsecutivo=null;
-    	$supervisorCategoria=null;
+        $supervisorEntidad=null;
+        $supervisorConsecutivo=null;
+        $supervisorCategoria=null;
 
     }else{
-    	$supervisorIdd = explode("-", $supervisorId);
-    	$supervisorEntidad=$supervisorIdd[0];
-    	$supervisorConsecutivo=$supervisorIdd[1];
-    	$supervisorCategoria=$supervisorIdd[2];
+        $supervisorIdd = explode("-", $supervisorId);
+        $supervisorEntidad=$supervisorIdd[0];
+        $supervisorConsecutivo=$supervisorIdd[1];
+        $supervisorCategoria=$supervisorIdd[2];
     }
- 	
+    
     $roloperativoplantillaserv=getValueFromPost("plantillaservicioreingreso");
     $plantillaservicioreingresoText=getValueFromPost("plantillaservicioreingresoText");
-  	$datos=array (
+    $datos=array (
         "idEntidadTrabajo" => getValueFromPost("idEntidadTrabajo"),
         "empleadoLineaNegocioId" => getValueFromPost("empleadoLineaNegocioId"),
         "idTipoPuesto" => getValueFromPost("idTipoPuesto"),
@@ -133,8 +133,8 @@ if (!empty ($_POST))
         $datosR ["empleadoCategoriaPlantilla"] = $empleadoCategoria;
         $negocio -> insertEmpleadoPlantilla ($datosR);
         $negocio -> actualizarFechaReingreso($empleadoEntidad, $empleadoConsecutivo, $empleadoCategoria, $fechaReingreso, $fechaBaja, $usuarioCaptura, $datos,$fechaingresooculto);
-        if($datos["idTipoPuesto"]=='03')
-        {
+        // if($datos["idTipoPuesto"]=='03')
+        // {
             // Se realiza la asignación del elemento en la plantilla
             $periodos =$negocio -> getTiposPeriodos ();
             $tipoPeriodo = "";
@@ -159,10 +159,13 @@ if (!empty ($_POST))
             }
             $response ["status"] = "success";
             $response ["message"] = "Empleado registrado éxitosamente";
-        }else{
-            $response ["status"] = "success";
-            $response ["message"] = "Empleado editado";
-        }
+        // }else{
+        //     $response ["status"] = "success";
+        //     $response ["message"] = "Empleado editado";
+        // }
+        $CuotaActual = $negocio->ObtenerSalarioActual();    
+        $cuotainsert = $CuotaActual[0]["cuota"];    
+        $response ["datos"] = $cuotainsert;
     } 
     catch (Exception $e)
     {

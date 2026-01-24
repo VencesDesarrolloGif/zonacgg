@@ -14,17 +14,17 @@ verificarInicioSesion ($negocio);
    // $log->LogInfo("Valor de la variable _FILES: " . var_export ($_FILES, true));
 if (!empty ($_POST)){
     $usuarioCaptura=$_SESSION ["userLog"]["usuario"];
-	$idFotoEmpleado = getValueFromPost ("idFotoEmpleado");
-	$selplantillaservicio = getValueFromPost("plantillaservicioingreso");
-	$target_dir = dirname (__FILE__) . 
+    $idFotoEmpleado = getValueFromPost ("idFotoEmpleado");
+    $selplantillaservicio = getValueFromPost("plantillaservicioingreso");
+    $target_dir = dirname (__FILE__) . 
         DIRECTORY_SEPARATOR . "uploads" . 
         DIRECTORY_SEPARATOR . "fotosempleados" . 
         DIRECTORY_SEPARATOR;
-	$target_file = $target_dir . $idFotoEmpleado;
-	if (!file_exists ($target_file))
-	{
-		$idFotoEmpleado = "";
-	}
+    $target_file = $target_dir . $idFotoEmpleado;
+    if (!file_exists ($target_file))
+    {
+        $idFotoEmpleado = "";
+    }
      $empleadoResAsistencia = getValueFromPost("dirigente");
    if($empleadoResAsistencia=="0" || $empleadoResAsistencia=="null" || $empleadoResAsistencia=="NULL" || $empleadoResAsistencia=="" || $empleadoResAsistencia==null || $empleadoResAsistencia==NULL || $empleadoResAsistencia=="NO APLICA"){
         $idEntidadResponsableAsistencia="";
@@ -67,7 +67,7 @@ if (!empty ($_POST)){
     array('Ñ','Ñ'),
     $nombreEmpleado);
 
-	$empleado = array (
+    $empleado = array (
     "entidadFederativaId" => getValueFromPost("numeroEmpleadoEntidad"),
     "empleadoConsecutivoId" => getValueFromPost("numeroEmpleadoConsecutivo"),
     "empleadoCategoriaId" => getValueFromPost("numeroEmpleadoTipo"),
@@ -87,19 +87,19 @@ if (!empty ($_POST)){
     "empleadoIdPuesto" => getValueFromPost("puesto"),
     "empleadoIdPuntoServicio" =>getValueFromPost("selectPuntoServicio"),
     "empleadoIdTurno" => getValueFromPost("tipoTurno"),
-	"empleadoIdGenero" => getValueFromPost("genero"),
-	"empleadoIdOficio" => getValueFromPost("oficio"),
-	"empleadoIdTipoSangre" => getValueFromPost("tipoSangre"),
-	"empleadoNumeroSeguroSocial" => getValueFromPost("numeroSeguroSocial"),
-	"numeroCta" => getValueFromPost("txtNumeroCta"),
+    "empleadoIdGenero" => getValueFromPost("genero"),
+    "empleadoIdOficio" => getValueFromPost("oficio"),
+    "empleadoIdTipoSangre" => getValueFromPost("tipoSangre"),
+    "empleadoNumeroSeguroSocial" => getValueFromPost("numeroSeguroSocial"),
+    "numeroCta" => getValueFromPost("txtNumeroCta"),
     "numeroCtaClabe" => getValueFromPost("txtCtaClabe"),
     "NumeroTarjetaDespensa" => getValueFromPost("txtTjDespensa"),
-	"NumeroIutTarjetaDespensa" => getValueFromPost("txtnumeroIut"),
-	"idTipoPuesto" => getValueFromPost("tipoPuesto"),
-	"idEntidadResponsableAsistencia" => $idEntidadResponsableAsistencia,
-	"consecutivoResponsableAsistencia" => $consecutivoResponsableAsistencia,
-	"tipoResponsableAsistencia" => $tipoResponsableAsistencia,
-	"fotoEmpleado" => $idFotoEmpleado,
+    "NumeroIutTarjetaDespensa" => getValueFromPost("txtnumeroIut"),
+    "idTipoPuesto" => getValueFromPost("tipoPuesto"),
+    "idEntidadResponsableAsistencia" => $idEntidadResponsableAsistencia,
+    "consecutivoResponsableAsistencia" => $consecutivoResponsableAsistencia,
+    "tipoResponsableAsistencia" => $tipoResponsableAsistencia,
+    "fotoEmpleado" => $idFotoEmpleado,
     "empleadoLineaNegocioId" => getValueFromPost("selectLineaNegocio"),
     "idEntidadTrabajo" => getValueFromPost("selectEndidadFederativaLabor"),
     "usuarioCapturaEmpleado" => $usuarioCaptura,
@@ -171,6 +171,9 @@ if (!empty ($_POST)){
                 $negocio->insertSueldoEmpleado($datosEmpleadoCuota);
             }
         }
+        $CuotaActual = $negocio->ObtenerSalarioActual();    
+        $cuotainsert = $CuotaActual[0]["cuota"];    
+        $response ["datos"] = $cuotainsert;
         $response ["status"] = "success";
         $response ["message"] = "Empleado registrado éxitosamente";
     } catch (Exception $e){

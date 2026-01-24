@@ -25,8 +25,8 @@ if (!empty ($_POST))
         "folioTxt" => getValueFromPost("folioTxt"),
         "numeroLote" => getValueFromPost("numeroLote"),
         "fechaImss" => getValueFromPost("fechaImss"),
-        "salario" => getValueFromPost("SalarioDiarioReingreso"),
-        "bandera" => getValueFromPost("BanderaReingreso"),
+        "SalarioDiario" => getValueFromPost("SalarioDiarioImss"),
+        "idRechazado" =>"1"//se pone en uno para que pase a revision por rh "ALTA"
     );
     try
     {

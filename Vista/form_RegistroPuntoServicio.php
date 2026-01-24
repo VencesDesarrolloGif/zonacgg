@@ -11,7 +11,7 @@ $catalogoClientes= $negocio -> negocio_obtenerListaClientesActivos();
   </fieldset>
   <table>
   <tr>
-    <td  rowspan="41"><img src="img/localizacion.jpg"></td>
+    <td  rowspan="50"><img src="img/localizacion.jpg"></td>
     <td><label class="control-label1 label" for="numOrden">Numero Orden</label></td>
     <td><input id="txtNumeroOrden" name="txtNumeroOrden" type="text" class="input-small" readonly ></td>
   </tr>
@@ -250,6 +250,10 @@ $catalogoClientes= $negocio -> negocio_obtenerListaClientesActivos();
     <td><input id="txtTelefonoMovilOperativo" name="txtTelefonoMovilOperativo" required="hey" type="text" class="input-medium"></td>
   </tr>
   <tr>
+    <td><label class="control-label1 label" for="selPeriodo">Periodo</label></td>
+    <td><select id="selPeriodo"></select></td>
+  </tr>
+  <tr>
     <td>
         <label class="control-label1 label" for="visiblerh"> Visible para RH</label>
         </td>
@@ -292,6 +296,39 @@ $catalogoClientes= $negocio -> negocio_obtenerListaClientesActivos();
                 </ul>
             </div>
         </td>
+      </tr>
+      <tr>
+        <td> <h4>Supervisiones Semanales</h4> </td>
+      </tr>
+      <tr>
+        <td><label class="control-label1 label" for="Supervisiones" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Lunes</label></td>
+        <td><input id="txtSupervisionesLunes" name="txtSupervisionesLunes" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+      </tr>
+      <tr>
+        <td><label class="control-label1 label" for="Supervisiones" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Martes</label></td>
+        <td><input id="txtSupervisionesMartes" name="txtSupervisionesMartes" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+      </tr>
+      <tr>
+        <td><label class="control-label1 label" for="Supervisiones" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Miércoles</label></td>
+        <td><input id="txtSupervisionesMiercoles" name="txtSupervisionesMiercoles" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+      </tr>
+      <tr>
+        <td><label class="control-label1 label" for="Supervisiones" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Jueves</label></td>
+        <td><input id="txtSupervisionesJueves" name="txtSupervisionesJueves" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+      </tr>
+      <tr>
+        <td><label class="control-label1 label" for="Supervisiones" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Viernes</label></td>
+        <td><input id="txtSupervisionesViernes" name="txtSupervisionesViernes" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+      </tr>
+      <tr>
+        <td><label class="control-label1 label" for="Supervisiones" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Sabado</label></td>
+        <td><input id="txtSupervisionesSabado" name="txtSupervisionesSabado" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+      </tr>
+      <tr>
+        <td><label class="control-label1 label" for="Supervisiones" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Domingo</label></td>
+        <td><input id="txtSupervisionesDomingo" name="txtSupervisionesDomingo" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+      </tr>
+
       </tr>
   <tr><td  colspan="3" align="center"><button id="guardar" name="guardar" class="btn btn-primary" type="button" onclick="guardarPuntoServicio();"> <span class="glyphicon glyphicon-floppy-save"></span>Guardar</button></td></tr>
   </table>
@@ -595,6 +632,7 @@ function inicioRegPS(){
       obtenerListaClientesSelectModal();
       seleccionarPuestoSF();
       ocultarCamposDiasATrabajar(1);
+      consultarPeriodoS();
 
       //displayDivSeguridadFisica();
       //displayDivSeguridadElectronica();
@@ -602,6 +640,28 @@ function inicioRegPS(){
      <?php
         }
     ?>
+}
+
+function consultarPeriodoS() {
+    $.ajax({
+        type: "POST",
+        url: "ajax_ConsultaPeriodosParaPS.php",
+        dataType: "json",
+        success: function(response) {
+            $("#datos").empty();
+            $(document).scrollTop(0);
+            datos = response.datos;
+            $('#selPeriodo').empty().append('<option value="0" selected="selected">SELECCIONAR</option>');
+            $.each(datos, function(i) {
+                  let idPeriodoCatalogo = response.datos[i].IdPeriodo;
+                  let descripcionCatalogo = response.datos[i].Descripcion;
+                  $('#selPeriodo').append('<option value="' + idPeriodoCatalogo + '">' + descripcionCatalogo + '</option>');
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        }
+    });
 }
 
 
@@ -674,6 +734,16 @@ $("#valorFlat").change(function(){
         var idRegion=$("#idtxtRegion").val();
         var datastring = $("#form_registroPuntoServicio").serialize();   
         var clienteName=$("#cliente option:selected").text();
+        var idPeriodo=$("#selPeriodo").val();
+
+        if(idPeriodo==0){
+            var mensaje= "Seleccione un periodo"
+            alertMsg1="<div id='msgAlert' class='alert alert-error'><strong>Alerta:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";
+            $("#alertMsg").html(alertMsg1);
+            $(document).scrollTop(0);
+            $('#msgAlert').delay(3000).fadeOut('slow');
+            return;
+        }
 
             datastring += "&esatusPunto=" + esatusPunto;  
             datastring += "&entidadFederativa=" + entidadFederativa;  
@@ -685,6 +755,7 @@ $("#valorFlat").change(function(){
             datastring += "&idRegion=" + idRegion;
             datastring += "&visiblerh=" + visiblerh;
             datastring += "&cubredescanso=" + cubredescanso;
+            datastring += "&idPeriodo=" + idPeriodo;
           waitingDialog.show();
         $.ajax({
             type: "POST",
@@ -693,7 +764,6 @@ $("#valorFlat").change(function(){
             dataType: "json",
             success: function(response) {
                 var mensaje=response.message;
-
                 if (response.status=="success") {
                   
                     alertMsg1="<div id='msgAlert' class='alert alert-success'><trong>Registro Punto Servicio:</strong>"+mensaje+" <a href='#' class='close' data-dismiss='alert'>&times;</a></div>";

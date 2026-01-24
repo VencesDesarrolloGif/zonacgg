@@ -45,29 +45,34 @@ if (!empty ($_POST))
     "cobraDescansos"=>getValueFromPost("cobraDescansos"),
     "cobraDiaFestivo"=>getValueFromPost("cobraDiaFestivo"),
     "cobra31"=>getValueFromPost("cobra31"),
-    "cobra31"=>getValueFromPost("cobra31"),
     "latitudPunto"=>getValueFromPost("txtLatitud"),
     "longitudPunto"=>getValueFromPost("txtLongitud"),
     "clienteName"=>getValueFromPost("clienteName"),
     "turnoFlat"=>getValueFromPost("turnoFlat"),
-
-     "turnoFlat"=>getValueFromPost("turnoFlat"),
-      "selLineaNegocio"=>getValueFromPost("selLineaNegocio"),
-      "idRegion"=>getValueFromPost("idRegion"),
-      "visiblerh"=>getValueFromPost("visiblerh"),
-      "cubredescanso"=>getValueFromPost("cubredescanso"),    
-      "selmunicipiowalmrt"=>getValueFromPost("selmunicipiowalmrt"), 
-      "txtunidad"=>getValueFromPost("txtunidad"), 
-      "CpContrato" => getValueFromPost("txtCpContratoPuntoServicio"),
-      "Asentamiento" => getValueFromPost("txtAsentamientoPuntoServicio"),
-      "EntidadCliente" => getValueFromPost("txtEntidadClientePuntoServicio"),
-      "Municipio" => getValueFromPost("txtMunicipioPuntoServicio"), 
-      "ColoniaCliente" => getValueFromPost("txtColoniaClientePuntoServicio"),
-      "CallePrincipal" => getValueFromPost("txtCallePrincipalPuntoServicio"),
-      "NumeroInteriro" => getValueFromPost("txtNumeroInteriroPuntoServicio"),
-      "NumeroExterior" => getValueFromPost("txtNumeroExteriorPuntoServicio"),
-      "Calle1" => getValueFromPost("txtCalle1PuntoServicio"),
-      "Calle2" => getValueFromPost("txtCalle2PuntoServicio"),
+    "selLineaNegocio"=>getValueFromPost("selLineaNegocio"),
+    "idRegion"=>getValueFromPost("idRegion"),
+    "visiblerh"=>getValueFromPost("visiblerh"),
+    "cubredescanso"=>getValueFromPost("cubredescanso"),    
+    "selmunicipiowalmrt"=>getValueFromPost("selmunicipiowalmrt"), 
+    "txtunidad"=>getValueFromPost("txtunidad"), 
+    "CpContrato" => getValueFromPost("txtCpContratoPuntoServicio"),
+    "Asentamiento" => getValueFromPost("txtAsentamientoPuntoServicio"),
+    "EntidadCliente" => getValueFromPost("txtEntidadClientePuntoServicio"),
+    "Municipio" => getValueFromPost("txtMunicipioPuntoServicio"), 
+    "ColoniaCliente" => getValueFromPost("txtColoniaClientePuntoServicio"),
+    "CallePrincipal" => getValueFromPost("txtCallePrincipalPuntoServicio"),
+    "NumeroInteriro" => getValueFromPost("txtNumeroInteriroPuntoServicio"),
+    "NumeroExterior" => getValueFromPost("txtNumeroExteriorPuntoServicio"),
+    "Calle1" => getValueFromPost("txtCalle1PuntoServicio"),
+    "Calle2" => getValueFromPost("txtCalle2PuntoServicio"),
+    "idPeriodo" => getValueFromPost("idPeriodo"),
+    "SupervisionesLunes" => getValueFromPost("txtSupervisionesLunes"),
+    "SupervisionesMartes" => getValueFromPost("txtSupervisionesMartes"),
+    "SupervisionesMiercoles" => getValueFromPost("txtSupervisionesMiercoles"),
+    "SupervisionesJueves" => getValueFromPost("txtSupervisionesJueves"),
+    "SupervisionesViernes" => getValueFromPost("txtSupervisionesViernes"),
+    "SupervisionesSabado" => getValueFromPost("txtSupervisionesSabado"),
+    "SupervisionesDomingo" => getValueFromPost("txtSupervisionesDomingo")
 );
 
      // $log->LogInfo("Valor de la variable \$puntoServicio: " . var_export ($puntoServicio, true));
@@ -77,18 +82,18 @@ if (!empty ($_POST))
         $response ["status"] = "success";
         $response ["message"] = "Punto de Servicio registrado éxitosamente";
 
-       $mail = new PHPMailer;
+        $mail = new PHPMailer;
         $mail->IsSMTP();
         $mail->Host       = 'smtp.office365.com';
         $mail->Port       = 587;
         $mail->SMTPAuth   = true;
         $mail->Username   = 'registros@gifseguridad.com.mx';
-        $mail->Password   = 'Har00112';
+        $mail->Password   = 'N^208118301503od';
         $mail->SMTPSecure = 'tls';
         $mail->From       = 'registros@gifseguridad.com.mx';
         $mail->FromName = 'Ventas';
 
-        //$mail->AddAddress('lourdes.herrera@gifseguridad.com.mx', 'Lourdes Herrera');  
+        // $mail->AddAddress('antonio.galvan@gifseguridad.com.mx', 'Mario Antonio  Galvan Vergara');  
         $mail->AddAddress('contrataciones@gifseguridad.com.mx', 'contrataciones');  
         //$mail->AddAddress('abril.sanroman@gifseguridad.com.mx','Abril San Roman');  
        // $mail->AddAddress('roberto.vences@gifseguridad.com.mx','Roberto Vences');

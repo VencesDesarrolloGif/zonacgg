@@ -4048,7 +4048,6 @@ public function updateCatalogopuntosservicios($puntoServicio)
             throw new Exception("Verifique El rango SOLO NUMEROS");
         }
     }
-
     if ($puntoServicio["fechaInicioServicio"] == "" || $puntoServicio["fechaInicioServicio"] == "0000-00-00") {
         throw new Exception("Ingrese Fecha Inicio");
     }
@@ -4144,6 +4143,63 @@ public function updateCatalogopuntosservicios($puntoServicio)
             throw new Exception("El nombre del punto de servicio ya se encuentra registrado en la base");
         }
 
+    }
+
+    if ($puntoServicio["SupervisionesLunesEdit"] == "" || $puntoServicio["SupervisionesLunesEdit"] < 0) {
+        throw new Exception("Por favor Ingrese: El total de supervisiones para el día lunes ");
+    }
+    if ($puntoServicio["SupervisionesLunesEdit"] != "") {
+        if (is_numeric($puntoServicio["SupervisionesLunesEdit"]) == false) {
+            throw new Exception("Verifique Las Supervisiones del dia lunes SOLO NUMEROS");
+        }
+    }
+    if ($puntoServicio["SupervisionesMartesEdit"] == "" || $puntoServicio["SupervisionesMartesEdit"] < 0) {
+        throw new Exception("Por favor Ingrese: El total de supervisiones para el día martes ");
+    }
+    if ($puntoServicio["SupervisionesMartesEdit"] != "") {
+        if (is_numeric($puntoServicio["SupervisionesMartesEdit"]) == false) {
+            throw new Exception("Verifique Las Supervisiones del dia martes SOLO NUMEROS");
+        }   
+    }
+    if ($puntoServicio["SupervisionesMiercolesEdit"] == "" || $puntoServicio["SupervisionesMiercolesEdit"] < 0) {
+        throw new Exception("Por favor Ingrese: El total de supervisiones para el día miércoles ");
+    }
+    if ($puntoServicio["SupervisionesMiercolesEdit"] != "") {
+        if (is_numeric($puntoServicio["SupervisionesMiercolesEdit"]) == false) {
+            throw new Exception("Verifique Las Supervisiones del dia miércoles SOLO NUMEROS");
+        }
+    }
+    if ($puntoServicio["SupervisionesJuevesEdit"] == "" || $puntoServicio["SupervisionesJuevesEdit"] < 0) {
+        throw new Exception("Por favor Ingrese: El total de supervisiones para el día jueves ");
+    }
+    if ($puntoServicio["SupervisionesJuevesEdit"] != "") {
+        if (is_numeric($puntoServicio["SupervisionesJuevesEdit"]) == false) {
+            throw new Exception("Verifique Las Supervisiones del dia jueves SOLO NUMEROS");
+        }
+    }
+    if ($puntoServicio["SupervisionesViernesEdit"] == "" || $puntoServicio["SupervisionesViernesEdit"] < 0) {
+        throw new Exception("Por favor Ingrese: El total de supervisiones para el día viernes ");
+    }
+    if ($puntoServicio["SupervisionesViernesEdit"] != "") {
+        if (is_numeric($puntoServicio["SupervisionesViernesEdit"]) == false) {
+            throw new Exception("Verifique Las Supervisiones del dia viernes SOLO NUMEROS");
+        }
+    }
+    if ($puntoServicio["SupervisionesSabadoEdit"] == "" || $puntoServicio["SupervisionesSabadoEdit"] < 0) {
+        throw new Exception("Por favor Ingrese: El total de supervisiones para el día sábado ");
+    }
+    if ($puntoServicio["SupervisionesSabadoEdit"] != "") {
+        if (is_numeric($puntoServicio["SupervisionesSabadoEdit"]) == false) {
+            throw new Exception("Verifique Las Supervisiones del dia sábado SOLO NUMEROS");
+        }
+    }
+    if ($puntoServicio["SupervisionesDomingoEdit"] == "" || $puntoServicio["SupervisionesDomingoEdit"] < 0) {
+        throw new Exception("Por favor Ingrese: El total de supervisiones para el día domingo ");
+    }
+    if ($puntoServicio["SupervisionesDomingoEdit"] != "") {
+        if (is_numeric($puntoServicio["SupervisionesDomingoEdit"]) == false) {
+            throw new Exception("Verifique Las Supervisiones del dia domingo SOLO NUMEROS");
+        }
     }
 
     $this->persistencia->updateCatalogopuntosservicios($puntoServicio);

@@ -330,7 +330,7 @@ $catalogoClientes  = $negocio->negocio_obtenerListaClientesActivos();
     </div>  <!-- FIN MODAL reactivacion punto de servicio-->
     <!-- modal para dar de alta la requisicion de los puntos de servicios que no tienen alta previa -->
 
-    <div id="modalPlantillaAlta1"  style="display:none;" name="modalPlantillaAlta1" class="modalPlantilla hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" >
+    <div id="modalPlantillaAlta1"  style="display:none;max-height: calc(100vh - 180px); overflow-y: auto;" name="modalPlantillaAlta1" class="modalPlantilla hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" >
       <div id="msgModalPlantillaAlta" id="msgModalPlantillaAlta"> </div>
       <input id="LineaNegocioPlantilla" name="LineaNegocioPlantilla" type="hidden">
       <input id="IdClientePunto" name="IdClientePunto" type="hidden" />
@@ -593,6 +593,11 @@ $catalogoClientes  = $negocio->negocio_obtenerListaClientesActivos();
            <div class="input-prepend">
             <span class="add-on">Recursos Materiales</span>
             <textarea  id="txtRecursosMaterialesAlta" name="txtRecursosMaterialesAlta" class="txtAreaComentarios" rows="5" ></textarea>
+          </div>
+
+          <div class="input-prepend">
+            <span class="add-on">Insumos            </span>
+            <textarea id="txtInsumos" name="txtInsumos" class="txtAreaComentarios" rows="5"></textarea>
           </div>
   
         </div> <!-- FIN divSeguridadElectronica-->
@@ -970,7 +975,7 @@ $catalogoClientes  = $negocio->negocio_obtenerListaClientesActivos();
                 <label class="control-label1 label" for="latitud">Longitud</label>
                 <input id="txtLongitudE" name="txtLongitudE" type="text" class="input-medium" maxlength="15"><br>
                 <label class="control-label1 label" for="Rango">Rango Asistencia</label>
-                <input id="txtRangoAsisE" name="txtRangoAsisE" placeholder="100" title="SOLO NUMEROS SE EVALUARÁN EN METROS" type="number" class="input-small" minlength="1">Metros
+                <input id="txtRangoAsisE" name="txtRangoAsisE" placeholder="100" title="SOLO NUMEROS SE EVALUARÁN EN METROS" type="number" class="input-small" minlength="1">Metros<br>
               </td>
             </tr>
             <tr>
@@ -1095,6 +1100,45 @@ $catalogoClientes  = $negocio->negocio_obtenerListaClientesActivos();
           <tr>
             <td><label class="control-label1 label" for="telefonoMovilOperativo">Tel Movil Operativo</label></td>
             <td><input id="txtTelefonoMovilOperativoE" name="txtTelefonoMovilOperativoE" required="hey" type="text" class="input-medium"></td>
+          </tr>
+          <tr>
+            <td><label class="control-label1 label" for="editTipoPeriodo">Tipo de Periodo</label></td>
+            <td>
+              <select id="editTipoPeriodo"></select>
+              <!-- <input id="editTipoPeriodo" name="editTipoPeriodoPS" required="hey" type="text" class="input-medium"> -->
+            </td>
+          </tr>
+          
+          <tr>
+            <td> <h4>Supervisiones Semanales</h4> </td>
+          </tr>
+          <tr>
+            <td><label class="control-label1 label" for="txtSupervisionesLunesE" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Lunes</label></td>
+            <td><input id="txtSupervisionesLunesE" name="txtSupervisionesLunesE" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+          </tr>
+          <tr>
+            <td><label class="control-label1 label" for="txtSupervisionesMartesE" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Martes</label></td>
+            <td><input id="txtSupervisionesMartesE" name="txtSupervisionesMartesE" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+          </tr>
+          <tr>
+            <td><label class="control-label1 label" for="txtSupervisionesMiercolesE" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Miércoles</label></td>
+            <td><input id="txtSupervisionesMiercolesE" name="txtSupervisionesMiercolesE" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+          </tr>
+          <tr>
+            <td><label class="control-label1 label" for="txtSupervisionesJuevesE" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Jueves</label></td>
+            <td><input id="txtSupervisionesJuevesE" name="txtSupervisionesJuevesE" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+          </tr>
+          <tr>
+            <td><label class="control-label1 label" for="txtSupervisionesViernesE" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Viernes</label></td>
+            <td><input id="txtSupervisionesViernesE" name="txtSupervisionesViernesE" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+          </tr>
+          <tr>
+            <td><label class="control-label1 label" for="txtSupervisionesSabadoE" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Sabado</label></td>
+            <td><input id="txtSupervisionesSabadoE" name="txtSupervisionesSabadoE" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
+          </tr>
+          <tr>
+            <td><label class="control-label1 label" for="txtSupervisionesDomingoE" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana"  >Domingo</label></td>
+            <td><input id="txtSupervisionesDomingoE" name="txtSupervisionesDomingoE" min="0" required="hey" type="number" class="input-small" title="Ingrese si el supervisor deberá realizar una supervisión este dia de la semana" ></td>
           </tr>
         </table>
         </div>
@@ -1662,7 +1706,7 @@ function actualizaEstatusPuntoServicio ()
       $("#txtSubtotalEdited").val("");
       var LineaNegocioPlantilla = $("#LineaNegocioPlantilla").val();
       var IdClientePunto = $("#IdClientePunto").val();
-      if(IdClientePunto == "2" || LineaNegocioPlantilla != "1"){
+      if(IdClientePunto == "13" || LineaNegocioPlantilla != "1"){
         $("#txtTurnosDiariosEdited").val(numeroElementos);
         $("#txtTotalFacturaEdited").val(0);
         $("#txtTurnosMensualesEdited").val(0);
@@ -1720,7 +1764,7 @@ function actualizaEstatusPuntoServicio ()
       var LineaNegocioPlantilla = $("#LineaNegocioPlantilla").val();
 
       var IdClientePunto = $("#IdClientePunto").val();
-      if(IdClientePunto == "2" || LineaNegocioPlantilla != "1"){
+      if(IdClientePunto == "13" || LineaNegocioPlantilla != "1"){
         $("#txtTurnosMensualesAlta").val(0);
         $("#txtTotalFacturaAlta").val(0);
         $("#txtSubtotalAlta").val(0);
@@ -2085,7 +2129,6 @@ function ReplicarPlantillaActiva(){
     var idPuntoServicio = $("#txtPuntoServicioIdEdited").val();
     var txtCostoTurnoReplicacionplantilla2 = txtCostoTurnoReplicacionplantilla1.split("$");
     var txtCostoTurnoReplicacionplantilla = txtCostoTurnoReplicacionplantilla2[1];
-    txtCostoTurnoReplicacionplantilla = parseFloat(txtCostoTurnoReplicacionplantilla.replace(/,/g, ''));
     $.ajax({
       type: "POST",
       url: "ajax_UpdateReplicacionPlantilla.php",
@@ -2438,6 +2481,7 @@ function cancelarFirmaParaBajaplantilla(){
           var numeroElementos=lista[i].numeroElementos;
           var turnosPorDia=lista[i].turnosPorDia;
           var costoPorTurno=lista[i].costoPorTurno;
+          // alert(costoPorTurno);
           var comentarioRequisicion=lista[i].comentarioRequisicion;
           var tipoTurnoPlantillaId=lista[i].tipoTurnoPlantillaId;
           var turnosMensuales="";
@@ -2480,6 +2524,7 @@ function cancelarFirmaParaBajaplantilla(){
           var idLineaNegocioA=lista[i].idLineaNegocioPunto;
           var rolOperativo= lista[i].rolOperativoPlantilla;
           var IdRolOperativoPlantilla= lista[i].IdRolOperativoPlantilla;
+          var tipo= lista[i].tipo;
           var cobDescanso="";
           if (cobraDescanso==1)
           {
@@ -2499,7 +2544,7 @@ function cancelarFirmaParaBajaplantilla(){
           }else{
             cob31="NO SE COBRA";
           }
-          if(idCliente == "2" || idLineaNegocioA != "1"){
+          if(idCliente == "13" || idLineaNegocioA != "1"){
             turnosMensuales=0;
             subtotal=0;
           }else{
@@ -2510,11 +2555,11 @@ function cancelarFirmaParaBajaplantilla(){
           iva = costoNetoFactura - costoSinIva;
           total=costoNetoFactura;
           subtotal = costoSinIva;
-          btnAdd="http://<?php echo $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . dirname($_SERVER["SCRIPT_NAME"]); ?>/img/sumaR.png";
-          btnDelete="http://<?php echo $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . dirname($_SERVER["SCRIPT_NAME"]); ?>/img/restar.png";
-          btnEditar="http://<?php echo $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . dirname($_SERVER["SCRIPT_NAME"]); ?>/img/edit.png";
-
-          costoPorTurno = parseFloat(costoPorTurno.replace(/,/g, ''));//quita las ",", para que el formatter no marque NaN
+          btnAdd="https://<?php echo $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . dirname($_SERVER["SCRIPT_NAME"]); ?>/img/sumaR.png";
+          btnDelete="https://<?php echo $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . dirname($_SERVER["SCRIPT_NAME"]); ?>/img/restar.png";
+          btnEditar="https://<?php echo $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . dirname($_SERVER["SCRIPT_NAME"]); ?>/img/edit.png";
+          costoPorTurno = parseFloat(costoPorTurno.replace(/,/g, ''));
+          // alert(costoPorTurno);
           
           listaRequisicionTable += "<tr style='color:#456789;font-size:60%;'><td>"+numeroElementos+"</td><td>"+descripcionPuesto+" DE "+descripcionTurno+"_"+servicioPlantillaId+" </td><td>"+turnosPorDia+"</td><td>"+turnosMensuales+"</td><td>"+formatter.format(costoPorTurno)+"</td><td >"+cobDescanso+"</td><td>"+cob31+"</td><td>"+cobFestivos+"</td><td>"+formatter.format(subtotal)+"</td><td>"+formatter.format(iva)+"</td><td>"+formatter.format(total)+"</td>";
             
@@ -2523,7 +2568,7 @@ function cancelarFirmaParaBajaplantilla(){
           }else {
             listaRequisicionTable += "<td>No Es Posible Agregar</td><td>No Es Posible Eliminar</td>";
           }*/ //SE COMENTO DEBIDO A QUE LOS REPORTES DETALLE FACTURACION SE ALTERABAN YA QUE MODIFICABAN LOS TURNOS PRESUPUESTADOS POR PLANTILLA Y DE IGUAL FORMA LA COBERTURA REALIZADA
-          listaRequisicionTable += "<td><img class='cursorImg' src='"+btnEditar+"' data-toggle='tooltip' data-placement='right' title='EDITAR' onclick='updatePlantilla("+puntoServicioPlantillaId+",\"" +puntoservicio+ "\",\"" +razonSocial+ "\",\"" +fechaInicio+ "\",\"" +fechaTerminoPlantilla+ "\",\"" +lineaNegocio+ "\",\"" +tipoTurnoPlantillaId+ "\",\"" +numeroElementos+ "\",\"" +puestoPlantillaId+ "\",\"" +costoNetoFactura+ "\",\"" +turnosPorDia+ "\",\"" +turnosMensuales+ "\",\""+subtotal+ "\",\"" +iva+ "\",\"" +costoPorTurno+ "\",\"" +comentarioRequisicion+ "\",\"" +recursosMateriales+ "\",\"" +cobraDescanso+ "\",\"" +cobraFestivos+ "\",\"" +cobraDia31+ "\",\"" +servicioPlantillaId+ "\",\"" +fechaInicioServicio+ "\",\"" +fechaTerminoServicio+ "\",\"" +rolOperativo+ "\",\"" +DescansoMismoDia+ "\",\"" +LunesTurnoDia+ "\",\"" +LunesTurnoNoche+ "\",\"" +MartesTurnoDia+ "\",\"" +MartesTurnoNoche+ "\",\"" +MiercolesTurnoDia+ "\",\"" +MiercolesTurnoNoche+ "\",\"" +JuevesTurnoDia+ "\",\"" +JuevesTurnoNoche+ "\",\"" +ViernesTurnoDia+ "\",\"" +ViernesTurnoNoche+ "\",\"" +SabadoTurnoDia+ "\",\"" +SabadoTurnoNoche+ "\",\"" +DomingoTurnoDia+ "\",\"" +DomingoTurnoNoche+ "\",\"" +idLineaNegocioA+ "\",\"" +IdRolOperativoPlantilla+ "\");' ></td><tr>";  
+          listaRequisicionTable += "<td><img class='cursorImg' src='"+btnEditar+"' data-toggle='tooltip' data-placement='right' title='EDITAR' onclick='updatePlantilla("+puntoServicioPlantillaId+",\"" +puntoservicio+ "\",\"" +razonSocial+ "\",\"" +fechaInicio+ "\",\"" +fechaTerminoPlantilla+ "\",\"" +lineaNegocio+ "\",\"" +tipoTurnoPlantillaId+ "\",\"" +numeroElementos+ "\",\"" +puestoPlantillaId+ "\",\"" +costoNetoFactura+ "\",\"" +turnosPorDia+ "\",\"" +turnosMensuales+ "\",\""+subtotal+ "\",\"" +iva+ "\",\"" +costoPorTurno+ "\",\"" +comentarioRequisicion+ "\",\"" +recursosMateriales+ "\",\"" +cobraDescanso+ "\",\"" +cobraFestivos+ "\",\"" +cobraDia31+ "\",\"" +servicioPlantillaId+ "\",\"" +fechaInicioServicio+ "\",\"" +fechaTerminoServicio+ "\",\"" +rolOperativo+ "\",\"" +DescansoMismoDia+ "\",\"" +LunesTurnoDia+ "\",\"" +LunesTurnoNoche+ "\",\"" +MartesTurnoDia+ "\",\"" +MartesTurnoNoche+ "\",\"" +MiercolesTurnoDia+ "\",\"" +MiercolesTurnoNoche+ "\",\"" +JuevesTurnoDia+ "\",\"" +JuevesTurnoNoche+ "\",\"" +ViernesTurnoDia+ "\",\"" +ViernesTurnoNoche+ "\",\"" +SabadoTurnoDia+ "\",\"" +SabadoTurnoNoche+ "\",\"" +DomingoTurnoDia+ "\",\"" +DomingoTurnoNoche+ "\",\"" +idLineaNegocioA+ "\",\"" +IdRolOperativoPlantilla+ "\",\"" +tipo+ "\");' ></td><tr>";  
         }
         listaRequisicionTable += "</tbody></table>";
         $('#listPlantillaAlta').html(listaRequisicionTable);
@@ -2539,8 +2584,8 @@ function cancelarFirmaParaBajaplantilla(){
   });
   }
   
-  function modalEditarPunto(RangoAsistencia,idPuntoServicio, idCliente, centroCosto, puntoServicio, entidad, direccion, fechaInicio, fechaTermino, cf, tff, tmf, cof, tf, ct, cot, tft, tmt, co, coo, tfo, tmo, cdes, cfes,c31,lat,lon,turnoFlat, idlineanegocio,idautoincrementindex,idRegion,descripcionregion,nombreEntidadPunto,visiblerh,cubredescansos,municipiodelegacion,unidad,CodigoPostalPuntoS,AsentamientoPuntoS,EntidadPuntoS,MunicipioPuntoS,ColoniaPuntoS, CallePrincipaPuntoS,NumeroExteriorPuntoS,NumeroInterirPuntoS,PrimerCallePuntoS,SegundaCallePuntoS)
-  {
+  function modalEditarPunto(RangoAsistencia,SupervisionesLunes,SupervisionesMartes,SupervisionesMiercoles,SupervisionesJueves,SupervisionesViernes,SupervisionesSabado,SupervisionesDomingo,idPuntoServicio, idCliente, centroCosto, puntoServicio, entidad, direccion, fechaInicio, fechaTermino, cf, tff, tmf, cof, tf, ct, cot, tft, tmt, co, coo, tfo, tmo, cdes, cfes,c31,lat,lon,turnoFlat, idlineanegocio,idautoincrementindex,idRegion,descripcionregion,nombreEntidadPunto,visiblerh,cubredescansos,municipiodelegacion,unidad,CodigoPostalPuntoS,AsentamientoPuntoS,EntidadPuntoS,MunicipioPuntoS,ColoniaPuntoS, CallePrincipaPuntoS,NumeroExteriorPuntoS,NumeroInterirPuntoS,PrimerCallePuntoS,SegundaCallePuntoS)
+  {entidadEdited
   if(EntidadPuntoS !="" && EntidadPuntoS !="NULL" && EntidadPuntoS !="null" && EntidadPuntoS !=null  && EntidadPuntoS !="0"){
     $("#txtCpContratoPuntoServicioEdit").val(CodigoPostalPuntoS);
     //$("#txtAsentamientoPuntoServicioEdit").val(AsentamientoPuntoS);
@@ -2596,12 +2641,20 @@ function cancelarFirmaParaBajaplantilla(){
   $("#txtLatitudE").val(lat);
   $("#txtLongitudE").val(lon);
   $("#txtRangoAsisE").val(RangoAsistencia);
+  $("#txtSupervisionesLunesE").val(SupervisionesLunes);
+  $("#txtSupervisionesMartesE").val(SupervisionesMartes);
+  $("#txtSupervisionesMiercolesE").val(SupervisionesMiercoles);
+  $("#txtSupervisionesJuevesE").val(SupervisionesJueves);
+  $("#txtSupervisionesViernesE").val(SupervisionesViernes);
+  $("#txtSupervisionesSabadoE").val(SupervisionesSabado);
+  $("#txtSupervisionesDomingoE").val(SupervisionesDomingo);
   $("#selLineaNegocioEdited").val(idlineanegocio);
   //$("#entidadEdited").empty().append(idautoincrementindex+"sfvsfvsfvnvb");
   $('#entidadEdited').empty().append('<option value="'+entidad+'" selected="selected">'+nombreEntidadPunto+'</option>');
   
   $('#txtRegionEdited').val(idRegion+".-"+descripcionregion);
   $('#idtxtRegionEdited').val(idautoincrementindex);
+  llenarTipoPeriodo(idPuntoServicio);
   
   if(idCliente == "43"){
     $("#selDelMunE").val(municipiodelegacion);
@@ -2651,7 +2704,7 @@ function cancelarFirmaParaBajaplantilla(){
     $('input[name=visiblerhEdited]').prop("checked", "");
   }
   
-  if(idCliente==2){
+  if(idCliente==13){
      $("#trcuredescansoEdited").show();
     if(cubredescansos==1){
       $('input[name=cubredescansoEdited]').prop("checked", "true");
@@ -2662,9 +2715,35 @@ function cancelarFirmaParaBajaplantilla(){
     $("#trcuredescansoEdited").hide();
     $('input[name=cubredescansoEdited]').prop("checked", "");
   }
-  }
+}
   
-  
+function llenarTipoPeriodo(idPuntoServicio) {
+    $.ajax({
+        type: "POST",
+        url: "ajax_ConsultaPeriodos.php",
+        data: {"idPuntoServicio": idPuntoServicio},
+        dataType: "json",
+        success: function(response) {
+            $("#datos").empty();
+            $(document).scrollTop(0);
+            datos = response.datos;
+            $('#editTipoPeriodo').empty().append('<option value="0" selected="selected">SELECCIONAR</option>');
+            let idPeriodoActual= response.idPeriodoActual[0].idPeriodo;
+            $.each(datos, function(i) {
+                  let idPeriodoCatalogo = response.datos[i].IdPeriodo;
+                  let descripcionCatalogo = response.datos[i].Descripcion;
+                if (idPeriodoActual==idPeriodoCatalogo){
+                  $('#editTipoPeriodo').append('<option value="' + idPeriodoCatalogo + '" selected>' + descripcionCatalogo + '</option>');
+                }else{
+                  $('#editTipoPeriodo').append('<option value="' + idPeriodoCatalogo + '">' + descripcionCatalogo + '</option>');
+                }
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        }
+    });
+}
     function disminuirPlantilla (servicioPlantillaId)
     {
     $.ajax({
@@ -3371,17 +3450,20 @@ function cancelarFirmaParaBajaplantilla(){
      if($('input[name=cubredescansoEdited]').is(':checked')){
       var cubredescansoEdited=1;
     }
-		var clienteedited=$("#clienteE").val();
-        var idPuntoServicio=$("#txtIdPuntoServicioE").val();
+    var clienteedited=$("#clienteE").val();
+    var idPuntoServicio=$("#txtIdPuntoServicioE").val();
+    var tipoPeriodo=$("#editTipoPeriodo").val();
+
         var datastring = $("#form_catalogoPuntosServicios1").serialize();
             datastring += "&idPuntoServicio=" + idPuntoServicio;
             datastring += "&cobraDescansos=" + cobraDescansos;
             datastring += "&cobraDiaFestivo=" + cobraDiaFestivo;
             datastring += "&cobra31=" + cobra31;
             datastring += "&turnoFlat=" + turnoFlat;
-			     datastring += "&clienteE=" + clienteedited;
+            datastring += "&clienteE=" + clienteedited;
             datastring += "&visiblerhEdited=" + visiblerhEdited;
             datastring += "&cubredescansoEdited=" + cubredescansoEdited;
+            datastring += "&tipoPeriodo=" + tipoPeriodo;
             //datastring += "&idEstatusM=" + idEstatusMovimiento;
             //datastring += "&idBancoM=" + numeroBanco;
             //datastring.val().toUpperCase();
@@ -3470,23 +3552,28 @@ function cancelarFirmaParaBajaplantilla(){
       } 
     }
 
-    function updatePlantilla(idPuntoServicio, nombrePunto, razonSocial, fechaInicio, fechaTermino, lineaNegocio,tipoTurnoPlantillaId, numeroElementos, puesto, costoNetoFactura, turnosPorDia, turnosMes, subtotal, iva, costoTurno, comentarioRequisicion, recursosMateriales, cobraDescanso, cobraFestivo,cobra31,idRequisicion, fips, ftps,rolOp,DescansoMismoDia,LunesTurnoDia,LunesTurnoNoche,MartesTurnoDia,MartesTurnoNoche,MiercolesTurnoDia,MiercolesTurnoNoche,JuevesTurnoDia,JuevesTurnoNoche,ViernesTurnoDia,ViernesTurnoNoche,SabadoTurnoDia,SabadoTurnoNoche,DomingoTurnoDia,DomingoTurnoNoche,idLineaNegocioEdit,IdRolOperativoPlantilla){
-      // alert("updatePlantilla");
+    function updatePlantilla(idPuntoServicio, nombrePunto, razonSocial, fechaInicio, fechaTermino, lineaNegocio,tipoTurnoPlantillaId, numeroElementos, puesto, costoNetoFactura, turnosPorDia, turnosMes, subtotal, iva, costoTurno, comentarioRequisicion, recursosMateriales, cobraDescanso, cobraFestivo,cobra31,idRequisicion, fips, ftps,rolOp,DescansoMismoDia,LunesTurnoDia,LunesTurnoNoche,MartesTurnoDia,MartesTurnoNoche,MiercolesTurnoDia,MiercolesTurnoNoche,JuevesTurnoDia,JuevesTurnoNoche,ViernesTurnoDia,ViernesTurnoNoche,SabadoTurnoDia,SabadoTurnoNoche,DomingoTurnoDia,DomingoTurnoNoche,idLineaNegocioEdit,IdRolOperativoPlantilla,tipo){
+      if(tipo == "02"){
+        $("#checkAdmin").prop('checked', true);
+        $("#checkOperat").prop('checked', false);
+        $("#checkAdmin").val(1);
+        $("#checkOperat").val(0);
+      }else{
+        $("#checkAdmin").prop('checked', false);
+        $("#checkOperat").prop('checked', true);
+        $("#checkAdmin").val(0);
+        $("#checkOperat").val(1);
+      }
       
       cargarlistadeHorariosEdited(idRequisicion);
       seleccionarPuestoEdited();
-      $("#checkOperat").prop('checked', false);
-      $("#checkAdmin").prop('checked', false);
-      //$("#selectTurnoRequisicionEdited").prop('disabled', false);
       $("#txtTotalFacturaEdited").prop('readonly', false);
       $("#selectTurnoRequisicionEdited").val(tipoTurnoPlantillaId);
       MostrarCheckDescasnoEdit(DescansoMismoDia,numeroElementos,rolOp);
       existenElementosEnPlantilla(idPuntoServicio,idRequisicion);
-      //seleccionarPuestoEdited();
       $("#TipoRolOperativoPlantilla").val("");
       $("#rolOpEdit").val(rolOp);
       $("#TipoRolOperativoPlantilla").val(rolOp);
-     // $("#divSelectRolOperativoEdited").html("");
       $("#modalPlantillaAlta1").modal('hide'); 
       $("#modalEditarPlantilla1").modal();
       $("#txtPuntoServicioIdEdited").val(idPuntoServicio);
@@ -3694,7 +3781,7 @@ function cancelarFirmaParaBajaplantilla(){
       var IdClientePunto = $("#IdClientePunto").val();
       var checkAdmin = $("#checkAdmin").val();
       var checkOperat = $("#checkOperat").val();
-      if((IdClientePunto == "2") ||(LineaNegocioPlantilla != "1" && LineaNegocioPlantilla != "3")){
+      if((IdClientePunto == "13") ||(LineaNegocioPlantilla != "1" && LineaNegocioPlantilla != "3")){
 
           $("#TituloDiasDescansoEdit").hide();
           $("#checkLunes1Edit").hide();
@@ -4181,7 +4268,7 @@ function cancelarFirmaParaBajaplantilla(){
 
 
 
-      if((IdClientePunto == "2") || (LineaNegocioPlantilla != "1" && LineaNegocioPlantilla != "3")){
+      if((IdClientePunto == "13") || (LineaNegocioPlantilla != "1" && LineaNegocioPlantilla != "3")){
 
         $("#TituloDiasDescansoAlta").hide();
         $("#checkLunes1Alta").hide();
@@ -4862,7 +4949,9 @@ function cancelarFirmaParaBajaplantilla(){
 
 
   $('#checkAdminAlta').change(function() {
-      if($('#checkAdminAlta').is(":checked")){
+    $("#selectJornadasAlta").val(0);
+    $("#selectHorarioAlta").empty();
+    if($('#checkAdminAlta').is(":checked")){
       $("#checkAdminAlta").val(1);
       $("#checkOperatAlta").prop('checked', false);
       $("#checkOperatAlta").val(0);
@@ -4872,8 +4961,7 @@ function cancelarFirmaParaBajaplantilla(){
       $("#txtTurnosDiariosAlta").val("");
       $("#txtTurnosMensualesAlta").val("");
       $("#txtNumeroElementosAlta").val("");
-    } 
-    else {
+    }else {
       $("#checkAdminAlta").val(0);
       $("#checkOperatAlta").val(0);
       $("#selectTurnoRequisicionAlta").val("");
@@ -4881,10 +4969,12 @@ function cancelarFirmaParaBajaplantilla(){
       $("#txtTurnosMensualesAlta").val("");
       $("#txtNumeroElementosAlta").val("");
     }
-    });
+  });
 
   $('#checkOperatAlta').change(function() {
-      if($('#checkOperatAlta').is(":checked")){
+    $("#selectJornadasAlta").val(0);
+    $("#selectHorarioAlta").empty();
+    if($('#checkOperatAlta').is(":checked")){
       $("#checkOperatAlta").val(1);
       $("#checkAdminAlta").prop('checked', false);
       $("#checkAdminAlta").val(0);
@@ -4894,8 +4984,7 @@ function cancelarFirmaParaBajaplantilla(){
       $("#txtTurnosDiariosAlta").val("");
       $("#txtTurnosMensualesAlta").val("");
       $("#txtNumeroElementosAlta").val("");
-    } 
-    else {
+    }else{
       $("#checkOperatAlta").val(0);
       $("#checkAdminAlta").val(0);
       $("#selectTurnoRequisicionAlta").val("");
@@ -4932,16 +5021,28 @@ function cancelarFirmaParaBajaplantilla(){
 //Comienzan funciones para dar d ealt auna plantilla nueva //////////////////////////////////////////////////////////////////////////////////
 
   $("#selectJornadasAlta").change(function () {
-    var idJornada = $("#selectJornadasAlta").val();
-    obtenerHorarios(idJornada,1);
+    var checkAdminAlta = $("#checkAdminAlta").val();
+    var checkOperatAlta = $("#checkOperatAlta").val();
+    if(checkAdminAlta =="1" || checkOperatAlta =="1"){
+      var idJornada = $("#selectJornadasAlta").val();
+      if(checkAdminAlta == "1"){
+        var tipo = "02";
+      }else{
+        var tipo = "03";
+      }
+      obtenerHorarios(idJornada,1,tipo);
+    }else{
+      mensajeplantillaAlta("error","Seleccione si la plantilla sera para Administrativos o para Opertativos");
+      $("#selectJornadasAlta").val(0);
+    }
 
   });
 
-  function obtenerHorarios(idJornada,opcion){
+  function obtenerHorarios(idJornada,opcion,tipo){
     $.ajax({
       type: "POST",
       url: "HorariosAdmin/ajax_ConsultarCatalogoHorariosPorJornada.php",
-      data: {idJornada},
+      data: {idJornada,tipo},
       dataType: "json",
       success: function(response) {
         if (response.status == "success")
@@ -5034,9 +5135,20 @@ function mensajeplantillaAlta(tipo,mensaje){
 //Comienzan funciones de edicion de una plantilla exiteste para horarios nuevos/////////////////////////////////////////////////////////////
 
   $("#selectJornadasEdited").change(function () {
-    var idJornada = $("#selectJornadasEdited").val();
-    obtenerHorarios(idJornada,2);
-
+    var checkAdmin = $("#checkAdmin").val();
+    var checkOperat = $("#checkOperat").val();
+    if(checkAdmin =="1" || checkOperat =="1"){
+      var idJornada = $("#selectJornadasEdited").val();
+      if(checkAdmin == "1"){
+        var tipo = "02";
+      }else{
+        var tipo = "03";
+      }
+      obtenerHorarios(idJornada,2,tipo);
+    }else{
+      errorplantillaedit("error","Seleccione si la plantilla sera para Administrativos o para Opertativos");
+      $("#selectJornadasAlta").val(0);
+    }
   });
 
 function ActualizarHorario(){

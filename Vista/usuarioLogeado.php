@@ -255,18 +255,40 @@ if ($usuario["rol"] == "Contrataciones" || $usuario["rol"] == "Socioeconomico" |
     <?php
         $currentTimestamp = time();
         $currentDiaSemana = date("w", $currentTimestamp);
-        if($currentDiaSemana =="1" || $currentDiaSemana =="3"){
-         $DiaSemana="#AED6F1";
-         $DiaSemana1="#D6EAF8";
-        }else if($currentDiaSemana =="2" ||$currentDiaSemana =="4"){
-         $DiaSemana="#D2B4DE";
-         $DiaSemana1="#E8DAEF";
+        if($currentDiaSemana =="1"){
+         $DiaSemana="#C3CEEB";
+         $DiaSemana1="#DAE2F5";
+        }else if($currentDiaSemana =="2"){
+         $DiaSemana="#789AFF";
+         $DiaSemana1="#ABC2FF";
+        }else if($currentDiaSemana =="3"){
+         $DiaSemana="#FFFFFF";
+         $DiaSemana1="#FFFFFF";
+        }
+        else if($currentDiaSemana =="4"){
+         $DiaSemana = "repeating-linear-gradient(
+        45deg,
+        #E3EDFC,
+        #E3EDFC 8px,
+        #FFFFFF 8px,
+        #FFFFFF 16px
+    )";
+    $DiaSemana1 = "repeating-linear-gradient(
+        45deg,
+        #F0F8FF,
+        #F0F8FF 8px,
+        #FFFFFF 8px,
+        #FFFFFF 16px
+    )";
         }else if($currentDiaSemana =="5"){
-         $DiaSemana="#FDEBD0";
-         $DiaSemana1="#FEF5E7";
-        }else if($currentDiaSemana =="6" || $currentDiaSemana =="7"){
-         $DiaSemana="#CEF1CA";
-         $DiaSemana1="#D4EFDF";
+         $DiaSemana="#95FCE6";
+         $DiaSemana1="#D4FFF7";
+        }else if($currentDiaSemana =="6"){
+         $DiaSemana="#FCC9FF";
+         $DiaSemana1="#FCE8FF";
+        }else if($currentDiaSemana =="7"){
+         $DiaSemana="#FFFFD4";
+         $DiaSemana1="#FFFFEB";
         }
     ?>
 

@@ -12,13 +12,13 @@ $response = array ();
 verificarInicioSesion($negocio);
 
 
-	// $log = new KLogger ( "ajax_updatePuntoServicio.log" , KLogger::DEBUG );
+    // $log = new KLogger ( "ajax_updatePuntoServicio.log" , KLogger::DEBUG );
     // $log->LogInfo("Valor de la variable post: " . var_export ($_POST, true));
 
     $usuario = $_SESSION ["userLog"]["usuario"];
-	
-	$puntoServicio = array (
-	"numeroCentroCosto" => getValueFromPost("txtNumeroCentroE"),
+    
+    $puntoServicio = array (
+    "numeroCentroCosto" => getValueFromPost("txtNumeroCentroE"),
     "puntoServicio" =>  getValueFromPost("txtPuntoServicioE"),
     "idEntidadPunto" => getValueFromPost("entidadEdited"),
     "idClientePunto" => getValueFromPost("clienteE"),
@@ -63,11 +63,19 @@ verificarInicioSesion($negocio);
     "Calle1PuntoServicioEdit"=>getValueFromPost("txtCalle1PuntoServicioEdit"), 
     "Calle2PuntoServicioEdit"=>getValueFromPost("txtCalle2PuntoServicioEdit"),
     "RangoAsisEdit"=>getValueFromPost("txtRangoAsisE"),
+    "tipoPeriodoEdit"=>getValueFromPost("tipoPeriodo"),
+    "SupervisionesLunesEdit"=>getValueFromPost("txtSupervisionesLunesE"),
+    "SupervisionesMartesEdit"=>getValueFromPost("txtSupervisionesMartesE"),
+    "SupervisionesMiercolesEdit"=>getValueFromPost("txtSupervisionesMiercolesE"),
+    "SupervisionesJuevesEdit"=>getValueFromPost("txtSupervisionesJuevesE"),
+    "SupervisionesViernesEdit"=>getValueFromPost("txtSupervisionesViernesE"),
+    "SupervisionesSabadoEdit"=>getValueFromPost("txtSupervisionesSabadoE"),
+    "SupervisionesDomingoEdit"=>getValueFromPost("txtSupervisionesDomingoE"),
 
 
-   	);
-	
-		//$log->LogInfo("Valor de la variable \$puntoServicio: " . var_export ($puntoServicio, true));
+    );
+    
+        //$log->LogInfo("Valor de la variable \$puntoServicio: " . var_export ($puntoServicio, true));
     try
     {
         $negocio -> updateCatalogopuntosservicios($puntoServicio);

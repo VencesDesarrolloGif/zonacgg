@@ -6058,6 +6058,7 @@ public function updateCatalogopuntosservicios($puntoServicio)
     }else{
         $DelMunEdited = $puntoServicio["DelMunEdited"];
     }
+    $supervisionesTotales = $puntoServicio["SupervisionesLunesEdit"] + $puntoServicio["SupervisionesMartesEdit"] + $puntoServicio["SupervisionesMiercolesEdit"] + $puntoServicio["SupervisionesJuevesEdit"] + $puntoServicio["SupervisionesViernesEdit"] + $puntoServicio["SupervisionesSabadoEdit"] + $puntoServicio["SupervisionesDomingoEdit"];
    // $this -> logger -> LogInfo ("Ejecutando. updateCatalogopuntosserviciosssss en persistencia");
 
     $sql = "update catalogopuntosservicios " .
@@ -6102,9 +6103,18 @@ public function updateCatalogopuntosservicios($puntoServicio)
     "visiblerh=" . mysqli_real_escape_string($this->conn, $puntoServicio["visiblerhEdited"]) . ", " .
     "municipiodelegacion=" . $DelMunEdited . ", " .
     "unidad='" . mysqli_real_escape_string($this->conn, $puntoServicio["UnidadEdited"]) . "', " .
-    "cubredescanso=" . mysqli_real_escape_string($this->conn, $puntoServicio["cubredescansoEdited"]) . " " .
+    "idPeriodo='" . mysqli_real_escape_string($this->conn, $puntoServicio["tipoPeriodoEdit"]) . "', " .
+    "cubredescanso=" . mysqli_real_escape_string($this->conn, $puntoServicio["cubredescansoEdited"]) . ", " .
+    "SupLunes=" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesLunesEdit"]) . ", " .
+    "SupMartes=" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesMartesEdit"]) . ", " .
+    "SupMiercoles=" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesMiercolesEdit"]) . ", " .
+    "SupJueves=" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesJuevesEdit"]) . ", " .
+    "SupViernes=" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesViernesEdit"]) . ", " .
+    "SupSabado=" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesSabadoEdit"]) . ", " .
+    "SupDomingo=" . mysqli_real_escape_string($this->conn, $puntoServicio["SupervisionesDomingoEdit"]) . ", " .
+    "Supervisiones=" . $supervisionesTotales . " " .
     "where idPuntoServicio=" . mysqli_real_escape_string($this->conn, $puntoServicio["idPuntoServicio"]) . "";
-   // $this -> logger -> LogInfo ("Se ejecuto consulta  updateCatalogopuntosservicios como" . $sql);
+    $this -> logger -> LogInfo ("Se ejecuto consulta  updateCatalogopuntosservicios como" . $sql);
     //"direccionPuntoServicio='" . mysqli_real_escape_string($this->conn, $puntoServicio["direccionPuntoServicio"]) . "', " .
     $res = mysqli_query($this->conn, $sql);
 

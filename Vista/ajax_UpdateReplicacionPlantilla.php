@@ -9,13 +9,14 @@ verificarInicioSesion($negocio);
 $response = array("status" => "success");
 // $log = new KLogger ( "ajax_UpdateReplicacionPlantilla.log" , KLogger::DEBUG ); 
 $txtTotalFacturaReplicacionplantilla=$_POST["txtTotalFacturaReplicacionplantilla"];
-$txtCostoTurnoReplicacionplantilla=$_POST["txtCostoTurnoReplicacionplantilla"];
+$txtCostoTurnoReplicacionplantilla1=$_POST["txtCostoTurnoReplicacionplantilla"];
 $FechaMontajeReplicacionplantilla=$_POST["FechaMontajeReplicacionplantilla"];
 $servicioPlantillaId=$_POST["servicioPlantillaId"];
 $contraseniaInsertadaCifrada=$_POST["contraseniaInsertadaCifrada"];
 $NumEmpModalBaja=$_POST["NumEmpModalBaja"];
 $idPuntoServicio=$_POST["idPuntoServicio"];
 $usuario = $_SESSION ["userLog"]["usuario"];
+$txtCostoTurnoReplicacionplantilla = str_replace(',', '', $txtCostoTurnoReplicacionplantilla1);
 // $log->LogInfo("Valor de post" . var_export ($_POST, true));
 
 try {

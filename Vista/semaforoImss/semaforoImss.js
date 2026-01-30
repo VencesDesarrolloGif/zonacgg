@@ -85,9 +85,11 @@ async function consultaPorMesyAnio() {
             waitingDialog.hide();
         }
     } catch (error) {
-        console.error("Error en la consulta:", error);
-        alert("Hubo un error al consultar los datos.");
-        waitingDialog.hide();
+        console.error("🔥 Error real:", error);
+
+    alert("Error real:\n" + error.message);
+
+    waitingDialog.hide();
     }
 }
 

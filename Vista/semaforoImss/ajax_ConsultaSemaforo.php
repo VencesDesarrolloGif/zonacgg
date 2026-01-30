@@ -10,8 +10,10 @@ $log = new KLogger ( "ajax_ConsultaSemaforo.log" , KLogger::DEBUG );
 
 $data = json_decode(file_get_contents('php://input'), true);
 $anio = $data['anio'];
-// $anio=date("Y");
+
 // $anio='2025';
+// $anio=date("Y");
+    $log->LogInfo("Valor de la variable anio " . var_export ($anio, true));
 
 try{
     // $anio=$_POST['anio'];
@@ -259,15 +261,17 @@ try{
                                 FROM catalogo_opinioncumplimientos_infonavit
                                 WHERE mesOpInf= '$mesSeleccionado'
                                 AND añoOpImss = '$anio'
+                                AND idregistroP='$registroPatronal'
                                 ORDER BY idOpinionCumplimientoInfonavit DESC
                                 LIMIT 1"; 
 
         $resDocOpInfonavit = mysqli_query($conexion, $sqlDocOpInfonavit);     
 
         If( $regDocOpInfonavit = mysqli_fetch_array($resDocOpInfonavit, MYSQLI_ASSOC)) {           
+            $nombreCarpeta = $registroPatronal.$mesSeleccionado.$anio;            
             $nombreDocOpInfonavit = $regDocOpInfonavit["nombreDocOpinionInf"];            
             $listaRegistrosPatronales[$c]["opInfonavit"]=  "<div style='text-align: center;'>" .
-                                                                "<img style='width: 2rem'; title='CARGADO' src='img/confirmarImss.png' class='cursorImg' id='btnAbrirDocIDSEEMA' onclick=abrirDocIDSEEMA('$nombreDocIdseEMA')>".
+                                                                "<img style='width: 2rem'; title='CARGADO' src='img/confirmarImss.png' class='cursorImg' id='btnAbrirDocIDSEEMA' onclick=abrirDocOpINFONAVIT('$nombreCarpeta','$nombreDocOpInfonavit')>".
                                                             "</div>";
         } else{
                 $listaRegistrosPatronales[$c]["opInfonavit"]="<div style='text-align: center;'>" .

@@ -833,6 +833,7 @@ if ($usuario["rol"] == "Contrataciones" || $usuario["rol"] == "Socioeconomico" |
                             <ul class="dropdown-menu">
                                 <li><a href='#asignacionUniformeSupervisor' data-toggle='tab'>Asignacion Uniformes</a></li>
                                 <li><a href='#historicoAsigSup' data-toggle='tab'>Historico Asignacion Uniformes</a></li>
+                                <li ><a href="#stockSuper" data-toggle="tab">Stock Uniformes</a></li>
                             </ul>
                         </li>
                     <li><a href='#asistenciaPeriodo1' data-toggle='tab'>Registro Asistencia <img src="img/checkAsistencia.png"></a></li>
@@ -4919,6 +4920,12 @@ if ($usuario["rol"] == "Lider Unidad" || $usuario["rol"] == "Contrataciones" ) {
                      <div class="tab-pane fade " id="contenedorKpiSupervisor">
                         <?php
                             include "kpiSupervisores/kpiSupervisores.html";
+                        ?>
+                    </div>
+
+                    <div class="tab-pane fade " id="stockSuper">
+                        <?php
+                            include "stockSupervisor/stockSupervisor.html";
                         ?>
                     </div>
                     <?php
